@@ -1,6 +1,8 @@
 #!/bin/sh
 lock() {
-    i3lock -c 778899
+    #i3lock -c 3d3d3d
+    #i3lock -e -f -t --image=$HOME/wallpaper/1Z924105551-3.jpg
+    i3lock -e -f -m --blur=sigma -k --datestr=""
 }
 
 case "$1" in
