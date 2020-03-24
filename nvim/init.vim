@@ -42,7 +42,7 @@ set autoread
 set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽
 set cursorline           " highlight current line
 set number               " show line number
-set ruler                " show ruler
+"set ruler                " show ruler
 set syntax=on            " turn on syntax highlight
 " auto identation ===========
 set autoindent
@@ -55,7 +55,6 @@ set shiftwidth=4   " ident length
 set expandtab      " tab replace black space
 set showmatch      " bracket highlight
 set matchtime=2    " bracket match highlight time(0.2s)
-set showcmd        " show input message
 set wildmenu       " enable command-line completion in enhanced mode
 set ignorecase     " ignore case when you search 
 set hlsearch       " highlight search result
@@ -63,6 +62,7 @@ set hlsearch       " highlight search result
 set foldenable         " allow flod (help fold)
 set foldmethod=marker  " option: [manual indent marker]
 "au BufWinLeave * silent mkview
+set showcmd        " show input message
 
 set mouse=a  " mouse set
 " allow backspace to upper line or lower line-
@@ -358,13 +358,13 @@ let g:python3_host_prog="/usr/bin/python3.8"
 call plug#begin()
 Plug 'tiagofumo/dart-vim-flutter-layout'
 Plug 'RRethy/vim-illuminate'
-" === vim-illuminate
 " ===
+" === vim-illuminate
 let g:Illuminate_delay = 750
 hi illuminatedWord cterm=undercurl gui=undercurl
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'KabbAmine/vCoolor.vim'
-Plug 'pechocrin/any-jump.vim'
+"Plug 'pechocrin/any-jump.vim'
 
 " Pretty Dress
 Plug 'theniceboy/eleline.vim'
@@ -375,7 +375,7 @@ Plug 'bling/vim-bufferline'
 "Plug 'rakr/vim-one'
 "Plug 'mhartington/oceanic-next'
 "Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'ajmwagar/vim-deus'
+"Plug 'ajmwagar/vim-deus'
 "Plug 'arzg/vim-colors-xcode'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
@@ -478,6 +478,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " Formatter
 Plug 'Chiel92/vim-autoformat'
+" ===
 " === AutoFormat
 nnoremap \f :Autoformat<CR>
 " NerdCommenter
@@ -486,11 +487,13 @@ Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
 Plug 'jaxbot/semantic-highlight.vim'
 " show indentation line
 Plug 'Yggdroot/indentLine'
+" ===
 "=== indentLine
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 238
 let g:indentLine_char = '|'
 Plug 'luochen1990/rainbow'
+" ===
 " === rainbow
 let g:rainbow_active = 1
 
@@ -500,11 +503,12 @@ let g:rainbow_active = 1
 
 " File navigation
 Plug 'junegunn/fzf.vim'
+" ===
 " === FZF (sudo pacman -S fzf)
 noremap <C-f> :FZF<CR>
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-" === rnvimr
 " ===
+" === rnvimr
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
 nnoremap <silent> R :RnvimrSync<CR>:RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
@@ -523,6 +527,7 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " Find & Replace 
 " Press SPACE f r to search in cwd.
 Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+" ===
 " === Far.vim, batch modifying
 nnoremap <LEADER>f :F  **/*<left><left><left><left><left>
 let g:far#mapping = {
@@ -530,8 +535,8 @@ let g:far#mapping = {
             \ }
 
 Plug 'osyo-manga/vim-anzu'
-" === Anzu
 " ===
+" === Anzu
 set statusline=%{anzu#search_status()}
 nnoremap = n
 nnoremap - N
@@ -585,7 +590,6 @@ Plug 'wellle/tmux-complete.vim'
 "Plug 'zchee/deoplete-jedi'  " deoplete 函数库
 " ===
 " === coc
-" ===
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java']
@@ -593,10 +597,6 @@ let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json
 "nmap <silent> <TAB> <Plug>(coc-range-select)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
 " use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]    =~ '\s'
-endfunction
 inoremap <silent><expr> <Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<Tab>" :
@@ -617,7 +617,7 @@ omap kf <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-" GoTo code navigation.
+" GoTo code navigation. 代码导航
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -625,19 +625,17 @@ nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 nmap tt :CocCommand explorer<CR>
-" coc-translator
+" coc-translator 翻译
 nmap ts <Plug>(coc-translator-p)
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
-
 
 " Python
 Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim'
-
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
@@ -658,7 +656,6 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 " ===
 " === vim-go
-" ===
 let g:go_def_mapping_enabled = 0
 let g:go_template_autocreate = 0
 let g:go_textobj_enabled = 0
@@ -714,8 +711,8 @@ Plug 'AndrewRadev/switch.vim' " gs to switch
 Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 Plug 'junegunn/vim-after-object' " da= to delete what's after =
-" === vim-after-object
 " ===
+" === vim-after-object
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
 Plug 'easymotion/vim-easymotion'
@@ -755,6 +752,7 @@ let g:r_syntax_folding = 1
 let g:rust_fold = 1
 let g:php_folding = 1
 Plug 'svermeulen/vim-subversive'
+" ===
 " === vim-subversive
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
@@ -776,6 +774,50 @@ Plug 'wincent/terminus'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'roxma/nvim-yarp'
+
+" ++++++++++++++++++++++++++++++++++++++++++++
+
+
+" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown'] }
+Plug 'theniceboy/bullets.vim'
+" ===
+" Snippets
+source ~/.config/nvim/md-snippets.vim
+" auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
+" ===
+" === MarkdownPreview
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+			\ 'mkit': {},
+			\ 'katex': {},
+			\ 'uml': {},
+			\ 'maid': {},
+			\ 'disable_sync_scroll': 0,
+			\ 'sync_scroll_type': 'middle',
+			\ 'hide_yaml_meta': 1
+			\ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '「${name}」'
+let g:mkdp_browser = 'firefox'
+" ===
+" === vim-table-mode
+noremap <LEADER>tm :TableModeToggle<CR>
+"let g:table_mode_disable_mappings = 1
+let g:table_mode_cell_text_object_i_map = 'k<Bar>'
+ 
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
