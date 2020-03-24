@@ -63,7 +63,6 @@ set foldenable         " allow flod (help fold)
 set foldmethod=marker  " option: [manual indent marker]
 "au BufWinLeave * silent mkview
 set showcmd        " show input message
-
 set mouse=a  " mouse set
 " allow backspace to upper line or lower line-
 set backspace=eol,start,indent
@@ -123,138 +122,6 @@ if has('persistent_undo')
 endif
 " --------------------------------------------}}}
 
-" === KEY MAP ================================{{{
-" set leader is <space>
-let mapleader=" "
-"map <LEADER>    :retab!<CR>
-" cancel the highlight search
-nnoremap <LEADER><CR> :nohlsearch<CR>
-
-
-" ===
-" === file option
-" ===
-" Disable the default s key
-map s <nop>
-" save
-map S :w<CR>
-" quit
-map Q :q<CR>
-" make Y to copy till the end of the line
-"nnoremap Y y$
-" Copy to system clipboard
-vnoremap Y "+y
-" Indentation
-nnoremap < <<
-nnoremap > >>
-" select all
-map <C-a> ggVG
-" replace ESC
-"inoremap <LEADER>[ <ESC>
-
-
-"===
-"=== cursor movement
-"===
-"     ^
-"     i
-" < j   l >
-"     k
-"     v
-" new cursor movment
-noremap <silent> i k
-noremap <silent> j h
-noremap <silent> J H
-noremap <silent> k j
-"noremap <silent> l l
-" new INSERT key
-noremap r i
-noremap R I
-"  faster navigation 
-noremap <silent> I 7k
-noremap <silent> K 7j
-" Ctrl + U or E will move up/down the view port without moving the cursor
-nnoremap <C-L> 5<C-y>
-nnoremap <C-J> 5<C-e>
-" Insert and Command Mode Cursor Movement
-noremap! <C-a> <Home>
-noremap! <C-s> <End>
-noremap! <C-i> <Up>
-noremap! <C-k> <Down>
-noremap! <C-j> <Left>
-noremap! <C-l> <Right>
-noremap! <M-j> <S-Left>
-noremap! <M-l> <S-Right>
-" Disable the default t key
-noremap t <nop>
-" Use t + arrow keys for moving the cursor around windows
-noremap tl <C-w>l
-noremap ti <C-w>k
-noremap tk <C-w>j
-noremap tj <C-w>h
-" jump to sentence tail
-noremap # 0
-
-
-"===
-"=== windwo management
-"===
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map si :set nosplitbelow<CR>:split<CR>:e 
-map sk :set splitbelow<CR>:split<CR>:e 
-map sj :set nosplitright<CR>:vsplit<CR>:e 
-map sl :set splitright<CR>:vsplit<CR>:e 
-" Resize splits with arrow keys
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <left> :vertical resize-5<CR>
-map <right> :vertical resize+5<CR>
-" Disable the default c key
-"map c <nop>
-" Place the two screens up and down
-noremap ch <C-w>t<C-w>K
-" Place the two screens side by side
-noremap cv <C-w>t<C-w>H
-
-
-"===
-"=== tabe management
-"===
-" 新建标签页, w filepath_and_name
-map <c-t> :tabe<CR>
-" 前一标签页
-map t- :-tabnext<CR>
-" 后一标签页
-map t= :+tabnext<CR>
-" 上一个buffer
-map b- :bp<CR>
-" 下一个buffer
-map b= :bn<CR>
-
-
-"===
-"=== other
-"===
-" Open the vimrc file anytime
-nnoremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
-" Opening a terminal window
-nnoremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
-tnoremap <C-N> <C-\><C-N>
-" Open up pudb, a python debug,(pip install --user pudb)
-noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
-" find two same word
-nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
-" Press space twice to jump to the next ':' and edit it
-nnoremap <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>c4l
-" Spelling Check with <space>sc
-nnoremap <LEADER>sc :set spell!<CR>
-" Auto change directory to current dir
-autocmd BufEnter * silent! lcd %:p:h
-" resource neovim config
-map rc :source $MYVIMRC<CR>
-
-"imap <c-j> <esc>f"a
-" --------------------------------------------}}}
 " when you open file, back to last edit position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -564,16 +431,16 @@ let g:calendar_google_task = 1
 augroup calendar-mappings
 	autocmd!
 	" diamond cursor
-	autocmd FileType calendar nmap <buffer> u <Plug>(calendar_up)
-	autocmd FileType calendar nmap <buffer> n <Plug>(calendar_left)
-	autocmd FileType calendar nmap <buffer> e <Plug>(calendar_down)
-	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_right)
-	autocmd FileType calendar nmap <buffer> <c-u> <Plug>(calendar_move_up)
-	autocmd FileType calendar nmap <buffer> <c-n> <Plug>(calendar_move_left)
-	autocmd FileType calendar nmap <buffer> <c-e> <Plug>(calendar_move_down)
-	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_right)
-	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_start_insert)
-	autocmd FileType calendar nmap <buffer> K <Plug>(calendar_start_insert_head)
+	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
+	autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
+	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
+	autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
+	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
+	autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
+	autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
+	autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
+	autocmd FileType calendar nmap <buffer> a <Plug>(calendar_start_insert)
+	autocmd FileType calendar nmap <buffer> a <Plug>(calendar_start_insert_head)
 	" unmap <C-n>, <C-p> for other plugins
 	autocmd FileType calendar nunmap <buffer> <C-n>
 	autocmd FileType calendar nunmap <buffer> <C-p>
@@ -592,6 +459,7 @@ Plug 'wellle/tmux-complete.vim'
 " === coc
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+"set signcolumn=no  " no side bar
 let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java']
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "nmap <silent> <TAB> <Plug>(coc-range-select)
@@ -606,7 +474,7 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-o> coc#refresh()
 " Open up coc-commands
 nnoremap <c-c> :CocCommand<CR>
 " Introduce function text object
@@ -626,7 +494,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap tt :CocCommand explorer<CR>
 " coc-translator 翻译
-nmap ts <Plug>(coc-translator-p)
+nmap ts <Plug>(coc-translator-p)winids
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -931,10 +799,139 @@ endfunc
 " map the SetLastModifiedTime command automatically  
 noremap upd :call SetLastModifiedTime(-1)<CR>
 " -------------------------------------------}}}
+
+ " === KEY MAP ================================{{{
+" set leader is <space>
+let mapleader=" "
+"map <LEADER>    :retab!<CR>
+" cancel the highlight search
+nnoremap <LEADER><CR> :nohlsearch<CR>
+
+
+" ===
+" === file option
+" Disable the default s key
+map s <nop>
+" save
+map S :w<CR>
+" quit
+map Q :q<CR>
+" make Y to copy till the end of the line
+"nnoremap Y y$
+" Copy to system clipboard
+vnoremap Y "+y
+" Indentation
+nnoremap < <<
+nnoremap > >>
+" select all
+map <C-a> ggVG
+" replace ESC
+"inoremap <LEADER>[ <ESC>
+
+
+"===
+"=== cursor movement
+"===
+"     ^
+"     i
+" < j   l >
+"     k
+"     v
+" new cursor movment
+noremap <silent> i k
+noremap <silent> j h
+noremap <silent> J H
+noremap <silent> k j
+"noremap <silent> l l
+" new INSERT key
+noremap r i
+noremap R I
+"  faster navigation 
+noremap <silent> I 7k
+noremap <silent> K 7j
+" Ctrl + U or E will move up/down the view port without moving the cursor
+nnoremap <C-L> 5<C-y>
+nnoremap <C-J> 5<C-e>
+" Insert and Command Mode Cursor Movement
+noremap! <C-a> <Home>
+noremap! <C-s> <End>
+noremap! <C-i> <Up>
+noremap! <C-k> <Down>
+noremap! <C-j> <Left>
+noremap! <C-l> <Right>
+noremap! <M-j> <S-Left>
+noremap! <M-l> <S-Right>
+" Disable the default t key
+noremap t <nop>
+" Use t + arrow keys for moving the cursor around windows
+noremap tl <C-w>l
+noremap ti <C-w>k
+noremap tk <C-w>j
+noremap tj <C-w>h
+" jump to sentence tail
+noremap # 0
+
+
+"===
+"=== windwo management
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+map si :set nosplitbelow<CR>:split<CR>:e 
+map sk :set splitbelow<CR>:split<CR>:e 
+map sj :set nosplitright<CR>:vsplit<CR>:e 
+map sl :set splitright<CR>:vsplit<CR>:e 
+" Resize splits with arrow keys
+map <up> :res +5<CR>
+map <down> :res -5<CR>
+map <left> :vertical resize-5<CR>
+map <right> :vertical resize+5<CR>
+" Disable the default c key
+"map c <nop>
+" Place the two screens up and down
+noremap ch <C-w>t<C-w>K
+" Place the two screens side by side
+noremap cv <C-w>t<C-w>H
+
+
+"===
+"=== tabe management
+" 新建标签页, w filepath_and_name
+map <c-t> :tabe<CR>
+" 前一标签页
+map t- :-tabnext<CR>
+" 后一标签页
+map t= :+tabnext<CR>
+" 上一个buffer
+map b- :bp<CR>
+" 下一个buffer
+map b= :bn<CR>
+
+
+"===
+"=== other
+" Open the vimrc file anytime
+nnoremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+" Opening a terminal window
+nnoremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+tnoremap <C-N> <C-\><C-N>
+" Open up pudb, a python debug,(pip install --user pudb)
+noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
+" find two same word
+nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
+" Press space twice to jump to the next ':' and edit it
+nnoremap <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>c4l
+" Spelling Check with <space>sc
+nnoremap <LEADER>sc :set spell!<CR>
+" Auto change directory to current dir
+autocmd BufEnter * silent! lcd %:p:h
+" resource neovim config
+map rc :source $MYVIMRC<CR>
+
+"imap <c-j> <esc>f"a
+" --------------------------------------------}}}
+ 
 " ===
 " === Necessary Commands to Execute
 " ===
-
 hi Normal ctermfg=252 ctermbg=none  " let bg transparent
 exec "nohlsearch"
 
