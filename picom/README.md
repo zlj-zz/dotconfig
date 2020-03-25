@@ -1,5 +1,7 @@
 # picom
 
+[url](https://github.com/yshui/picom) 
+
 **A lightweight compositor for X11 (previously a compton fork)**
 
 the defult configuration file placed in '.config'.
