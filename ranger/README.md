@@ -12,6 +12,7 @@ This plugin uses glyphs from a patched NERDfont
 the plugin
 ```shell
 sudo pacman -S nerd-fonts-complete
+sudo pacman -S adobe-source-code-pro-fonts
 ```
 
 
