@@ -165,7 +165,8 @@ assign [title="TIM"] $ws10
 
 # open on floating mode
 for_window [class="dolphin"] floating enable border 1pixel
-for_window [class="systemsettings5"] floating enable border 1pixel
+for_window [title="KDE*"] floating enable
+for_window [class="system*"] floating enable
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
