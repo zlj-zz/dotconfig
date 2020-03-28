@@ -39,7 +39,7 @@ set pyxversion=3
 set autoread
 " ======= basic formant settings ==============
 " 设置空白字符的视觉提示
-set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽
+set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:▫
 set cursorline           " highlight current line
 set number               " show line number
 "set ruler                " show ruler
@@ -61,54 +61,141 @@ set hlsearch       " highlight search result
 " code fold setting ===========================
 set foldenable         " allow flod (help fold)
 set foldmethod=marker  " option: [manual indent marker]
-"au BufWinLeave * silent mkview
-set showcmd        " show input message
+set showcmd       " show input message
 set mouse=a  " mouse set
 " allow backspace to upper line or lower line-
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 set scrolloff=5  " reserve at least 5 lines when you scrol
 " --------------------------------------------}}}
-"=== status bar set ========================={{{
-" set laststatus=2  " up show status row(1), always show status(2)
-" function! Buf_total_num()
-"     return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-" endfunction
-" function! File_size(f)
-"     let l:size = getfsize(expand(a:f))
-"     if l:size == 0 || l:size == -1 || l:size == -2
-"         return ''
-"     endif
-"     if l:size < 1024
-"         return l:size.' bytes'
-"     elseif l:size < 1024*1024
-"         return printf('%.1f', l:size/1024.0).'k'
-"     elseif l:size < 1024*1024*1024
-"         return printf('%.1f', l:size/1024.0/1024.0) . 'm'
-"     else
-"         return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
-"     endif
-" endfunction
-" set statusline=%<%1*[B-%n]%*                   " current buffer number
-" set statusline+=%2*\ [%{File_size(@%)}]\ %*    " show file's size
-" set statusline+=%3*\%<%.30F\                   " show file name and path
-" set statusline+=%=%4*\%y%m%r%h%w\ %*           " show file classic and statut
-" set statusline+=%5*\%{&ff}\[%{&fenc}]\ %*      " show file coding
-" set statusline+=%6*\ row:%l\|%L/col:%c\/%*     " show current cursor's row and column
-" set statusline+=%7*\%p%%\ %*                   " current percent
-" set statusline+=%8*[ORZ:%{Buf_total_num()}]%*  " ORZ is an abbreviation for total
-" hi User1 cterm=bold ctermfg=226 ctermbg=0
-" hi User2 cterm=none ctermfg=250 ctermbg=0
-" hi User3 cterm=none ctermfg=208 ctermbg=0
-" hi User4 cterm=none ctermfg=33 ctermbg=0
-" hi User5 cterm=none ctermfg=245 ctermbg=0
-" hi User6 cterm=none ctermfg=245 ctermbg=0
-" hi User7 cterm=none ctermfg=245 ctermbg=0
-" hi User8 cterm=none ctermfg=245 ctermbg=0
+
+ " === KEY MAP ================================{{{
+" set leader is <space>
+let mapleader=" "
+"map <LEADER>    :retab!<CR>
+" cancel the highlight search
+nnoremap <LEADER><CR> :nohlsearch<CR>
+
+
+" ===
+" === file option
+" Disable the default s key
+map s <nop>
+" save
+map S :w<CR>
+" quit
+map Q :q<CR>
+" make Y to copy till the end of the line
+"nnoremap Y y$
+" Copy to system clipboard
+vnoremap Y "+y
+" Indentation
+nnoremap < <<
+nnoremap > >>
+" select all
+map <C-a> ggVG
+" replace ESC
+"inoremap <LEADER>[ <ESC>
+
+
+"===
+"=== cursor movement
+"===
+"     ^
+"     i
+" < j   l >
+"     k
+"     v
+" new cursor movment
+noremap <silent> i k
+noremap <silent> j h
+noremap <silent> J H
+noremap <silent> k j
+"noremap <silent> l l
+" new INSERT key
+noremap r <nop>
+noremap r i
+noremap R I
+"  faster navigation 
+noremap <silent> I 7k
+noremap <silent> K 7j
+" Ctrl + U or E will move up/down the view port without moving the cursor
+nnoremap <C-L> 5<C-y>
+nnoremap <C-J> 5<C-e>
+" Insert and Command Mode Cursor Movement
+noremap! <C-a> <Home>
+noremap! <C-s> <End>
+noremap! <m-i> <Up>
+noremap! <m-k> <Down>
+noremap! <m-j> <Left>
+noremap! <m-l> <Right>
+"noremap! <M-j> <S-Left>
+"noremap! <M-l> <S-Right>
+" Disable the default t key
+noremap t <nop>
+" Use t + arrow keys for moving the cursor around windows
+noremap tl <C-w>l
+noremap ti <C-w>k
+noremap tk <C-w>j
+noremap tj <C-w>h
+" jump to sentence tail
+noremap # 0
+
+
+"===
+"=== windwo management
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+map si :set nosplitbelow<CR>:split<CR>:e 
+map sk :set splitbelow<CR>:split<CR>:e 
+map sj :set nosplitright<CR>:vsplit<CR>:e 
+map sl :set splitright<CR>:vsplit<CR>:e 
+" Resize splits with arrow keys
+map <up> :res +5<CR>
+map <down> :res -5<CR>
+map <left> :vertical resize-5<CR>
+map <right> :vertical resize+5<CR>
+" Disable the default c key
+"map c <nop>
+" Place the two screens up and down
+noremap ch <C-w>t<C-w>K
+" Place the two screens side by side
+noremap cv <C-w>t<C-w>H
+
+
+"===
+"=== tabe management
+" 新建标签页, w filepath_and_name
+map <c-t> :tabe<CR>
+" 前一标签页
+map t- :-tabnext<CR>
+" 后一标签页
+map t= :+tabnext<CR>
+" 上一个buffer
+map b- :bp<CR>
+" 下一个buffer
+map b= :bn<CR>
+
+
+"===
+"=== other
+" Open the vimrc file anytime
+nnoremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+" resource neovim config
+map rc :source $MYVIMRC<CR>
+" Opening a terminal window
+nnoremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+tnoremap <C-N> <C-\><C-N>
+" Open up pudb, a python debug,(pip install --user pudb)
+noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
+" find two same word
+nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
+" Press space twice to jump to the next ':' and edit it
+nnoremap <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>c4l
+" Spelling Check with <space>sc
+nnoremap <LEADER>sc :set spell!<CR>
+" Auto change directory to current dir
+autocmd BufEnter * silent! lcd %:p:h
 " --------------------------------------------}}}
-" 代码补充的键位替换
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-"inoremap <expr><S-TAB> pumvisible() ? "\<c-p>" : "\<TAB>"
 
 " === setTmp ================================={{{
 silent !mkdir -p ~/.config/nvim/tmp/backup
@@ -128,95 +215,20 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " =============== ipython run ================
 noremap ,i :sp<CR><C-w>j:term ipython<CR> i %run
 " --------------------------------------------
-" === Compile function ======================={{{
+
+" === extra =================================={{{
+source ~/.config/nvim/my_extra/compile_run.vim
 map <F9> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-    elseif &filetype == 'cpp'
-        set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<"
-        :sp
-        :res -15
-        :term ./%<
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java %<"
-    elseif &filetype == 'sh'
-        :!time bash %
-    elseif &filetype == 'python'
-        set splitbelow
-        :sp
-        :term python3 %
-    elseif &filetype == 'html'
-        silent! exec "!".g:mkdp_browser." % &"
-    elseif &filetype == 'markdown'
-        exec "MarkdownPreview"
-    elseif &filetype == 'tex'
-        silent! exec "VimtexStop"
-        silent! exec "VimtexCompile"
-    elseif &filetype == 'dart'
-        CocCommand flutter.run
-    elseif &filetype == 'go'
-        set splitbelow
-        :sp
-        :term go run .
-    endif
-endfunc
-" --------------------------------------------}}}
 
-" === Annotate function ======================{{{
-" 设置注释快捷键
-"map t' :call Note()<CR>
-"func! Note()
-    "if &filetype == 'python'
-        "normal 0i#
-    "elseif &filetype == 'sh'
-        "normal 0i#
-    "elseif &filetype == 'vim'
-        "normal 0i"
-    "elseif &filetype == 'plaintex'
-        "normal 0i%
-    "elseif &filetype == 'tex'
-        "normal 0i%
-    "elseif &filetype == 'c'
-        "normal 0i//
-    "elseif &filetype == 'cpp'
-        "normal 0i//
-    "elseif &filetype == 'java'
-        "normal 0i//
-    "endif
-"endfunc
-" 设置取消注释
-"map o' 0df j
-" --------------------------------------------}}}
+"autocmd BufNewFile * call SetTitle()
+source ~/.config/nvim/my_extra/file_title.vim
+nmap tit :call SetTitle()<CR>
 
-" === Format function ========================{{{
-"map ,f :call FormartSrc()<CR>
+source ~/.config/nvim/my_extra/update_modify_datetime.vim
+" map the SetLastModifiedTime command automatically  
+nmap upd :call SetLastModifiedTime(-1)<CR>
+" -------------------------------------------}}}
 
-"定义FormartSrc()
-"func FormartSrc()
-    "exec "w"
-    "if &filetype == 'c'
-        "exec "!astyle --style=ansi --one-line=keep-statements -a --suffix=none %"
-    "elseif &filetype == 'cpp' || &filetype == 'hpp'
-        "exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
-    "elseif &filetype == 'perl'
-        "exec "!astyle --style=gnu --suffix=none %"
-    "elseif &filetype == 'py'||&filetype == 'python'
-        "exec "r !autopep8 -i --aggressive %"
-    "elseif &filetype == 'java'
-        "exec "!astyle --style=java --suffix=none %"
-    "elseif &filetype == 'jsp'
-        "exec "!astyle --style=gnu --suffix=none %"
-    "elseif &filetype == 'xml'
-        "exec "!astyle --style=gnu --suffix=none %"
-    "endif
-    "exec "e! %"
-"endfunc
-" --------------------------------------------}}}
 
 "let g:python_host_prog="/usr/bin/python2.7"
 let g:python3_host_prog="/usr/bin/python3.8"
@@ -239,7 +251,7 @@ Plug 'bling/vim-bufferline'
 "Plug 'liuchengxu/space-vim-theme'
 "Plug 'morhetz/gruvbox'
 "Plug 'ayu-theme/ayu-vim'
-"Plug 'rakr/vim-one'
+Plug 'rakr/vim-one'
 "Plug 'mhartington/oceanic-next'
 "Plug 'kristijanhusak/vim-hybrid-material'
 "Plug 'ajmwagar/vim-deus'
@@ -251,7 +263,6 @@ set t_Co=256  " open 256 color suppor
 " === Dress up my vim
 set termguicolors   " enable true colors support
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set background=dark
 "let ayucolor="mirage"
 "let g:oceanic_next_terminal_bold = 1
 "let g:oceanic_next_terminal_italic = 1
@@ -263,9 +274,10 @@ color gruvbox
 "let ayucolor="light"
 "color ayu
 "set background=light
+set background=dark
 "color xcodedark
-hi NonText ctermfg=gray guifg=grey10
-hi SpecialKey ctermfg=blue guifg=grey70
+"hi NonText ctermfg=gray guifg=grey10
+"hi SpecialKey ctermfg=blue guifg=grey70
 " ===
 " === eleline.vim
 let g:airline_powerline_fonts = 0
@@ -328,11 +340,29 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-    nmap <buffer> u <plug>UndotreeNextState
-    nmap <buffer> e <plug>UndotreePreviousState
-    nmap <buffer> U 5<plug>UndotreeNextState
-    nmap <buffer> E 5<plug>UndotreePreviousState
+    nmap <buffer> i <plug>UndotreeNextState
+    nmap <buffer> k <plug>UndotreePreviousState
+    nmap <buffer> I 5<plug>UndotreeNextState
+    nmap <buffer> K 5<plug>UndotreePreviousState
 endfunc
+" File navigation
+Plug 'junegunn/fzf.vim'
+" ===
+" === FZF (sudo pacman -S fzf)
+noremap <C-F> :FZF<CR>
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+" ===
+" === rnvimr
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_pick_enable = 1
+nnoremap <silent> <c-R> :RnvimrSync<CR>:RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+let g:rnvimr_layout = { 'relative': 'editor',
+            \ 'width': &columns,
+            \ 'height': &lines,
+            \ 'col': 0,
+            \ 'row': 0,
+            \ 'style': 'minimal' }
+let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
@@ -368,29 +398,6 @@ let g:rainbow_active = 1
 " ++++++++++++++++++++++++++++++++++++++++++++
 
 
-" File navigation
-Plug 'junegunn/fzf.vim'
-" ===
-" === FZF (sudo pacman -S fzf)
-noremap <C-f> :FZF<CR>
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-" ===
-" === rnvimr
-let g:rnvimr_ex_enable = 1
-let g:rnvimr_pick_enable = 1
-nnoremap <silent> R :RnvimrSync<CR>:RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
-let g:rnvimr_layout = { 'relative': 'editor',
-            \ 'width': &columns,
-            \ 'height': &lines,
-            \ 'col': 0,
-            \ 'row': 0,
-            \ 'style': 'minimal' }
-let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
-
-
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
 " Find & Replace 
 " Press SPACE f r to search in cwd.
 Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
@@ -416,16 +423,12 @@ nnoremap - N
 Plug 'junegunn/goyo.vim'
 " === goyo
 map <LEADER>gy :Goyo<CR>
-
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
 " Vim Applications-日历
 Plug 'itchyny/calendar.vim'
 " ===
 " === vim-calendar
-noremap \c :Calendar -position=here<CR> " 打开日历
-noremap \\ :Calendar -view=clock -position=here<CR> " 打开时钟
+noremap \c :Calendar -position=here<CR> " open calendar
+noremap \\ :Calendar -view=clock -position=here<CR> " open clock
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 augroup calendar-mappings
@@ -466,7 +469,7 @@ let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json
 "xmap <silent> <TAB> <Plug>(coc-range-select)
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
-            \ pumvisible() ? "\<C-n>" :
+            \ pumvisible() ? "\<c-n>" :
             \ <SID>check_back_space() ? "\<Tab>" :
             \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -474,30 +477,34 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <c-o> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 " Open up coc-commands
 nnoremap <c-c> :CocCommand<CR>
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap kf <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap kf <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+xmap yf <Plug>(coc-funcobj-i) " 选择函数内所有行
+xmap tf <Plug>(coc-funcobj-a) " 选择当前函数所在区间
+omap yf <Plug>(coc-funcobj-i)
+omap tf <Plug>(coc-funcobj-a)
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 " GoTo code navigation. 代码导航
+" 跳转到定义处。如有多个定义，使用 |coc-list| 展示
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition) " 跳转到类型定义位置
+nmap <silent> gi <Plug>(coc-implementation) " 跳转到实现处
+nmap <silent> gr <Plug>(coc-references) " 跳转到引用位置
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 nmap tt :CocCommand explorer<CR>
 " coc-translator 翻译
 nmap ts <Plug>(coc-translator-p)winids
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" 			获取并执行 language server 给出的当前选择区间
+"			内的可用操作。
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+
 
 " Python
 Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
@@ -508,7 +515,7 @@ Plug 'tweekmonster/braceless.vim'
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
 Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
+"Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
@@ -564,17 +571,17 @@ Plug 'mg979/vim-visual-multi'
 let g:VM_leader = {'default': ',', 'visual': ',', 'buffer': ','}
 let g:VM_maps = {}
 let g:VM_custom_motions  = {'j': 'h', 'l': 'l', 'i': 'k', 'k': 'j', '#': '0', '$': '$'}
-let g:VM_maps['i']         = 'k'
-let g:VM_maps['I']         = 'K'
+let g:VM_maps['i']         = 'r'
+let g:VM_maps['I']         = 'R'
 let g:VM_maps['Find Under']         = '<C-k>'
 let g:VM_maps['Find Subword Under'] = '<C-k>'
 let g:VM_maps['Find Next']         = ''
 let g:VM_maps['Find Prev']         = ''
 let g:VM_maps['Remove Region'] = 'q'
 let g:VM_maps['Skip Region'] = ''
-let g:VM_maps["Undo"]      = 'l'
+let g:VM_maps["Undo"]      = 'u'
 let g:VM_maps["Redo"]      = '<C-r>'
-Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
+Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line;<space>cu to uncomment a line
 Plug 'AndrewRadev/switch.vim' " gs to switch
 Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
@@ -653,7 +660,7 @@ Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown'] }
 Plug 'theniceboy/bullets.vim'
 " ===
 " Snippets
-source ~/.config/nvim/md-snippets.vim
+source ~/.config/nvim/my_extra/md-snippets.vim
 " auto spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 " ===
@@ -697,241 +704,8 @@ call plug#end()
 " experimental
 set lazyredraw
 
-" === make file header ======================{{{
-"autocmd BufNewFile * call SetTitle()
-nmap tit :call SetTitle()<CR>
-func! SetTitle()
-    if &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python3")
-        call append(line("."),"# -*- coding:UTF-8 -*-")
-        call append(line(".")+1, "__author__ = 'zachary'")
-        call append(line(".")+2, '"""')
-        call append(line(".")+3, "File Name: ".expand("%"))
-        call append(line(".")+4, "Created Time: ".strftime("%c"))
-        call append(line(".")+5, "Last Modified: ")
-        call append(line(".")+6, '"""')
-        call append(line(".")+7, "<++>")
-    elseif &filetype == 'c'
-        call setline(1, "#include <stdio.h>")
-        call append(line("."), "/************************************************************")
-        call append(line(".")+1, "Copyright(C) 1997-".strftime("%Y").", Tech. Co.,Ltd.")
-        call append(line(".")+2, "FileName: ".expand("%"))
-        call append(line(".")+3, "Author: zachary")
-        call append(line(".")+4, "Date: ".strftime("%c"))
-        call append(line(".")+5, "Last Modified: ")
-        call append(line(".")+6, "Version: <++>")
-        call append(line(".")+7, "Description: <++>")
-        call append(line(".")+8, "***********************************************************/")
-        call append(line(".")+9, "<++>")
-    elseif &filetype == 'java'
-        call setline(1, "/**")
-        call append(line("."), "* @description <++>")
-        call append(line(".")+1, "* @author zachary")
-        call append(line(".")+2, "* @version <++>")
-        call append(line(".")+3, "* @date ".strftime("%c"))
-        call append(line(".")+4, "*/")
-        call append(line(".")+5, "<++>")
-    elseif &filetype == "sh"
-        call setline(1, "\#!/bin/bash")
-        call append(line("."), "")
-        call append(line(".")+1, "\#########################################################################")
-        call append(line(".")+2, "\# File Name: ".expand("%"))
-        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+4, "\# Author: zachary")
-        call append(line(".")+5, "\# Last Modified: ")
-        call append(line(".")+6, "\# Description: <++>")
-        call append(line(".")+7, "\#########################################################################")
-        call append(line(".")+8, "<++>")
-    elseif &filetype == 'plaintex'
-        call setline(1,"% -*- coding:UTF-8 -*-")
-        call append(line("."),"% #########################################################################")
-        call append(line(".")+1, "% File Name: ".expand("%"))
-        call append(line(".")+2, "% Author: stubborn vegeta")
-        call append(line(".")+3, "% Created Time: ".strftime("%c"))
-        call append(line(".")+4, "% #########################################################################")
-        call append(line(".")+5, "\\documentclass[UTF8]{<++>}")
-        call append(line(".")+6, "\\usepackage{graphicx}")
-        call append(line(".")+7, "\\usepackage{booktabs}")
-        call append(line(".")+8, "\\usepackage{geometry}")
-        call append(line(".")+9, "\\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}")
-        call append(line(".")+10, "\\pagestyle{plain}")
-        call append(line(".")+11, "\\begin{document}")
-        call append(line(".")+12, "<++>")
-        call append(line(".")+13, "\\end{document}")
-    elseif &filetype == 'tex'
-        call setline(1,"% -*- coding:UTF-8 -*-")
-        call append(line("."),"% #########################################################################")
-        call append(line(".")+1, "% File Name: ".expand("%"))
-        call append(line(".")+2, "% Author: stubborn vegeta")
-        call append(line(".")+3, "% Created Time: ".strftime("%c"))
-        call append(line(".")+4, "% #########################################################################")
-        call append(line(".")+5, "\\documentclass[UTF8]{<++>}")
-        call append(line(".")+6, "\\usepackage{graphicx}")
-        call append(line(".")+7, "\\usepackage{booktabs}")
-        call append(line(".")+8, "\\usepackage{geometry}")
-        call append(line(".")+9, "\\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}")
-        call append(line(".")+10, "\\pagestyle{plain}")
-        call append(line(".")+11, "\\begin{document}")
-        call append(line(".")+12, "<++>")
-        call append(line(".")+13, "\\end{document}")
-    endif
-    "     normal G
-endfunc
-" --------------------------------------------}}}
-
-" === Modify datetime ======================={{{  
-function SetLastModifiedTime(lineno)  
-    let modif_time = strftime("%Y-%m-%d %H:%M:%S")
-    if a:lineno == "-1"  
-            let line = getline(7)  
-    else  
-            let line = getline(a:lineno)  
-    endif
-    if line =~ '\sLast Modified:'
-            let line = strpart(line, 0, stridx(line, ":")) . ": " . modif_time
-    endif  
-    if a:lineno == "-1"  
-            call setline(7, line)  
-    else  
-            call append(a:lineno, line)  
-    endif  
-endfunc
-" map the SetLastModifiedTime command automatically  
-noremap upd :call SetLastModifiedTime(-1)<CR>
-" -------------------------------------------}}}
-
- " === KEY MAP ================================{{{
-" set leader is <space>
-let mapleader=" "
-"map <LEADER>    :retab!<CR>
-" cancel the highlight search
-nnoremap <LEADER><CR> :nohlsearch<CR>
-
-
-" ===
-" === file option
-" Disable the default s key
-map s <nop>
-" save
-map S :w<CR>
-" quit
-map Q :q<CR>
-" make Y to copy till the end of the line
-"nnoremap Y y$
-" Copy to system clipboard
-vnoremap Y "+y
-" Indentation
-nnoremap < <<
-nnoremap > >>
-" select all
-map <C-a> ggVG
-" replace ESC
-"inoremap <LEADER>[ <ESC>
-
-
-"===
-"=== cursor movement
-"===
-"     ^
-"     i
-" < j   l >
-"     k
-"     v
-" new cursor movment
-noremap <silent> i k
-noremap <silent> j h
-noremap <silent> J H
-noremap <silent> k j
-"noremap <silent> l l
-" new INSERT key
-noremap r i
-noremap R I
-"  faster navigation 
-noremap <silent> I 7k
-noremap <silent> K 7j
-" Ctrl + U or E will move up/down the view port without moving the cursor
-nnoremap <C-L> 5<C-y>
-nnoremap <C-J> 5<C-e>
-" Insert and Command Mode Cursor Movement
-noremap! <C-a> <Home>
-noremap! <C-s> <End>
-noremap! <C-i> <Up>
-noremap! <C-k> <Down>
-noremap! <C-j> <Left>
-noremap! <C-l> <Right>
-noremap! <M-j> <S-Left>
-noremap! <M-l> <S-Right>
-" Disable the default t key
-noremap t <nop>
-" Use t + arrow keys for moving the cursor around windows
-noremap tl <C-w>l
-noremap ti <C-w>k
-noremap tk <C-w>j
-noremap tj <C-w>h
-" jump to sentence tail
-noremap # 0
-
-
-"===
-"=== windwo management
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map si :set nosplitbelow<CR>:split<CR>:e 
-map sk :set splitbelow<CR>:split<CR>:e 
-map sj :set nosplitright<CR>:vsplit<CR>:e 
-map sl :set splitright<CR>:vsplit<CR>:e 
-" Resize splits with arrow keys
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <left> :vertical resize-5<CR>
-map <right> :vertical resize+5<CR>
-" Disable the default c key
-"map c <nop>
-" Place the two screens up and down
-noremap ch <C-w>t<C-w>K
-" Place the two screens side by side
-noremap cv <C-w>t<C-w>H
-
-
-"===
-"=== tabe management
-" 新建标签页, w filepath_and_name
-map <c-t> :tabe<CR>
-" 前一标签页
-map t- :-tabnext<CR>
-" 后一标签页
-map t= :+tabnext<CR>
-" 上一个buffer
-map b- :bp<CR>
-" 下一个buffer
-map b= :bn<CR>
-
-
-"===
-"=== other
-" Open the vimrc file anytime
-nnoremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
-" Opening a terminal window
-nnoremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
-tnoremap <C-N> <C-\><C-N>
-" Open up pudb, a python debug,(pip install --user pudb)
-noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
-" find two same word
-nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
-" Press space twice to jump to the next ':' and edit it
-nnoremap <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>c4l
-" Spelling Check with <space>sc
-nnoremap <LEADER>sc :set spell!<CR>
-" Auto change directory to current dir
-autocmd BufEnter * silent! lcd %:p:h
-" resource neovim config
-map rc :source $MYVIMRC<CR>
-
-"imap <c-j> <esc>f"a
-" --------------------------------------------}}}
- 
 " ===
 " === Necessary Commands to Execute
-" ===
 hi Normal ctermfg=252 ctermbg=none  " let bg transparent
 exec "nohlsearch"
 
