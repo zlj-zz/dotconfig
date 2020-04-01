@@ -16,7 +16,7 @@ There is my linux configuration, *you can click to view detail*
 
 ### [picom](https://github.com/zlj-zz/conff/tree/master/picom) 
 
-### [neofetch](<LeftMouse>https://github.com/zlj-zz/conff/tree/master/neofetch)
+### [neofetch](https://github.com/zlj-zz/conff/tree/master/neofetch)
 
 ### [pipy](https://github.com/zlj-zz/conff/tree/master/pip) 
 
