@@ -4,17 +4,19 @@ There is my linux configuration, *you can click to view detail*
 
 ---
 
-### [i3 configuration](https://github.com/zlj-zz/conff/tree/master/i3) 
+### [i3](https://github.com/zlj-zz/conff/tree/master/i3) 
 
-### [polybar configuration](https://github.com/zlj-zz/conff/tree/master/polybar) 
+### [polybar](https://github.com/zlj-zz/conff/tree/master/polybar) 
 
-### [neovim configuration](https://github.com/zlj-zz/conff/tree/master/nvim) 
+### [neovim](https://github.com/zlj-zz/conff/tree/master/nvim) 
 
-### [ranger configuration](https://github.com/zlj-zz/conff/tree/master/ranger) 
+### [ranger](https://github.com/zlj-zz/conff/tree/master/ranger) 
 
-### [alacritty configuration](https://github.com/zlj-zz/conff/tree/master/alacritty) 
+### [alacritty](https://github.com/zlj-zz/conff/tree/master/alacritty) 
 
-### [picom configuration](https://github.com/zlj-zz/conff/tree/master/picom) 
+### [picom](https://github.com/zlj-zz/conff/tree/master/picom) 
+
+### [neofetch](<LeftMouse>https://github.com/zlj-zz/conff/tree/master/neofetch)
 
 ### [pipy](https://github.com/zlj-zz/conff/tree/master/pip) 
 
