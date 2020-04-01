@@ -2,4 +2,4 @@
 
 ### add two icons `bilibili` and `bilibili_txt`
 
-![bilibili](./neo.png) 
+![bilibili](./case.png) 
