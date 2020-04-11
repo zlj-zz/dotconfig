@@ -47,7 +47,7 @@ set pyxversion=3
 set autoread
 
 set ts=4           " Tab's width
-set softtabstop=4  " INSERT ident length 
+set softtabstop=4  " INSERT ident length
 set shiftwidth=4   " ident length
 set expandtab      " tab replace black space
 
@@ -79,7 +79,7 @@ set foldmethod=marker  " option: [manual indent marker]
 set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:▫
 " --------------------------------------------}}}
 
- " === KEY MAP ================================{{{
+" === KEY MAP ================================{{{
 " set leader is <space>
 let mapleader=" "
 "map <LEADER>    :retab!<CR>
@@ -112,12 +112,14 @@ map <C-a> ggVG
 " < h   l >
 "     j
 "     v
-"  faster navigation 
+"  faster navigation
 noremap <silent> K 7k
 noremap <silent> J 7j
+noremap <silent> H 5h
+noremap <silent> L 5l
 " Ctrl + U or E will move up/down the view port without moving the cursor
-nnoremap <C-J> 5<C-y>
-nnoremap <C-K> 5<C-e>
+nnoremap <C-K> 5<C-y>
+nnoremap <C-J> 5<C-e>
 " Insert and Command Mode Cursor Movement
 noremap! <C-a> <Home>
 noremap! <C-s> <End>
@@ -140,10 +142,10 @@ noremap # 0
 "===
 "=== windwo management
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map sk :set nosplitbelow<CR>:split<CR>:e 
-map sj :set splitbelow<CR>:split<CR>:e 
-map sh :set nosplitright<CR>:vsplit<CR>:e 
-map sl :set splitright<CR>:vsplit<CR>:e 
+map sk :set nosplitbelow<CR>:split<CR>:e
+map sj :set splitbelow<CR>:split<CR>:e
+map sh :set nosplitright<CR>:vsplit<CR>:e
+map sl :set splitright<CR>:vsplit<CR>:e
 " Resize splits with arrow keys
 map <up> :res +5<CR>
 map <down> :res -5<CR>
@@ -218,7 +220,7 @@ source ~/.config/nvim/my_extra/file_title.vim
 nmap tit :call SetTitle()<CR>
 
 source ~/.config/nvim/my_extra/update_modify_datetime.vim
-" map the SetLastModifiedTime command automatically  
+" map the SetLastModifiedTime command automatically
 nmap upd :call SetLastModifiedTime(-1)<CR>
 " -------------------------------------------}}}
 
@@ -228,8 +230,8 @@ let g:python3_host_prog="/usr/bin/python3.8"
 " === Widgets ================================{{{
 "call plug#begin('~/.config/nvim/plugged')
 call plug#begin()
-Plug 'tiagofumo/dart-vim-flutter-layout'
-Plug 'RRethy/vim-illuminate'
+Plug 'tiagofumo/dart-vim-flutter-layout' " code indent
+Plug 'RRethy/vim-illuminate' "  illuminating the other uses of the current word under the cursor
 " ===
 " === vim-illuminate
 let g:Illuminate_delay = 750
@@ -258,14 +260,17 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "let g:one_allow_italics = 1
 "color dracula
 "color one
-"color deus
-color gruvbox
+color deus
+"color gruvbox
 "let ayucolor="light"
 "color ayu
 "set background=light
 "set background=dark
 "color xcodedark
 hi Normal ctermfg=252 ctermbg=none guibg=none  " let bg transparent
+let g:bg_transflag=0
+map cbg :hi normal guibg=
+
 " ===
 " === eleline.vim
 let g:airline_powerline_fonts = 0
@@ -310,8 +315,8 @@ function! s:init_var(var, value) abort
 endfunction
 function! s:setup_keymaps() abort
     let keymaps = [
-        \ ['togglecaseinsensitive', ''],
-    \ ]
+                \ ['togglecaseinsensitive', ''],
+                \ ]
     for [map, key] in keymaps
         call s:init_var('map_' . map, key)
         unlet key
@@ -328,11 +333,16 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-    nmap <buffer> i <plug>UndotreeNextState
-    nmap <buffer> k <plug>UndotreePreviousState
-    nmap <buffer> I 5<plug>UndotreeNextState
-    nmap <buffer> K 5<plug>UndotreePreviousState
+    nmap <buffer> k <plug>UndotreeNextState
+    nmap <buffer> j <plug>UndotreePreviousState
+    nmap <buffer> K 5<plug>UndotreeNextState
+    nmap <buffer> J 5<plug>UndotreePreviousState
 endfunc
+
+
+" ++++++++++++++++++++++++++++++++++++++++++++
+
+
 " File navigation
 Plug 'junegunn/fzf.vim'
 " ===
@@ -356,11 +366,6 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " ++++++++++++++++++++++++++++++++++++++++++++
 
 
-Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph, 
-" ===
-" === vim-easy-align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 " Formatter
 Plug 'Chiel92/vim-autoformat'
 " ===
@@ -386,22 +391,20 @@ let g:rainbow_active = 1
 " ++++++++++++++++++++++++++++++++++++++++++++
 
 
-" Find & Replace 
-" Press SPACE f r to search in cwd.
-Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
-" ===
-" === Far.vim, batch modifying
-nnoremap <LEADER>f :F  **/*<left><left><left><left><left>
-let g:far#mapping = {
-            \ "replace_undo" : ["l"],
-            \ }
+"" Find & Replace
+"" Press SPACE f r to search in cwd.
+"Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+"" ===
+"" === Far.vim, batch modifying
+"nnoremap <LEADER>f :F  **/*<left><left><left><left><left>
+"let g:far#mapping = {
+            "\ "replace_undo" : ["l"],
+            "\ }
 
-Plug 'osyo-manga/vim-anzu'
+Plug 'osyo-manga/vim-anzu' " show search position
 " ===
 " === Anzu
 set statusline=%{anzu#search_status()}
-nnoremap = n
-nnoremap - N
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
@@ -415,26 +418,26 @@ map <LEADER>gy :Goyo<CR>
 Plug 'itchyny/calendar.vim'
 " ===
 " === vim-calendar
-noremap \c :Calendar -position=here<CR> " open calendar
+noremap \c :Calendar -position=tab<CR>
 noremap \\ :Calendar -view=clock -position=here<CR> " open clock
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 augroup calendar-mappings
-	autocmd!
-	" diamond cursor
-	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
-	autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
-	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
-	autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
-	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
-	autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
-	autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
-	autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
-	autocmd FileType calendar nmap <buffer> a <Plug>(calendar_start_insert)
-	autocmd FileType calendar nmap <buffer> a <Plug>(calendar_start_insert_head)
-	" unmap <C-n>, <C-p> for other plugins
-	autocmd FileType calendar nunmap <buffer> <C-n>
-	autocmd FileType calendar nunmap <buffer> <C-p>
+    autocmd!
+    " diamond cursor
+    autocmd FileType calendar nmap <buffer> k <Plug>(calendar_up)
+    autocmd FileType calendar nmap <buffer> h <Plug>(calendar_left)
+    autocmd FileType calendar nmap <buffer> j <Plug>(calendar_down)
+    autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
+    autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_up)
+    autocmd FileType calendar nmap <buffer> <c-h> <Plug>(calendar_move_left)
+    autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_down)
+    autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
+    autocmd FileType calendar nmap <buffer> a <Plug>(calendar_start_insert)
+    autocmd FileType calendar nmap <buffer> A <Plug>(calendar_start_insert_head)
+    " unmap <C-n>, <C-p> for other plugins
+    autocmd FileType calendar nunmap <buffer> <C-n>
+    autocmd FileType calendar nunmap <buffer> <C-p>
 augroup END
 
 
@@ -451,7 +454,7 @@ Plug 'wellle/tmux-complete.vim'
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 "set signcolumn=no  " no side bar
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java']
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java']
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "nmap <silent> <TAB> <Plug>(coc-range-select)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
@@ -488,8 +491,8 @@ nmap tt :CocCommand explorer<CR>
 " coc-translator 翻译
 nmap ts <Plug>(coc-translator-p)winids
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-" 			获取并执行 language server 给出的当前选择区间
-"			内的可用操作。
+"           获取并执行 language server 给出的当前选择区间
+"           内的可用操作。
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
@@ -515,35 +518,35 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 " ++++++++++++++++++++++++++++++++++++++++++++
 
 
-" Go
-Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
-" ===
-" === vim-go
-let g:go_def_mapping_enabled = 0
-let g:go_template_autocreate = 0
-let g:go_textobj_enabled = 0
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_string_spellcheck = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_types = 1
-let g:go_highlight_variable_assignments = 0
-let g:go_highlight_variable_declarations = 0
-let g:go_doc_keywordprg_enabled = 0
+"" Go
+"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+"" ===
+"" === vim-go
+"let g:go_def_mapping_enabled = 0
+"let g:go_template_autocreate = 0
+"let g:go_textobj_enabled = 0
+"let g:go_auto_type_info = 1
+"let g:go_def_mapping_enabled = 0
+"let g:go_highlight_array_whitespace_error = 1
+"let g:go_highlight_build_constraints = 1
+"let g:go_highlight_chan_whitespace_error = 1
+"let g:go_highlight_extra_types = 1
+"let g:go_highlight_fields = 1
+"let g:go_highlight_format_strings = 1
+"let g:go_highlight_function_calls = 1
+"let g:go_highlight_function_parameters = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_generate_tags = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_operators = 1
+"let g:go_highlight_space_tab_error = 1
+"let g:go_highlight_string_spellcheck = 1
+"let g:go_highlight_structs = 1
+"let g:go_highlight_trailing_whitespace_error = 1
+"let g:go_highlight_types = 1
+"let g:go_highlight_variable_assignments = 0
+"let g:go_highlight_variable_declarations = 0
+"let g:go_doc_keywordprg_enabled = 0
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
@@ -577,7 +580,7 @@ Plug 'junegunn/vim-after-object' " da= to delete what's after =
 " ===
 " === vim-after-object
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
-Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
+Plug 'tpope/vim-capslock'   " Ctrl+L (insert) to toggle capslock
 Plug 'easymotion/vim-easymotion'
 " ===
 " === vim-easymotion
@@ -614,15 +617,10 @@ let g:perl_fold_blocks = 1
 let g:r_syntax_folding = 1
 let g:rust_fold = 1
 let g:php_folding = 1
-Plug 'svermeulen/vim-subversive'
-" ===
-" === vim-subversive
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
 " Other visual enhancement
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' " add icon to vim plug
 Plug 'luochen1990/rainbow'
-Plug 'mg979/vim-xtabline'
+Plug 'mg979/vim-xtabline' " top tabline
 " ===
 " === xtabline
 let g:xtabline_settings = {}
@@ -630,8 +628,7 @@ let g:xtabline_settings.enable_mappings = 0
 let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
 let g:xtabline_settings.enable_persistance = 0
 let g:xtabline_settings.last_open_first = 1
-noremap to :XTabCycleMode<CR>
-noremap \p :XTabInfo<CR> 
+noremap \p :XTabInfo<CR>
 Plug 'wincent/terminus'
 " Dependencies
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -662,14 +659,14 @@ let g:mkdp_open_ip = ''
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-			\ 'mkit': {},
-			\ 'katex': {},
-			\ 'uml': {},
-			\ 'maid': {},
-			\ 'disable_sync_scroll': 0,
-			\ 'sync_scroll_type': 'middle',
-			\ 'hide_yaml_meta': 1
-			\ }
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1
+            \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -680,12 +677,29 @@ let g:mkdp_browser = 'firefox'
 noremap <LEADER>tm :TableModeToggle<CR>
 "let g:table_mode_disable_mappings = 1
 let g:table_mode_cell_text_object_i_map = 'k<Bar>'
- 
+Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph,
+" ===
+" === vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+
+" ++++++++++++++++++++++++++++++++++++++++++++
+
+
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
 " Swift
-Plug 'keith/swift.vim'
+"Plug 'keith/swift.vim'
 
 call plug#end()
 " --------------------------------------------}}}
