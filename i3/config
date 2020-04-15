@@ -196,6 +196,16 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+#set $ws1 "I"
+#set $ws2 "II"
+#set $ws3 "III"
+#set $ws4 "IV"
+#set $ws5 "V"
+#set $ws6 "VI"
+#set $ws7 "VII"
+#set $ws8 "VIII"
+#set $ws9 "IX"
+#set $ws10 "X"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -267,7 +277,7 @@ bindsym $mod+r mode "resize"
 
 # Set inner/outer gaps
 gaps outer -2
-gaps inner 7
+gaps inner 11
 # Smart gaps (gaps used if only more than one container on the workspace)
 #smart_gaps on
 
