@@ -77,7 +77,7 @@ font-3 = Weather Icons:style=Regular:size=10;1
 font-4 = Sarasa mono SC:size=12
 
 modules-left = i3 cpu memory
-modules-center = mpd 
+modules-center = mpd
 modules-right = wlan eth xbacklight pulseaudio battery temperature date powermenu
 ;modules-right = wlan eth xbacklight alsa pulseaudio battery xkeyboard temperature date powermenu
 
@@ -276,7 +276,7 @@ interval = 3.0
 ;format-connected-underline = #55aa55
 format-connected-prefix = " "
 ;format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = "%local_ip%.ip"
+label-connected = " %local_ip%,ip"
 
 accumulate-stats = true
 
