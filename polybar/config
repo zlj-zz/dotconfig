@@ -387,11 +387,11 @@ ramp-capacity-4 = 
 format-full = <ramp-capacity> <label-full>
 ;format-full = <label-full>
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-charging-prefix = " "
+;format-full-prefix-foreground = ${colors.foreground-alt}
 ;format-full-underline = ${self.format-charging-underline}
 
-label-charging = %percentage%%
+label-charging = %percentage%%.
 label-discharging = %percentage%%
 
 label-full = 
