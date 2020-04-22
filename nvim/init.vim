@@ -83,8 +83,6 @@ set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:▫
 " set leader is <space>
 let mapleader=" "
 "map <LEADER>    :retab!<CR>
-" cancel the highlight search
-nnoremap <LEADER><CR> :nohlsearch<CR>
 
 " ===
 " === file option
@@ -102,7 +100,8 @@ vnoremap Y "+y
 nnoremap < <<
 nnoremap > >>
 " select all
-map <C-a> ggVG
+map <c-a> ggVG
+"
 
 "===
 "=== cursor movement
@@ -129,13 +128,6 @@ noremap! <m-h> <Left>
 noremap! <m-l> <Right>
 "noremap! <M-j> <S-Left>
 "noremap! <M-l> <S-Right>
-" Disable the default t key
-noremap t <nop>
-" Use t + arrow keys for moving the cursor around windows
-noremap tl <C-w>l
-noremap tk <C-w>k
-noremap tj <C-w>j
-noremap th <C-w>h
 " jump to sentence tail
 noremap # 0
 
@@ -146,6 +138,13 @@ map sk :set nosplitbelow<CR>:split<CR>:e
 map sj :set splitbelow<CR>:split<CR>:e
 map sh :set nosplitright<CR>:vsplit<CR>:e
 map sl :set splitright<CR>:vsplit<CR>:e
+" Disable the default t key
+noremap t <nop>
+" Use t + arrow keys for moving the cursor around windows
+noremap tl <C-w>l
+noremap tk <C-w>k
+noremap tj <C-w>j
+noremap th <C-w>h
 " Resize splits with arrow keys
 map <up> :res +5<CR>
 map <down> :res -5<CR>
@@ -173,6 +172,8 @@ map b= :bn<CR>
 
 "===
 "=== other
+" cancel the highlight search
+nnoremap <LEADER><CR> :nohlsearch<CR>
 " Open the vimrc file anytime
 nnoremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 " resource neovim config
@@ -180,8 +181,6 @@ map rc :source $MYVIMRC<CR>
 " Opening a terminal window
 nnoremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 tnoremap <C-N> <C-\><C-N>
-" Open up pudb, a python debug,(pip install --user pudb)
-noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
 " find two same word
 nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
 " Press space twice to jump to the next ':' and edit it
@@ -210,8 +209,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " =============== ipython run ================
 noremap ,i :sp<CR><C-w>j:term ipython<CR> i %run
 " --------------------------------------------
+" Open up pudb, a python debug,(pip install --user pudb)
+noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
 
-" === extra =================================={{{
+" === my extra ==============================={{{
 source ~/.config/nvim/my_extra/compile_run.vim
 map <F9> :call CompileRunGcc()<CR>
 
@@ -267,9 +268,19 @@ color deus
 "set background=light
 "set background=dark
 "color xcodedark
-hi Normal ctermfg=252 ctermbg=none guibg=none  " let bg transparent
+" hi Normal ctermfg=252 ctermbg=none guibg=none  " let bg transparent
 let g:bg_transflag=0
-map cbg :hi normal guibg=
+let g:bg_flag = 1
+func! ChangeGuibg()
+    if g:bg_flag == 1
+        exec "hi normal guibg=none"
+        let g:bg_flag = 0
+    else
+        exec "hi normal guibg=#242a32"
+        let g:bg_flag = 1
+    endif
+endfunc
+map cbg :call ChangeGuibg()<CR>
 
 " ===
 " === eleline.vim
