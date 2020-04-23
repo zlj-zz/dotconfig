@@ -42,4 +42,6 @@ let `prefix` be `c-x`, and resered `c-b`
 |------|---------------------------|
 | !    | split widow and open htop |
 
-change statue bar
+**change statue bar:**
+
+![statue](./tmux-statue.png)
