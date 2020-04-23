@@ -207,27 +207,6 @@ icon-next = 
 label-song-maxlen = 25
 label-song-ellipsis = true
 
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL %percentage:2%%
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
@@ -304,15 +283,37 @@ label = %date% %time%
 
 format = <label>
 
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label>
+label = [BL %percentage:2%%
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
 ;format-volume = <label-volume> <bar-volume>
 format-volume = <label-volume>
-label-volume = [VOL %percentage%%]
+label-volume = VOL %percentage%%]
 label-volume-foreground = ${root.foreground}
 
-label-muted = [VOL x]
+label-muted = VOL x]
 label-muted-foreground = #666
 
 ;bar-volume-width = 10
