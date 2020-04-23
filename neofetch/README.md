@@ -1,5 +1,7 @@
-### put the file into `/usr/bin`
+### neofetch
 
-### add two icons `bilibili` and `bilibili_txt`
+>put the file into `/usr/bin`
+
+##### add two icons `bilibili` and `bilibili_txt`:
 
 ![bilibili](./case.png) 
