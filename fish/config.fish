@@ -4,13 +4,15 @@
 eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
+alias sudo="sudo -E"
 alias l="la"
 alias c="clear"
-alias h='htop'
 alias s="neofetch --ascii_distro bilibili"
-alias sudo="sudo -E"
 #alias v="nvim"
+alias h='htop'
+alias r='ranger'
 alias t='tmux'
+alias lg='lazygit'
 
 export TERMINFO=/usr/share/terminfo
 
