@@ -120,8 +120,8 @@ noremap <silent> L 5l
 nnoremap <C-K> 5<C-y>
 nnoremap <C-J> 5<C-e>
 " Insert and Command Mode Cursor Movement
-noremap! <C-a> <Home>
-noremap! <C-s> <End>
+noremap! <m-a> <Home>
+noremap! <m-s> <End>
 noremap! <m-k> <Up>
 noremap! <m-j> <Down>
 noremap! <m-h> <Left>
