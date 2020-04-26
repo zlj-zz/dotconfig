@@ -1,7 +1,8 @@
-### neofetch
+## neofetch
 
 >put the file into `/usr/bin`
 
 ##### add two icons `bilibili` and `bilibili_txt`:
+use it like `neofetch --ascii_distro bilibili`
 
-![bilibili](./case.png) 
+![demo bilibili](./case.png) 
