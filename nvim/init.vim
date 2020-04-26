@@ -24,7 +24,9 @@ endif
 
 
 " ====================
-" ===== [config] =====
+" =                  =
+" =    [config]      =
+" =                  =
 " ====================
 " === basic Set =============================={{{
 set nocompatible  " close vi compatibility mode
@@ -84,10 +86,11 @@ set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:▫
 let mapleader=" "
 "map <LEADER>    :retab!<CR>
 
-" ===
-" === file option
-" Disable the default s key
-map s <nop>
+" =======================
+" =                     =
+" =     file option     =
+" =                     =
+" =======================
 " save
 map S :w<CR>
 " quit
@@ -103,9 +106,11 @@ nnoremap > >>
 map <c-a> ggVG
 "
 
-"===
-"=== cursor movement
-"===
+"===========================
+"=                         =
+"=     cursor movement     =
+"=                         =
+"===========================
 "     ^
 "     k
 " < h   l >
@@ -116,7 +121,7 @@ noremap <silent> K 7k
 noremap <silent> J 7j
 noremap <silent> H 5h
 noremap <silent> L 5l
-" Ctrl + U or E will move up/down the view port without moving the cursor
+" Ctrl + K or J will move up/down the view port without moving the cursor
 nnoremap <C-K> 5<C-y>
 nnoremap <C-J> 5<C-e>
 " Insert and Command Mode Cursor Movement
@@ -133,6 +138,8 @@ noremap # 0
 
 "===
 "=== windwo management
+" Disable the default s key
+map s <nop>
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 map sk :set nosplitbelow<CR>:split<CR>:e
 map sj :set splitbelow<CR>:split<CR>:e
@@ -159,15 +166,15 @@ noremap cv <C-w>t<C-w>H
 
 "===
 "=== tabe management
-" 新建标签页, w filepath_and_name
+" new tab, w filepath_and_name
 map <c-t> :tabe<CR>
-" 前一标签页
+" before tab
 map t- :-tabnext<CR>
-" 后一标签页
+" next tab
 map t= :+tabnext<CR>
-" 上一个buffer
+" before buffer
 map b- :bp<CR>
-" 下一个buffer
+" next buffer
 map b= :bn<CR>
 
 "===
