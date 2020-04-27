@@ -1,3 +1,36 @@
+# After Installation, You Need To
+ Install `pynvim` (pip)
+
+Install `nodejs`, and do `npm install -g neovim`
+
+Install nerd-fonts (actually it's optional)
+
+# After Installation, You Might Want To
+### First of all
+
+Do `:checkhealth`
+
+### For Python Debugger (via `vimspector`)
+
+Install `debugpy` (`pip`)
+
+### Config Python path
+
+Well, make sure you have python
+
+### For Taglist:
+
+Install `ctags` for function/class/variable list
+
+### For FZF
+
+Install `fzf`
+
+Install `ag` (`the_silver_searcher`)
+### And also...
+Install `figlet` for inputing text ASCII art
+
+Install `xclip` for system clipboard access (Linux and `xorg` only)
 # Keyboard Shortcuts
 
 let `<LEADER>` to be `<space>`.
@@ -12,12 +45,12 @@ In visual mode make `Y` copy to system clipboard (same as `"+y`).
 
 let `ctrl+a` to select all (same as `ggVG`).
 
-**curosr movement**
+### curosr movement
 | ←   | ↓   | ↑   | →   |
 |-----|-----|-----|-----|
 | `h` | `j` | `k` | `l` |
 
-**remapped cursor movement** 
+### remapped cursor movement
 | shortcut   | action                                                    | equavilent |
 |------------|-----------------------------------------------------------|------------|
 | `K`        | cursor up 7 lines                                         | `7k`       |
@@ -32,5 +65,19 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `alt`+`l`  | → in insert mode                                          | `<right>`  |
 | `alt`+`a`  | move cursor to head in insert mode                        | `<home>`   |
 | `alt`+`s`  | move cursor to tail in insert mode                        | `<end>`    |
+| `#`        | move cursor to head                                       | `0`        |
+
+### remapped commands in Normal Mode
+| shortcut           | action                             |
+|--------------------|------------------------------------|
+| `<`                | un-indent                          |
+| `>`                | indent                             |
+| `<LEADER><LEADER>` | goto the next placeholder (`<++>`) |
+| `<LEADER><Enter>`  | cancel the highligh search         |
+| `<LEADER>sc`       | spelling check toggle              |
+| `<LEADER>fd`       | find two same word                 |
+| `<LEADER>rc`       | open the neovim config anytime     |
+| `rc`               | resource neovim config             |
+
 
 
