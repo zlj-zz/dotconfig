@@ -13,6 +13,7 @@
 !/i3/
 !/neofetch/
 !/nvim/init.vim
+!/nvim/coc-settings.json
 !/nvim/autoload/
 !/nvim/README.md
 !/picom/
