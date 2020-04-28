@@ -1,1 +1,19 @@
+# ignore everything
+/*
+/*/
 
+# but these
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/i3/
+!/nvim/init.vim
+!/nvim/autoload/
+!/nvim/README.md
+!/alacritty/
+!/fish/config.fish
+!/fish/README.md
+!/polybar/
+!/ranger/
+!/tmux/
+!/pip/
