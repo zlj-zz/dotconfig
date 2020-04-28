@@ -12,3 +12,11 @@ else
     sleep 1
     xmodmap ~/.Xmodmaprc
 fi
+
+#remove Lock = Caps_Lock
+
+#keysym Caps_Lock = Escape
+#keysym Escape = Caps_Lock
+
+#add Lock = Caps_Lock
+
