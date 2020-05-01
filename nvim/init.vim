@@ -279,7 +279,7 @@ color deus
 " hi Normal ctermfg=252 ctermbg=none guibg=none  " let bg transparent
 let g:bg_transflag=0
 let g:bg_flag = 1
-func! ChangeGuibg()
+func! ChangeGuibg() " transparent background toggle
     if g:bg_flag == 1
         exec "hi normal guibg=none"
         let g:bg_flag = 0
@@ -541,11 +541,24 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}}
 
 
-" Python
+" Snippets {{{
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" }}}
+
+
+" Python {{{
 Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim'
+" }}}
 
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
@@ -560,10 +573,7 @@ let g:vim_jsx_pretty_colorful_config = 1
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
-"" Go
+"" Go {{{
 "Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 "" ===
 "" === vim-go
@@ -592,6 +602,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 "let g:go_highlight_variable_assignments = 0
 "let g:go_highlight_variable_declarations = 0
 "let g:go_doc_keywordprg_enabled = 0
+" }}}
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
@@ -730,19 +741,6 @@ Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph,
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
-
-
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
-" Track the engine.
-Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
