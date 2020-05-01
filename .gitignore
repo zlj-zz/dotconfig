@@ -12,7 +12,8 @@
 !/fish/README.md
 !/i3/
 !/neofetch/
-!/nivm
+# === nvim ===
+!/nvim
 !/nvim/init.vim
 !/nvim/coc-settings.json
 !/nvim/autoload/
