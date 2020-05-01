@@ -12,10 +12,14 @@
 !/fish/README.md
 !/i3/
 !/neofetch/
+!/nivm
 !/nvim/init.vim
 !/nvim/coc-settings.json
-!/nvim/autoload/*
+!/nvim/autoload/
+!/nvim/my_extra/
 !/nvim/README.md
+/nvim/plugged
+/nvim/tmp
 !/picom/
 !/pip/
 !/polybar/

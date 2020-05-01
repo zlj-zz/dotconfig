@@ -23,12 +23,13 @@ endif
 "source ~/.config/nvim/_machine_specific.vim
 
 
+" === basic Set =============================={{{
+
 " ====================
 " =                  =
 " =    [config]      =
 " =                  =
 " ====================
-" === basic Set =============================={{{
 set nocompatible  " close vi compatibility mode
 syntax on
 filetype on  " open file classic check
@@ -198,7 +199,7 @@ nnoremap <LEADER>sc :set spell!<CR>
 autocmd BufEnter * silent! lcd %:p:h
 " --------------------------------------------}}}
 
-" === setTmp ================================={{{
+" === set temp directory ===================={{{
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
 silent !mkdir -p ~/.config/nvim/tmp/sessions
@@ -296,7 +297,7 @@ let g:airline_powerline_fonts = 0
 Plug 'https://github.com/vim-scripts/fcitx.vim.git'
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
+" +++Sidebar++++++++++++++++++++++++++++++++++{{{
 
 
 " NerdTree, files tree to manage file
@@ -356,6 +357,7 @@ function g:Undotree_CustomMap()
     nmap <buffer> K 5<plug>UndotreeNextState
     nmap <buffer> J 5<plug>UndotreePreviousState
 endfunc
+" }}}
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
@@ -425,7 +427,7 @@ Plug 'osyo-manga/vim-anzu' " show search position
 set statusline=%{anzu#search_status()}
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
+" +++Goyo and Calendar++++++++++++++++++++++++{{{
 
 
 " For general writing-工作无忧
@@ -457,12 +459,13 @@ augroup calendar-mappings
     autocmd FileType calendar nunmap <buffer> <C-n>
     autocmd FileType calendar nunmap <buffer> <C-p>
 augroup END
+" }}}
 
 
 " +++++++++++++++++++++++++++++++++++++++++++++
 
 
-" Auto Complete
+" Auto Complete Coc {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " install [npm] [yarn]
 Plug 'wellle/tmux-complete.vim'
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -472,39 +475,50 @@ Plug 'wellle/tmux-complete.vim'
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 "set signcolumn=no  " no side bar
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java']
+let g:coc_global_extensions = ['coc-python', 'coc-pyright',  'coc-snippets', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer',  'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java']
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "nmap <silent> <TAB> <Plug>(coc-range-select)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
+
 " use <tab> for trigger completion and navigate to the next complete item
-inoremap <silent><expr> <Tab>
-            \ pumvisible() ? "\<c-n>" :
-            \ <SID>check_back_space() ? "\<Tab>" :
-            \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <Tab>
+            \ pumvisible() ? "\<c-n>" :
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
+" previous one
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" use <shift>+<space> mandatory completion
+inoremap <silent><expr> <s-space> coc#refresh()
+" use <enter> confirmation completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 " Open up coc-commands
 nnoremap <c-c> :CocCommand<CR>
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap yf <Plug>(coc-funcobj-i) " 选择函数内所有行
-xmap tf <Plug>(coc-funcobj-a) " 选择当前函数所在区间
+" 选择函数内所有行
+xmap yf <Plug>(coc-funcobj-i)
 omap yf <Plug>(coc-funcobj-i)
+" 选择当前函数所在区间
+xmap tf <Plug>(coc-funcobj-a)
 omap tf <Plug>(coc-funcobj-a)
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 " GoTo code navigation. 代码导航
 " 跳转到定义处。如有多个定义，使用 |coc-list| 展示
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition) " 跳转到类型定义位置
-nmap <silent> gi <Plug>(coc-implementation) " 跳转到实现处
-nmap <silent> gr <Plug>(coc-references) " 跳转到引用位置
+" 跳转到类型定义位置
+nmap <silent> gt <Plug>(coc-type-definition)
+" 跳转到实现处
+nmap <silent> gi <Plug>(coc-implementation) 
+" 跳转到引用位置
+nmap <silent> gr <Plug>(coc-references) 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
 nmap tt :CocCommand explorer<CR>
 " coc-translator 翻译
 nmap ts <Plug>(coc-translator-p)winids
@@ -514,12 +528,25 @@ nmap ts <Plug>(coc-translator-p)winids
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
+" Use <C-l> for trigger snippet expand.
+imap <C-j> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+" }}}
+
 
 " Python
 Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim'
+
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
@@ -637,10 +664,11 @@ let g:rust_fold = 1
 let g:php_folding = 1
 " Other visual enhancement
 Plug 'ryanoasis/vim-devicons' " add icon to vim plug
-Plug 'luochen1990/rainbow'
-Plug 'mg979/vim-xtabline' " top tabline
+Plug 'luochen1990/rainbow'    " rainbow brackets
+Plug 'mg979/vim-xtabline'     " top tabline
 " ===
 " === xtabline
+" ===
 let g:xtabline_settings = {}
 let g:xtabline_settings.enable_mappings = 0
 let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
@@ -653,7 +681,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'roxma/nvim-yarp'
 
-" ++++++++++++++++++++++++++++++++++++++++++++
+" +++Markdown+++++++++++++++++++++++++++++++++{{{
 
 
 " Markdown
@@ -662,12 +690,13 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown'] }
 Plug 'theniceboy/bullets.vim'
 " ===
-" Snippets
+" Markdown Snippets
 source ~/.config/nvim/my_extra/md-snippets.vim
 " auto spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 " ===
 " === MarkdownPreview
+" ===
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -700,6 +729,7 @@ Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph,
 " === vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+" }}}
 
 
 " ++++++++++++++++++++++++++++++++++++++++++++
@@ -733,3 +763,4 @@ exec "nohlsearch"
 " if has_machine_specific_file == 0
 "   exec "e ~/.config/nvim/_machine_specific.vim"
 " endif
+
