@@ -1,6 +1,6 @@
 ## My tmux config
 
-you should place the file in '~'
+you should place the file in '~', or `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
 
 let `prefix` be `c-x`, and resered `c-b`
 
