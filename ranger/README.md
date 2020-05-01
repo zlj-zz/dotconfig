@@ -19,7 +19,7 @@ sudo pacman -S adobe-source-code-pro-fonts
 
 Show hidden file by default. Show line number by default.
 
-If you want to preview pictures, remember to install `w3m`.
+If you want to preview pictures, remember to install `w3m`. If you want to compressed file, you should install `stool`.
 
 Many operations are the same as `vim`.
 
