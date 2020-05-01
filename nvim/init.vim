@@ -118,8 +118,8 @@ map <c-a> ggVG
 "     j
 "     v
 "  faster navigation
-noremap <silent> K 7k
-noremap <silent> J 7j
+noremap <silent> K 5k
+noremap <silent> J 5j
 noremap <silent> H 5h
 noremap <silent> L 5l
 " Ctrl + K or J will move up/down the view port without moving the cursor
