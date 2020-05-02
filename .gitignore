@@ -22,6 +22,8 @@
 !/nvim/README.md
 /nvim/plugged
 /nvim/tmp
+/nvim/_machine_specific.vim
+#
 !/picom/
 !/pip/
 !/polybar/
