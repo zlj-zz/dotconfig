@@ -13,6 +13,7 @@ alias h='htop'
 alias r='ranger'
 alias t='tmux'
 alias lg='lazygit'
+alias wttr='wttr Huangshi'
 
 export TERMINFO=/usr/share/terminfo
 
