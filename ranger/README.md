@@ -49,6 +49,7 @@ Many operations are the same as `vim`.
 | `q`           | quit                   |
 | `Q`           | quit all               |
 | `a`           | rename                 |
+| `T`           | touch file             |
 | `ctrl`+`n`    | new tab                |
 | `ctrl`+`w`    | close tab              |
 | `tab`         | next tab               |
