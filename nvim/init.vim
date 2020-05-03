@@ -25,7 +25,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 " }}}
 " ===
-" === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
+" === Create a '_machine_specific.vim' file to adjust machine specific stuff, like python interpreter location
 " ===
 let has_machine_specific_file = 1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
@@ -42,53 +42,53 @@ source ~/.config/nvim/_machine_specific.vim
 " =    [config]      =
 " =                  =
 " ====================
-set nocompatible  " close vi compatibility mode
+set nocompatible          " close vi compatibility mode
 syntax on
-filetype on  " open file classic check
-filetype plugin indent on  " turn on auto-completion
+filetype on               " open file classic check
+filetype plugin indent on " turn on auto-completion
 "set completeopt=longest,menu
-filetype indent on  "针对不同的文件类型采用不同的缩进格式
-filetype plugin on  " allow plugin
+filetype indent on       " 针对不同的文件类型采用不同的缩进格式
+filetype plugin on       " allow plugin
 
 set number               " show line number
-set relativenumber
+set relativenumber       " line number format
 set cursorline           " highlight current line
 set syntax=on            " turn on syntax highlight
 
-set encoding=utf-8  " set coding is utf-8
+set encoding=utf-8       " set coding is utf-8
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set pyxversion=3
 set autoread
 
-set ts=4           " Tab's width
-set softtabstop=4  " INSERT ident length
-set shiftwidth=4   " ident length
-set expandtab      " tab replace black space
+set ts=4                 " Tab's width
+set softtabstop=4        " INSERT ident length
+set shiftwidth=4         " ident length
+set expandtab            " tab replace black space
 
 "set ruler                " show ruler
-set wrap           " auto wrap
-set showmatch      " bracket highlight
-set matchtime=2    " bracket match highlight time(0.2s)
+set wrap                 " auto wrap
+set showmatch            " bracket highlight
+set matchtime=2          " bracket match highlight time(0.2s)
 
-set wildmenu       " enable command-line completion in enhanced mode
-set ignorecase     " ignore case when you search
-set hlsearch       " highlight search result
-set showcmd       " show input message
-set mouse=a  " mouse set
-set scrolloff=5  " reserve at least 5 lines when you scrol
+set wildmenu             " enable command-line completion in enhanced mode
+set ignorecase           " ignore case when you search
+set hlsearch             " highlight search result
+set showcmd              " show input message
+set mouse=a              " mouse set
+set scrolloff=5          " reserve at least 5 lines when you scrol
 
 " auto identation ===========
 set autoindent
-set cindent  " same ident with pre line, also can identify braces
+set cindent              " same ident with pre line, also can identify braces
 
 " allow backspace to upper line or lower line-
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" code fold setting ===a[one],zi[all]
-set foldenable         " allow flod (help fold)
-set foldmethod=marker  " option: [manual indent marker]
+" code fold setting === za[one],zi[all]
+set foldenable          " allow flod (help fold)
+set foldmethod=marker   " option: [manual indent marker]
 
 " 设置空白字符的视觉提示
 set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:▫
@@ -99,11 +99,11 @@ set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:▫
 let mapleader=" "
 "map <LEADER>    :retab!<CR>
 
-" =======================
-" =                     =
-" =     file option     =
-" =                     =
-" =======================
+" ==========================
+" =                        =
+" =     file option        =
+" =                        =
+" ==========================
 " save
 map S :w<CR>
 " quit
@@ -117,7 +117,7 @@ nnoremap < <<
 nnoremap > >>
 " select all
 map <c-a> ggVG
-"
+
 
 "===========================
 "=                         =
@@ -149,8 +149,12 @@ noremap! <m-l> <Right>
 " jump to sentence tail
 noremap # 0
 
-"===
-"=== window management
+
+"===========================
+"=                         =
+"=   window management     =
+"=                         =
+"===========================
 " Disable the default s key
 map s <nop>
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
@@ -177,9 +181,13 @@ noremap ch <C-w>t<C-w>K
 " Place the two screens side by side
 noremap cv <C-w>t<C-w>H
 
-"===
-"=== tabe management
-" new tab, w filepath_and_name
+
+"===========================
+"=                         =
+"=    tabe management      =
+"=                         =
+"===========================
+" new tab, 'w' filepath_and_name
 map <c-t> :tabe<CR>
 " before tab
 map t- :-tabnext<CR>
@@ -190,8 +198,12 @@ map b- :bp<CR>
 " next buffer
 map b= :bn<CR>
 
-"===
-"=== other
+
+"===========================
+"=                         =
+"=      other              =
+"=                         =
+"===========================
 " cancel the highlight search
 nnoremap <LEADER><CR> :nohlsearch<CR>
 " Open the vimrc file anytime
