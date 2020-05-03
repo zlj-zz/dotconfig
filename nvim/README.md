@@ -6,6 +6,7 @@ Install `nodejs`, and do `npm install -g neovim`
 Install nerd-fonts (actually it's optional)
 
 # After Installation, You Might Want To
+
 ### First of all
 
 Do `:checkhealth`
@@ -27,10 +28,13 @@ Install `ctags` for function/class/variable list
 Install `fzf`
 
 Install `ag` (`the_silver_searcher`)
+
 ### And also...
+
 Install `figlet` for inputing text ASCII art
 
 Install `xclip` for system clipboard access (Linux and `xorg` only)
+
 # Keyboard Shortcuts
 
 let `<LEADER>` to be `<space>`.
@@ -45,12 +49,14 @@ In visual mode make `Y` copy to system clipboard (same as `"+y`).
 
 let `ctrl+a` to select all (same as `ggVG`).
 
-### curosr movement
+### Curosr movement
+
 | ←   | ↓   | ↑   | →   |
 |-----|-----|-----|-----|
 | `h` | `j` | `k` | `l` |
 
-### remapped cursor movement
+### Remapped cursor movement
+
 | shortcut   | action                                                    | equavilent |
 |------------|-----------------------------------------------------------|------------|
 | `K`        | cursor up 7 lines                                         | `7k`       |
@@ -67,7 +73,8 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `alt`+`s`  | move cursor to tail in insert mode                        | `<end>`    |
 | `#`        | move cursor to head                                       | `0`        |
 
-### remapped commands in Normal Mode
+### Remapped commands in Normal Mode
+
 | shortcut           | action                             |
 |--------------------|------------------------------------|
 | `<`                | un-indent                          |
@@ -79,5 +86,26 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `<LEADER>rc`       | open the neovim config anytime     |
 | `rc`               | resource neovim config             |
 
+### Window management
+
+| shortcut | action                             |
+|----------|------------------------------------|
+| `sh`     | split window to the left           |
+| `sj`     | split window to the down           |
+| `sk`     | split window to the up             |
+| `sl`     | split window to the right          |
+| `th`     | move cursor to the left window     |
+| `tj`     | move cursor to the down window     |
+| `tk`     | move cursor to the up window       |
+| `tl`     | move cursor to the right window    |
+| `ch`     | place the two screens up and down  |
+| `cv`     | place the two screens side by side |
 
 
+### Tab management
+
+| shortcut   | action           |
+|------------|------------------|
+| `ctrl`+`t` | create a new tab |
+| `t-`       | previous tab     |
+| `t=`       | next previous    |

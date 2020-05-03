@@ -150,7 +150,7 @@ noremap! <m-l> <Right>
 noremap # 0
 
 "===
-"=== windwo management
+"=== window management
 " Disable the default s key
 map s <nop>
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
