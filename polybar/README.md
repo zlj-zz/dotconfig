@@ -4,7 +4,7 @@ here is my polybar configurarion. If you want to use, you should verify `config`
 
 ## **Display** 
 
-![demo](./polybar-demo.png) 
+![demo](https://img-blog.csdnimg.cn/20200503203112742.png) 
 
 ## **Proposed changes** 
 
