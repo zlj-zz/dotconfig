@@ -1,0 +1,10 @@
+neovim
+fzf
+ctags
+the_silver_searcher
+xclip
+ranger
+w3m
+ffmpegthumbnailer
+tmux
+fish
