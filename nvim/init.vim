@@ -6,15 +6,15 @@
 "   ██║   ██║╚██████╗ ╚██████╔╝   ╚██╔╝  ██████║██║  ███║  ██║
 "   ╚═╝   ╚═╝ ╚═════╝  ╚═════╝     ╚═╝   ╚═════╝╚═╝  ╚══╝  ╚═╝
 "
-" _________________________________________
-"/ Here is my neovim configuration with    \
-"| comments, remember to check befor using |
-"\ the configuration          --Zachary    /
-" -----------------------------------------
-"         \   ,__,
-"          \  (oo)____
-"             (__)    )\
-"                ||--|| *
+"  _________________________________________
+" / Here is my neovim configuration with    \
+" | comments, remember to check befor using |
+" \ the configuration          --Zachary    /
+"  -----------------------------------------
+"          \   ,__,
+"           \  (oo)____
+"              (__)    )\
+"                 ||--|| *
 " ===
 " === Auto load for first time uses
 " ==={{{
@@ -219,9 +219,14 @@ nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
 nnoremap <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>c4l
 " Spelling Check with <space>sc
 nnoremap <LEADER>sc :set spell!<CR>
+"
+
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
 " --------------------------------------------}}}
+
+" when you open file, back to last edit position
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " === set temp directory ===================={{{
 silent !mkdir -p ~/.config/nvim/tmp/backup
@@ -235,8 +240,6 @@ if has('persistent_undo')
 endif
 " --------------------------------------------}}}
 
-" when you open file, back to last edit position
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " =============== ipython run ================
 noremap ,i :sp<CR><C-w>j:term ipython<CR> i %run
@@ -264,7 +267,7 @@ nmap upd :call SetLastModifiedTime(-1)<CR>
 "call plug#begin('~/.config/nvim/plugged')
 call plug#begin()
 Plug 'tiagofumo/dart-vim-flutter-layout' " code indent
-Plug 'RRethy/vim-illuminate' "  illuminating the other uses of the current word under the cursor
+Plug 'RRethy/vim-illuminate'   " illuminating the other uses of the current word under the cursor
 " ===
 " === vim-illuminate
 let g:Illuminate_delay = 750
@@ -274,14 +277,19 @@ Plug 'KabbAmine/vCoolor.vim'
 
 " Pretty Dress
 Plug 'theniceboy/eleline.vim'
+" === eleline.vim
+let g:airline_powerline_fonts = 0
+
 Plug 'bling/vim-bufferline'
+
+" ======= color theme {{{
 "Plug 'liuchengxu/space-vim-theme'
 "Plug 'ayu-theme/ayu-vim'
-Plug 'rakr/vim-one'
-"Plug 'ajmwagar/vim-deus'
+"Plug 'rakr/vim-one'
+Plug 'ajmwagar/vim-deus'
 "Plug 'arzg/vim-colors-xcode'
 Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 set t_Co=256  " open 256 color suppor
 " ===
 " === Dress up my vim
@@ -313,13 +321,12 @@ func! ChangeGuibg() " transparent background toggle
     endif
 endfunc
 map cbg :call ChangeGuibg()<CR>
+Plug 'mhinz/vim-startify'
 
-" ===
-" === eleline.vim
-let g:airline_powerline_fonts = 0
+
 " let you can use fcitx in vim
 Plug 'https://github.com/vim-scripts/fcitx.vim.git'
-
+" }}}
 
 " +++Sidebar++++++++++++++++++++++++++++++++++{{{
 
@@ -387,13 +394,7 @@ endfunc
 " ++++++++++++++++++++++++++++++++++++++++++++
 
 
-" File navigation
-Plug 'junegunn/fzf.vim'
-" ===
-" === FZF (sudo pacman -S fzf)
-noremap <C-F> :FZF<CR>
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-" ===
 " === rnvimr
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
@@ -406,28 +407,33 @@ let g:rnvimr_layout = { 'relative': 'editor',
             \ 'style': 'minimal' }
 let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 
+" File navigation
+Plug 'junegunn/fzf.vim'
+" === FZF (sudo pacman -S fzf)
+noremap <C-F> :FZF<CR>
 
 " ++++++++++++++++++++++++++++++++++++++++++++
 
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
-" ===
 " === AutoFormat
 nnoremap \f :Autoformat<CR>
+
 " NerdCommenter
 Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
+
 " Genreal Highlighter
 Plug 'jaxbot/semantic-highlight.vim'
+
 " show indentation line
 Plug 'Yggdroot/indentLine'
-" ===
 "=== indentLine
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 238
 let g:indentLine_char = '|'
+
 Plug 'luochen1990/rainbow'
-" ===
 " === rainbow
 let g:rainbow_active = 1
 
@@ -446,7 +452,6 @@ let g:rainbow_active = 1
             "\ }
 
 Plug 'osyo-manga/vim-anzu' " show search position
-" ===
 " === Anzu
 set statusline=%{anzu#search_status()}
 
@@ -537,9 +542,9 @@ nmap <silent> gd <Plug>(coc-definition)
 " 跳转到类型定义位置
 nmap <silent> gt <Plug>(coc-type-definition)
 " 跳转到实现处
-nmap <silent> gi <Plug>(coc-implementation) 
+nmap <silent> gi <Plug>(coc-implementation)
 " 跳转到引用位置
-nmap <silent> gr <Plug>(coc-references) 
+nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -782,7 +787,7 @@ exec "nohlsearch"
 
 
 " Open the _machine_specific.vim file if it has just been created
- if has_machine_specific_file == 0
-   exec "e ~/.config/nvim/_machine_specific.vim"
- endif
+if has_machine_specific_file == 0
+    exec "e ~/.config/nvim/_machine_specific.vim"
+endif
 

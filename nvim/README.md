@@ -55,6 +55,8 @@ let `ctrl+a` to select all (same as `ggVG`).
 |-----|-----|-----|-----|
 | `h` | `j` | `k` | `l` |
 
+`gj` and `gk` move line by line if the text wraps.
+
 ### Remapped cursor movement
 
 | shortcut   | action                                                    | equavilent |
@@ -109,3 +111,11 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `ctrl`+`t` | create a new tab |
 | `t-`       | previous tab     |
 | `t=`       | next previous    |
+
+`c-z` makes **vim** hang and enter **shell**, `fg` returns **vim** form **shell**.
+
+`dip` clear the black lien around the current cursor.
+
+`c-F` use **fzf** 
+
+`c-R` use **ranger** in neovim
