@@ -259,7 +259,6 @@ map <F9> :call CompileRunGcc()<CR>
 "autocmd BufNewFile * call SetTitle()
 source ~/.config/nvim/my_extra/file-processing.vim
 nmap tit :call SetTitle()<CR>
-" map the SetLastModifiedTime command automatically
 nmap upd :call SetLastModifiedTime(-1)<CR>
 " -------------------------------------------}}}
 
