@@ -6,6 +6,7 @@ autocmd Filetype markdown inoremap <buffer> ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap <buffer> ,b **** <++><Esc>F*hi
 autocmd Filetype markdown inoremap <buffer> ,s ~~~~ <++><Esc>F~hi
 autocmd Filetype markdown inoremap <buffer> ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap <buffer> ,u <u></u> <++><Esc>Fuhhi
 autocmd Filetype markdown inoremap <buffer> ,d `` <++><Esc>F`i
 autocmd Filetype markdown inoremap <buffer> ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
 autocmd Filetype markdown inoremap <buffer> ,m - [ ] <Enter><++><ESC>kA
