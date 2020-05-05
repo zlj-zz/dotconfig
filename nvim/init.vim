@@ -251,6 +251,7 @@ endif
 " Open up pudb, a python debug,(pip install --user pudb)
 "noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
 
+
 " === my extra ==============================={{{
 source ~/.config/nvim/my_extra/compile_run.vim
 map <F9> :call CompileRunGcc()<CR>
@@ -783,7 +784,7 @@ call plug#end()
 " experimental
 set lazyredraw
 
-" ===
+
 " === Necessary Commands to Execute
 exec "nohlsearch"
 
