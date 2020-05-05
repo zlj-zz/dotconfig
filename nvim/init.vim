@@ -51,6 +51,7 @@ filetype indent on       " 针对不同的文件类型采用不同的缩进格�
 filetype plugin on       " allow plugin
 
 set number               " show line number
+"set ruler                " show ruler
 set relativenumber       " line number format
 set cursorline           " highlight current line
 set syntax=on            " turn on syntax highlight
@@ -61,15 +62,16 @@ set termencoding=utf-8
 set pyxversion=3
 set autoread
 
-set ts=4                 " Tab's width
-set softtabstop=4        " INSERT ident length
-set shiftwidth=4         " ident length
+set ts=2                 " Tab's width
+set softtabstop=2        " INSERT ident length
+set shiftwidth=2         " ident length
 set expandtab            " tab replace black space
+autocmd FileType python,markdown setlocal ts=4 softtabstop=4 shiftwidth=4
 
-"set ruler                " show ruler
 set wrap                 " auto wrap
 set showmatch            " bracket highlight
 set matchtime=2          " bracket match highlight time(0.2s)
+"set paste                " set paste mode
 
 set wildmenu             " enable command-line completion in enhanced mode
 set ignorecase           " ignore case when you search
@@ -88,6 +90,7 @@ set whichwrap+=<,>,h,l
 
 " code fold setting === za[one],zi[all]
 set foldenable          " allow flod (help fold)
+"set foldlevel=100       " does not automatically fold on startup
 set foldmethod=marker   " option: [manual indent marker]
 
 " 设置空白字符的视觉提示
@@ -243,20 +246,18 @@ endif
 
 
 " =============== ipython run ================
-noremap ,i :sp<CR><C-w>j:term ipython<CR> i %run
+"noremap ,i :sp<CR><C-w>j:term ipython<CR> i %run
 " --------------------------------------------
 " Open up pudb, a python debug,(pip install --user pudb)
-noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
+"noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
 
 " === my extra ==============================={{{
 source ~/.config/nvim/my_extra/compile_run.vim
 map <F9> :call CompileRunGcc()<CR>
 
 "autocmd BufNewFile * call SetTitle()
-source ~/.config/nvim/my_extra/file_title.vim
+source ~/.config/nvim/my_extra/file-processing.vim
 nmap tit :call SetTitle()<CR>
-
-source ~/.config/nvim/my_extra/update_modify_datetime.vim
 " map the SetLastModifiedTime command automatically
 nmap upd :call SetLastModifiedTime(-1)<CR>
 " -------------------------------------------}}}
