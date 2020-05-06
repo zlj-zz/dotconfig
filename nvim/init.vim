@@ -72,7 +72,6 @@ autocmd FileType python,markdown setlocal ts=4 softtabstop=4 shiftwidth=4
 set wrap                 " auto wrap
 set showmatch            " bracket highlight
 set matchtime=2          " bracket match highlight time(0.2s)
-"set paste                " set paste mode
 
 set wildmenu             " enable command-line completion in enhanced mode
 set ignorecase           " ignore case when you search
@@ -224,7 +223,8 @@ nmap <LEADER>fd /\(\<\w\+\>\)\_s*\1
 nnoremap <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>c4l
 " Spelling Check with <space>sc
 nnoremap <LEADER>sc :set spell!<CR>
-"
+"  paste mode
+nnoremap <leader>pm :set paste!<cr>
 
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
@@ -345,6 +345,28 @@ let g:ascii = [
       \ ''
       \]
 let g:startify_custom_header = g:ascii
+let g:startify_files_number = 15
+if empty(glob('~/.config/nvim/demo/'))
+    silent! exec "!mkdir ~/.config/nvim/demo"
+    silent! exec "!touch ~/.config/nvim/demo/tmp.c ~/.config/nvim/demo/tmp.py ~/.config/nvim/demo/tmp.java ~/.config/nvim/demo/tmp.js ~/.config/nvim/demo/tmp.html ~/.config/nvim/demo/tmp.css"
+
+endif
+function s:temporaryMenu()
+  return [
+        \ { 'line': 'c', 'cmd': 'e ~/.config/nvim/demo/tmp.c' },
+        \ { 'line': 'py', 'cmd': 'e ~/.config/nvim/demo/tmp.py' },
+        \ { 'line': 'java', 'cmd': 'e ~/.config/nvim/demo/tmp.java' },
+        \ { 'line': 'js', 'cmd': 'e ~/.config/nvim/demo/tmp.js' },
+        \ { 'line': 'html', 'cmd': 'e ~/.config/nvim/demo/tmp.html' },
+        \ { 'line': 'css', 'cmd': 'e ~/.config/nvim/demo/tmp.css' },
+        \ ]
+endfunction
+let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': function('s:temporaryMenu'),  'header': ['   Temporary'] },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ ]
 
 " NerdTree, files tree to manage file
 Plug 'scrooloose/nerdtree'
@@ -565,7 +587,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 nmap tt :CocCommand explorer<CR>
 " coc-translator 翻译
-nmap ts <Plug>(coc-translator-p)winids
+nmap ts <Plug>(coc-translator-p)
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 "           获取并执行 language server 给出的当前选择区间
 "           内的可用操作。
