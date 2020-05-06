@@ -23,6 +23,7 @@
 !/nvim/README.md
 /nvim/plugged
 /nvim/tmp
+/nvim/demo
 /nvim/_machine_specific.vim
 #
 !/picom/
