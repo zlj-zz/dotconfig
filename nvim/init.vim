@@ -9,7 +9,8 @@
 "  _________________________________________
 " / Here is my neovim configuration with    \
 " | comments, remember to check befor using |
-" \ the configuration          --Zachary    /
+" | the configuration.                      |
+" \                            --Zachary    /
 "  -----------------------------------------
 "          \   ,__,
 "           \  (oo)____
@@ -284,6 +285,8 @@ let g:airline_powerline_fonts = 0
 
 Plug 'bling/vim-bufferline'
 
+
+
 " ======= color theme {{{
 "Plug 'liuchengxu/space-vim-theme'
 "Plug 'ayu-theme/ayu-vim'
@@ -323,7 +326,6 @@ func! ChangeGuibg() " transparent background toggle
     endif
 endfunc
 map cbg :call ChangeGuibg()<CR>
-Plug 'mhinz/vim-startify'
 
 
 " let you can use fcitx in vim
@@ -333,12 +335,38 @@ Plug 'https://github.com/vim-scripts/fcitx.vim.git'
 " +++Sidebar++++++++++++++++++++++++++++++++++{{{
 
 
+Plug 'mhinz/vim-startify'
+nmap <F5> <c-t>:Startify<cr>
+let g:ascii = [
+      \ '           __',
+      \ '   .--.--.|__|.--------.',
+      \ '   |  |  ||  ||        |',
+      \ '    \___/ |__||__|__|__|',
+      \ ''
+      \]
+let g:startify_custom_header = g:ascii
+
 " NerdTree, files tree to manage file
 Plug 'scrooloose/nerdtree'
 " Tagbar, easy read program, function bar
 Plug 'majutsushi/tagbar'  " sudo pacman -S ctags
 " Undo Tree, to see history
 Plug 'mbbill/undotree'
+" ===
+" === Undotree
+noremap <F6> :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+    nmap <buffer> k <plug>UndotreeNextState
+    nmap <buffer> j <plug>UndotreePreviousState
+    nmap <buffer> K 5<plug>UndotreeNextState
+    nmap <buffer> J 5<plug>UndotreePreviousState
+endfunc
 "===
 "=== NERDTree
 map <F7> :NERDTreeToggle<CR>
@@ -375,21 +403,6 @@ function! s:setup_keymaps() abort
     endfor
 endfunction
 call s:setup_keymaps()
-" ===
-" === Undotree
-noremap <F6> :UndotreeToggle<CR>
-let g:undotree_DiffAutoOpen = 1
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_ShortIndicators = 1
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffpanelHeight = 8
-let g:undotree_SplitWidth = 24
-function g:Undotree_CustomMap()
-    nmap <buffer> k <plug>UndotreeNextState
-    nmap <buffer> j <plug>UndotreePreviousState
-    nmap <buffer> K 5<plug>UndotreeNextState
-    nmap <buffer> J 5<plug>UndotreePreviousState
-endfunc
 " }}}
 
 
