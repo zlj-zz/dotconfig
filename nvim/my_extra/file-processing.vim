@@ -96,3 +96,9 @@ endfunc
 func! GetTimeInfo()
     return strftime('%Y-%m-%d %H:%M:%S')
 endfunc
+
+
+func! CreateTmpFile()
+    silent! exec "!mkdir ~/.config/nvim/demo"
+    silent! exec "!touch ~/.config/nvim/demo/tmp.c ~/.config/nvim/demo/tmp.py ~/.config/nvim/demo/tmp.java ~/.config/nvim/demo/tmp.js ~/.config/nvim/demo/tmp.html ~/.config/nvim/demo/tmp.css"
+endfunc
