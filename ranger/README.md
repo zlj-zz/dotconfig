@@ -12,7 +12,6 @@ Show hidden file by default. Show line number by default.
 
 Many operations are the same as `vim`.
 
-
 ### Cursor movement
 
 | ←   | ↓   | ↑   | →   |
@@ -36,15 +35,14 @@ Many operations are the same as `vim`.
 |----------|--------------------------------------------------|
 | `e`      | edit                                             |
 | `q`/`Q`  | quit / quit all                                  |
-| `a`      | rename                                           |
+| `r`      | rename                                           |
 | `cw`     | batch rename                                     |
-| `T`      | touch file                                       |
+| `t`      | touch file                                       |
 | `f`      | ftsea (real-time search under the current path ) |
 | `F`      | start `fzf` select                               |
 | `C`      | compressed files (`.rar` `.tar.gz` `.zip` `.7z`) |
 | `X`      | unzip files                                      |
 | `S`      | reach the current path                           |
-| `v`      | select all                                       |
 | `zh`     | show hidden files toggle                         |
 
 ### Command operation
@@ -56,18 +54,30 @@ Many operations are the same as `vim`.
 | `R`        | reload cwd |
 | `o`        | sort file  |
 | `z`        | settings   |
+| `g`        | jump       |
 
 ### Window management
 
-| shortcut      | action                 |
-|---------------|------------------------|
-| `ctrl`+`n`    | new tab                |
-| `ctrl`+`w`    | close tab              |
-| `tab`         | next tab               |
-| `shift`+`tab` | previous tab           |
-| `'`+`<any>`   | enter bookmark `<any>` |
-| `m`+`<any>`   | set bookmark `<any>`   |
-| `um`+`<any>`  | unset bookmark `<any>` |
+| shortcut      | action         |
+|---------------|----------------|
+| `ctrl`+`n`    | new tab        |
+| `ctrl`+`w`    | close tab      |
+| `tab`         | next tab       |
+| `shift`+`tab` | previous tab   |
+| `<alt>`+`1~9` | select tab 1~9 |
+
+### Bookmarks / Tagging / Marking setting
+
+| shortcut     | action                 |
+|--------------|------------------------|
+| `'`+`<any>`  | enter bookmark `<any>` |
+| `m`+`<any>`  | set bookmark `<any>`   |
+| `um`+`<any>` | unset bookmark `<any>` |
+| `T`          | tag toogel             |
+| `uT`         | tag remove             |
+| `<space>`    | mark one file toggel   |
+| `v`          | mark all file toogel   |
+
 
 ---
 
@@ -77,6 +87,7 @@ This plugin introduces a new linemode that prefixes file names with a file icon,
 
 This plugin uses glyphs from a patched NERDfont
 the plugin
+
 ```shell
 sudo pacman -S nerd-fonts-complete
 sudo pacman -S adobe-source-code-pro-fonts
