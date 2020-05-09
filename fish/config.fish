@@ -1,3 +1,6 @@
+# 关闭欢迎语
+function fish_greeting
+end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
