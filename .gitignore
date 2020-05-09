@@ -10,8 +10,10 @@
 !/tool.txt
 !/alacritty/
 # fish
+!/fish/
 !/fish/config.fish
 !/fish/README.md
+!/fish/functions/
 !/i3/
 !/neofetch/
 # === nvim ===
