@@ -46,4 +46,4 @@ You may should install `rainbarf`.
 
 **change statue bar:**
 
-![statue](./tmux-statue.png)
+![statue](https://img-blog.csdnimg.cn/20200509175250232.png)
