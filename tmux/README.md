@@ -4,6 +4,8 @@ you should place the file in `~`, or `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.co
 
 let `prefix` be `c-x`, and resered `c-b`
 
+You may should install `rainbarf`.
+
 **session:** 
 
 | bind  | function    |
