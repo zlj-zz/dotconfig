@@ -91,7 +91,8 @@ mode "$mode_system" {
 bindsym $mod+End mode "$mode_system"
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+#bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id alacritty  -e tmux
 # open ranger
 bindsym $mod+Shift+t exec alacritty -e ranger
 # open browser
