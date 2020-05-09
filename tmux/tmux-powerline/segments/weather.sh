@@ -1,11 +1,11 @@
 # Prints the current weather in Celsius, Fahrenheits or lord Kelvins. The forecast is cached and updated with a period of $update_period.
 
 # The update period in seconds.
-update_period=1
+update_period=600
 
 TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER_DEFAULT="yahoo"
 TMUX_POWERLINE_SEG_WEATHER_UNIT_DEFAULT="c"
-TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="1"
+TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="600"
 
 # If you want to set your location, set TMUX_POWERLINE_SEG_WEATHER_LOCATION in the tmux-powerlinerc file.
 # 1. You create tmux-powerlinerc file.
@@ -14,7 +14,7 @@ TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD_DEFAULT="1"
 # 2. You set TMUX_POWERLINE_SEG_WEATHER_LOCATION.
 
 if shell_is_bsd  && [ -f /user/local/bin/grep  ]; then
-	TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/local/bin/ggrep"
+	TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="/usr/local/bin/grep"
 else
 	TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAULT="grep"
 fi
@@ -34,11 +34,10 @@ export TMUX_POWERLINE_SEG_WEATHER_GREP="${TMUX_POWERLINE_SEG_WEATHER_GREP_DEFAUL
 # 1. Go to Yahoo weather http://weather.yahoo.com/
 # 2. Find the weather for you location
 # 3. Copy the last numbers in that URL. e.g. "http://weather.yahoo.com/united-states/california/newport-beach-12796587/" has the numbers "12796587"
+TMUX_POWERLINE_SEG_WEATHER_LOCATION=""
 EORC
 	echo "$rccontents"
 }
-
-TMUX_POWERLINE_SEG_WEATHER_LOCATION="2365397"
 
 run_segment() {
 	__process_settings
