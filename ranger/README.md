@@ -7,6 +7,7 @@ You can from [here](https://github.com/ranger/ranger)(**ranger github**) know mo
 Show hidden file by default. Show line number by default.
 
 - If you want to preview pictures, remember to install `w3m`.
+- If you want to preview PDF, remember to install `fmt`.
 - If you want to preview vedio, remember to install `ffmpegthumbnailer`. It's used to generate a thumbnail of a vedio.
 - If you want to compressed file, you should install `stool`.
 
