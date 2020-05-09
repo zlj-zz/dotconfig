@@ -34,3 +34,4 @@
 !/ranger/
 /ranger/plugins/__pycache__/
 !/tmux/
+!/rofi/
