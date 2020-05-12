@@ -99,6 +99,8 @@ bindsym $mod+Shift+t exec alacritty -e ranger
 bindsym $mod+Shift+g exec --no-startup-id google-chrome-stable
 # open neteas cloud music
 bindsym $mod+Shift+m exec --no-startup-id netease-cloud-music
+# screenhot deepin
+bindsym $mod+Shift+a exec --no-startup-id deepin-screen-recorder
 
 # kill focused window
 bindsym $mod+Shift+q kill

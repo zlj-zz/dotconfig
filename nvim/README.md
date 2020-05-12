@@ -129,7 +129,7 @@ let `ctrl+a` to select all (same as `ggVG`).
 
 # Plugin
 
-### Coc
+## Coc
 
 **complete** 
 
@@ -163,32 +163,25 @@ let `ctrl+a` to select all (same as `ggVG`).
 
 **explorer** 
 
-![coc-explorer](<++>) <++>
+| shortcut  | action               |  | shortcut | action        |  | shortcut | action         |
+|-----------|----------------------|--|----------|---------------|--|----------|----------------|
+| `tt`      | coc-explorer toggle  |  | `p`      | paste file    |  | `y`      | copy file path |
+| `k`and`j` | up and down          |  | `d`      | delete        |  | `Y`      | copy file name |
+| `h`and`l` | collapse and expand  |  | `a`      | add file      |  | `c`      | copy file      |
+| `e`       | open file            |  | `A`      | add directory |  | `x`      | cut file       |
+| `s`and`E` | open split or vsplit |  | `r`      | rename        |  | `f`      | search         |
+| `t`       | open in new tab      |  | `.`      | toggleHidden  |  | `R`      | refresh        |
+| `q`       | quit                 |  | `?`      | help          |  |          |                |
 
-| shortcut  | action               |
-|-----------|----------------------|
-| `tt`      | coc-explorer toggle  |
-| `k`and`j` | up and down          |
-| `h`and`l` | collapse and expand  |
-| `e`       | open file            |
-| `s`and`E` | open split or vsplit |
-| `t`       | open in new tab      |
-| `y`       | copy file path       |
-| `Y`       | copy file name       |
-| `c`       | copy file            |
-| `x`       | cut file             |
-| `p`       | paste file           |
-| `d`       | delete               |
-| `a`       | add file             |
-| `A`       | add directory        |
-| `r`       | rename               |
-| `.`       | toggleHidden         |
-| `f`       | search               |
-| `R`       | refresh              |
-| `q`       | quit                 |
-| `?`       | help                 |
 
-### vim-keysound
+
+## vim-easymotion
+
+fast move you cursor, use `'` easymotion
+
+![vim-easymotion](https://img-blog.csdnimg.cn/20200512164720342.gif) 
+
+## vim-keysound
 
 *make your vim a typewriter*
 
