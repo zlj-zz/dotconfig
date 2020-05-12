@@ -1,4 +1,9 @@
+# This is my neovim
+
+![demo](https://img-blog.csdnimg.cn/20200512091003564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDEwNDk0,size_16,color_FFFFFF,t_70) 
+
 # After Installation, You Need To
+
  Install `pynvim` (pip)
 
 Install `nodejs`, and do `npm install -g neovim`
@@ -112,6 +117,8 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `t-`       | previous tab     |
 | `t=`       | next previous    |
 
+### Other
+
 `c-z` makes **vim** hang and enter **shell**, `fg` returns **vim** form **shell**.
 
 `dip` clear the black lien around the current cursor.
@@ -119,3 +126,80 @@ let `ctrl+a` to select all (same as `ggVG`).
 `c-F` use **fzf** 
 
 `c-R` use **ranger** in neovim
+
+# Plugin
+
+### Coc
+
+**complete** 
+
+![coc-complete](https://img-blog.csdnimg.cn/202005112344456.gif) 
+
+| shortcut          | action        |
+|-------------------|---------------|
+| `<tab>`           | next item     |
+| `<shift>`+`<tab>` | previous item |
+| `<enter>`         | select item   |
+
+**snippet** 
+
+![coc-snippet](https://img-blog.csdnimg.cn/20200512090039297.gif) 
+
+| shortcut | action                       |
+|----------|------------------------------|
+| `<c-j>`  | trigger snippet expand       |
+| `<c-j>`  | jump to next placeholder     |
+| `<c-k>`  | jump to previous placeholder |
+
+**coding** 
+
+| shortcut | action                  |
+|----------|-------------------------|
+| `gd`     | jump to definition      |
+| `gt`     | jump to type definition |
+| `gi`     | jump to implementation  |
+| `gr`     | jump to references      |
+| `rn`     | symbol renaming         |
+
+**explorer** 
+
+![coc-explorer](<++>) <++>
+
+| shortcut  | action               |
+|-----------|----------------------|
+| `tt`      | coc-explorer toggle  |
+| `k`and`j` | up and down          |
+| `h`and`l` | collapse and expand  |
+| `e`       | open file            |
+| `s`and`E` | open split or vsplit |
+| `t`       | open in new tab      |
+| `y`       | copy file path       |
+| `Y`       | copy file name       |
+| `c`       | copy file            |
+| `x`       | cut file             |
+| `p`       | paste file           |
+| `d`       | delete               |
+| `a`       | add file             |
+| `A`       | add directory        |
+| `r`       | rename               |
+| `.`       | toggleHidden         |
+| `f`       | search               |
+| `R`       | refresh              |
+| `q`       | quit                 |
+| `?`       | help                 |
+
+### vim-keysound
+
+*make your vim a typewriter*
+
+you should do:
+```shell
+pip install pysdl2
+
+sudo pacman -S sdl sdl-mixer
+```
+
+
+
+
+

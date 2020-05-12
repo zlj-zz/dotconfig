@@ -285,6 +285,14 @@ let g:airline_powerline_fonts = 0
 
 Plug 'bling/vim-bufferline'
 
+Plug 'skywind3000/vim-keysound'
+let g:keysound_enable = 0
+" options [default, typewriter, mario, bubble, sword]
+let g:keysound_theme = 'default' 
+let g:keysound_volume = 1000
+let g:keysound_py_version = 3
+
+
 
 
 " ======= color theme {{{
