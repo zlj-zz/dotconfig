@@ -16,7 +16,7 @@
 "           \  (oo)____
 "              (__)    )\
 "                 ||--|| *
-" ===
+"
 " === Auto load for first time uses
 " ==={{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -25,16 +25,16 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 " }}}
-" ===
+
 " === Create a '_machine_specific.vim' file to adjust machine specific stuff, like python interpreter location
-" ===
+" ==={{{
 let has_machine_specific_file = 1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
     let has_machine_specific_file = 0
     silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
-
+" }}}
 
 " === basic Set =============================={{{
 
@@ -138,8 +138,8 @@ noremap <silent> J 5j
 noremap <silent> H 5h
 noremap <silent> L 5l
 " Ctrl + K or J will move up/down the view port without moving the cursor
-nnoremap <C-K> 5<C-y>
-nnoremap <C-J> 5<C-e>
+nnoremap <C-k> 5<C-y>
+nnoremap <C-j> 5<C-e>
 " Insert and Command Mode Cursor Movement
 noremap! <m-a> <Home>
 noremap! <m-s> <End>
@@ -266,13 +266,14 @@ nmap upd :call SetLastModifiedTime(-1)<CR>
 
 "let g:python_host_prog="/usr/bin/python2.7"
 "let g:python3_host_prog="/usr/bin/python3.8"
+
 " === Widgets ================================{{{
 "call plug#begin('~/.config/nvim/plugged')
 call plug#begin()
 Plug 'tiagofumo/dart-vim-flutter-layout' " code indent
-Plug 'RRethy/vim-illuminate'   " illuminating the other uses of the current word under the cursor
 " ===
 " === vim-illuminate
+Plug 'RRethy/vim-illuminate'   " illuminating the other uses of the current word under the cursor
 let g:Illuminate_delay = 750
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'KabbAmine/vCoolor.vim'
@@ -436,29 +437,24 @@ call s:setup_keymaps()
 " }}}
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-" === rnvimr
+" === rnvimr {{{
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
-nnoremap <silent> <c-R> :RnvimrSync<CR>:RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+nnoremap <silent> ra :RnvimrSync<CR>:RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
 let g:rnvimr_layout = { 'relative': 'editor',
             \ 'width': &columns,
             \ 'height': &lines,
             \ 'col': 0,
             \ 'row': 0,
             \ 'style': 'minimal' }
-let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
+let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}] 
+" }}}
 
 " File navigation
 Plug 'junegunn/fzf.vim'
 " === FZF (sudo pacman -S fzf)
-noremap <C-F> :FZF<CR>
-
-" ++++++++++++++++++++++++++++++++++++++++++++
-
+noremap <c-f> :FZF<CR>
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
@@ -483,9 +479,6 @@ Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
 "" Find & Replace
 "" Press SPACE f r to search in cwd.
 "Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
@@ -501,17 +494,13 @@ Plug 'osyo-manga/vim-anzu' " show search position
 set statusline=%{anzu#search_status()}
 
 
-" +++Goyo and Calendar++++++++++++++++++++++++{{{
-
-
 " For general writing-工作无忧
 Plug 'junegunn/goyo.vim'
 " === goyo
 map <LEADER>gy :Goyo<CR>
 " Vim Applications-日历
 Plug 'itchyny/calendar.vim'
-" ===
-" === vim-calendar
+" === vim-calendar {{{
 noremap \c :Calendar -position=tab<CR>
 noremap \\ :Calendar -view=clock -position=here<CR> " open clock
 let g:calendar_google_calendar = 1
@@ -536,15 +525,9 @@ augroup END
 " }}}
 
 
-" +++++++++++++++++++++++++++++++++++++++++++++
-
-
 " Auto Complete Coc {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " install [npm] [yarn]
 Plug 'wellle/tmux-complete.vim'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-jedi'  " deoplete 函数库
-" ===
 " === coc
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
@@ -639,12 +622,14 @@ Plug 'tweekmonster/braceless.vim'
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
 Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+
 "Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 " === jsx
 let g:vim_jsx_pretty_colorful_config = 1
+
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 
 
@@ -680,40 +665,36 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 " }}}
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
-
-
 " Editor Enhancement
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi'
-" ===
 " === vim-visual-multi
 "let g:VM_theme             = 'iceblue'
 "let g:VM_default_mappings = 0
 let g:VM_leader = {'default': ',', 'visual': ',', 'buffer': ','}
 let g:VM_maps = {}
-let g:VM_custom_motions  = {'j': 'h', 'l': 'l', 'i': 'k', 'k': 'j', '#': '0', '$': '$'}
-let g:VM_maps['i']         = 'r'
-let g:VM_maps['I']         = 'R'
-let g:VM_maps['Find Under']         = '<C-k>'
-let g:VM_maps['Find Subword Under'] = '<C-k>'
+let g:VM_custom_motions  = {'h': 'h', 'l': 'l', 'k': 'k', 'j': 'j', '0': '0', '4': '$'}
+let g:VM_maps['i']         = 'i'
+let g:VM_maps['I']         = 'I'
+let g:VM_maps['Find Under']         = '<C-u>'
+let g:VM_maps['Find Subword Under'] = '<C-u>'
 let g:VM_maps['Find Next']         = ''
 let g:VM_maps['Find Prev']         = ''
 let g:VM_maps['Remove Region'] = 'q'
 let g:VM_maps['Skip Region'] = ''
 let g:VM_maps["Undo"]      = 'u'
 let g:VM_maps["Redo"]      = '<C-r>'
+
 Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line;<space>cu to uncomment a line
 Plug 'AndrewRadev/switch.vim' " gs to switch
 Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 Plug 'junegunn/vim-after-object' " da= to delete what's after =
-" ===
 " === vim-after-object
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+
 Plug 'tpope/vim-capslock'   " Ctrl+L (insert) to toggle capslock
 Plug 'easymotion/vim-easymotion'
-" ===
 " === vim-easymotion
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
@@ -729,8 +710,9 @@ nmap ' <Plug>(easymotion-bd-f)
 "nmap 'l <Plug>(easymotion-overwin-line)
 "map  'w <Plug>(easymotion-bd-w)
 "nmap 'w <Plug>(easymotion-overwin-w)
+
+
 Plug 'Konfekt/FastFold'
-" ===
 " === fastfold f
 nmap zuz <Plug>(FastFoldUpdate)
 let g:fastfold_savehook = 1
@@ -748,29 +730,28 @@ let g:perl_fold_blocks = 1
 let g:r_syntax_folding = 1
 let g:rust_fold = 1
 let g:php_folding = 1
+
+
 " Other visual enhancement
 Plug 'ryanoasis/vim-devicons' " add icon to vim plug
 Plug 'luochen1990/rainbow'    " rainbow brackets
-Plug 'mg979/vim-xtabline'     " top tabline
-" ===
 " === xtabline
-" ===
+Plug 'mg979/vim-xtabline'     " top tabline
 let g:xtabline_settings = {}
 let g:xtabline_settings.enable_mappings = 0
 let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
 let g:xtabline_settings.enable_persistance = 0
 let g:xtabline_settings.last_open_first = 1
 noremap \p :XTabInfo<CR>
+
 Plug 'wincent/terminus'
 " Dependencies
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'roxma/nvim-yarp'
 
-" +++Markdown+++++++++++++++++++++++++++++++++{{{
 
-
-" Markdown
+" Markdown {{{
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown'] }
@@ -818,12 +799,12 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 
-" ++++++++++++++++++++++++++++++++++++++++++++
 " Swift
 "Plug 'keith/swift.vim'
 
 call plug#end()
 " --------------------------------------------}}}
+
 " experimental
 set lazyredraw
 

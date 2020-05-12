@@ -4,7 +4,7 @@
 
 # After Installation, You Need To
 
- Install `pynvim` (pip)
+Install `pynvim` (pip)
 
 Install `nodejs`, and do `npm install -g neovim`
 
@@ -92,21 +92,19 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `<LEADER>fd`       | find two same word                 |
 | `<LEADER>rc`       | open the neovim config anytime     |
 | `rc`               | resource neovim config             |
+| `<LEADER>cn`       | comment a line                     |
+| `<LEADER>cu`       | uncomment a line                   |
 
 ### Window management
 
-| shortcut | action                             |
-|----------|------------------------------------|
-| `sh`     | split window to the left           |
-| `sj`     | split window to the down           |
-| `sk`     | split window to the up             |
-| `sl`     | split window to the right          |
-| `th`     | move cursor to the left window     |
-| `tj`     | move cursor to the down window     |
-| `tk`     | move cursor to the up window       |
-| `tl`     | move cursor to the right window    |
-| `ch`     | place the two screens up and down  |
-| `cv`     | place the two screens side by side |
+| shortcut | action                            |  | shortcut | action                             |
+|----------|-----------------------------------|--|----------|------------------------------------|
+| `sh`     | split window to the left          |  | `th`     | move cursor to the left window     |
+| `sj`     | split window to the down          |  | `tj`     | move cursor to the down window     |
+| `sk`     | split window to the up            |  | `tk`     | move cursor to the up window       |
+| `sl`     | split window to the right         |  | `tl`     | move cursor to the right window    |
+| `ch`     | place the two screens up and down |  | `cv`     | place the two screens side by side |
+
 
 
 ### Tab management
@@ -123,9 +121,9 @@ let `ctrl+a` to select all (same as `ggVG`).
 
 `dip` clear the black lien around the current cursor.
 
-`c-F` use **fzf** 
+`c-F` use **fzf**. `da=` to delete current line what's after `=`.
 
-`c-R` use **ranger** in neovim
+`ra` use **ranger** in neovim.
 
 # Plugin
 
@@ -173,19 +171,33 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `t`       | open in new tab      |  | `.`      | toggleHidden  |  | `R`      | refresh        |
 | `q`       | quit                 |  | `?`      | help          |  |          |                |
 
+## vim-visual-multi
 
+It can help you realize the function of multi-cursor.
+
+You can use `ctrl` + `← ↓ ↑ →` to select cursor position. Use `i` or `I` to insert character.
+
+To remove a cursor, use `q`. `u` to undo, `ctrl` + `r` to redo, like vim native.
 
 ## vim-easymotion
 
-fast move you cursor, use `'` easymotion
+Fast move you cursor, use `'` easymotion
 
 ![vim-easymotion](https://img-blog.csdnimg.cn/20200512164720342.gif) 
+
+## vim-startify
+
+Enter `F5` to open a new tab and running Startify.
+
+First start will generate 5 temporary file with suffixes of `.c`, `.java`, `.py`, `.js`, `.html`, `.css`.
+
+![vim-startup](https://img-blog.csdnimg.cn/20200512234641826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDEwNDk0,size_16,color_FFFFFF,t_70) 
 
 ## vim-keysound
 
 *make your vim a typewriter*
 
-you should do:
+You should do:
 ```shell
 pip install pysdl2
 
