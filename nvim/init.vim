@@ -234,14 +234,16 @@ autocmd BufEnter * silent! lcd %:p:h
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " === set temp directory ===================={{{
-silent !mkdir -p ~/.config/nvim/tmp/backup
-silent !mkdir -p ~/.config/nvim/tmp/undo
-silent !mkdir -p ~/.config/nvim/tmp/sessions
+if empty(glob('~/.config/nvim/tmp'))
+  silent !mkdir -p ~/.config/nvim/tmp/backup
+  silent !mkdir -p ~/.config/nvim/tmp/undo
+  silent !mkdir -p ~/.config/nvim/tmp/sessions
+endif
 set backupdir=~/.config/nvim/tmp/backup,.
 set directory=~/.config/nvim/tmp/backup,.
 if has('persistent_undo')
-    set undofile
-    set undodir=~/.config/nvim/tmp/undo,.
+   set undofile
+   set undodir=~/.config/nvim/tmp/undo,.
 endif
 " --------------------------------------------}}}
 
@@ -258,9 +260,11 @@ source ~/.config/nvim/my_extra/compile_run.vim
 map <F9> :call CompileRunGcc()<CR>
 
 "autocmd BufNewFile * call SetTitle()
-source ~/.config/nvim/my_extra/file-processing.vim
-nmap tit :call SetTitle()<CR>
-nmap upd :call SetLastModifiedTime(-1)<CR>
+augroup file-title
+  autocmd FileType c,python,java source ~/.config/nvim/my_extra/file-processing.vim
+  nmap tit :call SetTitle()<CR>
+  nmap upd :call SetLastModifiedTime(-1)<CR>
+augroup END
 " -------------------------------------------}}}
 
 
@@ -268,8 +272,8 @@ nmap upd :call SetLastModifiedTime(-1)<CR>
 "let g:python3_host_prog="/usr/bin/python3.8"
 
 " === Widgets ================================{{{
-"call plug#begin('~/.config/nvim/plugged')
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
+"call plug#begin()
 Plug 'tiagofumo/dart-vim-flutter-layout' " code indent
 " ===
 " === vim-illuminate
@@ -286,7 +290,7 @@ let g:airline_powerline_fonts = 0
 
 Plug 'bling/vim-bufferline'
 
-Plug 'skywind3000/vim-keysound'
+Plug 'skywind3000/vim-keysound', {'on': 'KeysoundEnable'}
 let g:keysound_enable = 0
 " options [default, typewriter, mario, bubble, sword]
 let g:keysound_theme = 'default' 
@@ -302,7 +306,7 @@ let g:keysound_py_version = 3
 "Plug 'rakr/vim-one'
 Plug 'ajmwagar/vim-deus'
 "Plug 'arzg/vim-colors-xcode'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 "Plug 'morhetz/gruvbox'
 set t_Co=256  " open 256 color suppor
 " ===
@@ -315,7 +319,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "let g:one_allow_italics = 1
 "color dracula
 "color one
-color deus
+colorscheme deus
 "color gruvbox
 "let ayucolor="light"
 "color ayu
@@ -378,11 +382,11 @@ let g:startify_lists = [
       \ ]
 
 " NerdTree, files tree to manage file
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree',{'on': 'NERDTreeToggle'}
 " Tagbar, easy read program, function bar
-Plug 'majutsushi/tagbar'  " sudo pacman -S ctags
+Plug 'majutsushi/tagbar',{'on': 'TagbarToggle'}  " sudo pacman -S ctags
 " Undo Tree, to see history
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree',{'on': 'UndotreeToggle'}
 " ===
 " === Undotree
 noremap <F6> :UndotreeToggle<CR>
@@ -452,12 +456,12 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " }}}
 
 " File navigation
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim',{'on': 'FZF'}
 " === FZF (sudo pacman -S fzf)
 noremap <c-f> :FZF<CR>
 
 " Formatter
-Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat',{'on': 'AutoFormat'}
 " === AutoFormat
 nnoremap \f :Autoformat<CR>
 
@@ -495,11 +499,11 @@ set statusline=%{anzu#search_status()}
 
 
 " For general writing-工作无忧
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim',{'on': 'Goyo'}
 " === goyo
 map <LEADER>gy :Goyo<CR>
 " Vim Applications-日历
-Plug 'itchyny/calendar.vim'
+Plug 'itchyny/calendar.vim',{'on': ['Calendar -position=tab', 'Calendar -view=clock -position=here']}
 " === vim-calendar {{{
 noremap \c :Calendar -position=tab<CR>
 noremap \\ :Calendar -view=clock -position=here<CR> " open clock
@@ -686,7 +690,7 @@ let g:VM_maps["Undo"]      = 'u'
 let g:VM_maps["Redo"]      = '<C-r>'
 
 Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line;<space>cu to uncomment a line
-Plug 'AndrewRadev/switch.vim' " gs to switch
+"Plug 'AndrewRadev/switch.vim' " gs to switch
 Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 Plug 'junegunn/vim-after-object' " da= to delete what's after =
@@ -758,7 +762,7 @@ Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown'] }
 Plug 'theniceboy/bullets.vim'
 " ===
 " Markdown Snippets
-source ~/.config/nvim/my_extra/md-snippets.vim
+autocmd FileType markdown source ~/.config/nvim/my_extra/md-snippets.vim
 " auto spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 " ===

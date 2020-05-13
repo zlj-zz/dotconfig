@@ -144,7 +144,8 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
-		"git.enableGutters": true,
+  "snippets.extends":{"text": ["wordbook"], "markdown": ["wordbook"]},
+  "snippets.ultisnips.directories": ["Ultisnips", ],
 	"git.enableGutters": true,
 	"git.branchCharacter":"\uf408",
 	"git.addGBlameToBufferVar": false,
