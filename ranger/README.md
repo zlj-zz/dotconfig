@@ -38,7 +38,8 @@ Many operations are the same as `vim`.
 | `q`/`Q`  | quit / quit all                                  |
 | `r`      | rename                                           |
 | `cw`     | batch rename                                     |
-| `t`      | touch file                                       |
+| `tf`     | touch file                                       |
+| `td`     | make a directory                                 |
 | `f`      | ftsea (real-time search under the current path ) |
 | `F`      | start `fzf` select                               |
 | `C`      | compressed files (`.rar` `.tar.gz` `.zip` `.7z`) |
