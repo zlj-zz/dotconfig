@@ -536,7 +536,16 @@ Plug 'wellle/tmux-complete.vim'
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 "set signcolumn=no  " no side bar
-let g:coc_global_extensions = ['coc-python', 'coc-pyright',  'coc-snippets', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer',  'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-java', ]
+let g:coc_global_extensions = [
+        \'coc-lists', 'coc-snippets', 'coc-explorer', 
+        \'coc-python', 'coc-pyright', 
+        \'coc-vimlsp', 'coc-sh', 'coc-json', 
+        \'coc-java', 'coc-html', 'coc-css', 'coc-stylelint', 
+        \'coc-tsserver', 'coc-tslint', 'coc-tailwindcss', 
+        \'coc-git', 'coc-gitignore', 
+        \'coc-sourcekit', 'coc-flutter', 
+        \'coc-yank',  'coc-translator', 
+    \]
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "nmap <silent> <TAB> <Plug>(coc-range-select)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
@@ -672,7 +681,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 " Editor Enhancement
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi'
-" === vim-visual-multi
+" === vim-visual-multi {{{
 "let g:VM_theme             = 'iceblue'
 "let g:VM_default_mappings = 0
 let g:VM_leader = {'default': ',', 'visual': ',', 'buffer': ','}
@@ -688,6 +697,7 @@ let g:VM_maps['Remove Region'] = 'q'
 let g:VM_maps['Skip Region'] = ''
 let g:VM_maps["Undo"]      = 'u'
 let g:VM_maps["Redo"]      = '<C-r>'
+" }}}
 
 Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line;<space>cu to uncomment a line
 "Plug 'AndrewRadev/switch.vim' " gs to switch

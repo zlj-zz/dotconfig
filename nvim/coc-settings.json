@@ -145,7 +145,7 @@
         ">>": "gitUnstage"
     },
   "snippets.extends":{"text": ["wordbook"], "markdown": ["wordbook"]},
-  "snippets.ultisnips.directories": ["Ultisnips", ],
+  "snippets.ultisnips.directories": ["Ultisnips"],
 	"git.enableGutters": true,
 	"git.branchCharacter":"\uf408",
 	"git.addGBlameToBufferVar": false,
@@ -177,6 +177,7 @@
 	"javascript.suggest.names": true,
 	"javascript.suggestionActions.enabled": true,
 	"json.format.enable": true,
+  "sh.enable":true,
 	"languageserver": {
 		"lua": {
 			"command": "lua-lsp",
@@ -192,12 +193,12 @@
 				"lintTool": "golint"
 			}
 		},
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": []
-		},
+//		"bash": {
+//			"command": "bash-language-server",
+//			"args": ["start"],
+//			"filetypes": ["sh"],
+//			"ignoredRootPaths": []
+//		},
 		"ccls": {
 			"command": "ccls",
 			"filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
