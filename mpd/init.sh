@@ -31,3 +31,5 @@ log="$HOME/.config/mpd/mpd.log"
 if [[ ! -f $log ]]; then
   touch $log
 fi
+
+echo "init finished"
