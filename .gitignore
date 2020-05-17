@@ -9,11 +9,12 @@
 !/packages.txt
 !/tool.txt
 !/alacritty/
-# fish
+# === fish ===
 !/fish/
 !/fish/config.fish
 !/fish/README.md
 !/fish/functions/
+#
 !/i3/
 !/neofetch/
 # === nvim ===
@@ -35,3 +36,8 @@
 /ranger/plugins/__pycache__/
 !/tmux/
 !/rofi/
+!/mpd
+
+mpd/mpdstate
+mpd/mpd.log
+mpd/mpd.db
