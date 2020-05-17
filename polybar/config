@@ -40,6 +40,12 @@ pink = #FFB5C5
 puple = #CD00CD
 grey = #5C5C5C
 
+[config]
+network-eth = enp4s0
+network-wlan = wlp0s20f3
+
+github-token = bbc4f402e9cdb3eb41ebc128e8e8546b82f2991b
+
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -75,9 +81,9 @@ font-2 = Font Awesome 5 Brands:pixelsize=10;1
 font-3 = Weather Icons:style=Regular:size=10;1
 font-4 = fixed:pixelsize=10;1
 
-modules-left = i3 cpu memory
+modules-left = i3 cpu memory title
 modules-center = mpd
-modules-right = wlan eth xbacklight pulseaudio battery temperature date powermenu
+modules-right = weather wlan eth xbacklight pulseaudio battery temperature date powermenu
 ;modules-right = wlan eth xbacklight alsa pulseaudio battery xkeyboard temperature date powermenu
 
 dim-value = 0.75
@@ -213,7 +219,16 @@ interval = 2.5
 ;format-prefix = ""
 format-prefix-foreground = #262626
 ;format-underline = #f90000
-label = [:%percentage:2%%
+format = [<ramp-load> <label>
+label = :%percentage:2%%
+
+ramp-load-0 = 
+;ramp-load-0-foreground = #16F408
+ramp-load-1 = 
+ramp-load-1-foreground = #F4BE08
+ramp-load-2 = 
+ramp-load-2-foreground = #F42C08
+
 
 [module/memory]
 type = internal/memory
@@ -222,11 +237,23 @@ interval = 2
 format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #4bffdc
 ;label = %percentage_used%%
-label = : %gb_used%/%gb_free%]
+;label = : %gb_used%/%gb_free%]
+format = <ramp-used> <label>
+
+;label = : %gb_used%/%gb_free%]
+label = : %gb_used%]
+
+ramp-used-0 = 
+;ramp-used-0-foreground = #16F408
+ramp-used-1 = 
+ramp-used-1-foreground = #F4BE08
+ramp-used-2 = 
+ramp-used-2-foreground = #F42C08
+
 
 [module/wlan]
 type = internal/network
-interface = wlp0s20f3
+interface = ${config.network-wlan}
 interval = 3.0
 format-connected = <ramp-signal> <label-connected>
 ;format-connected-underline = #9f78e1
@@ -245,9 +272,10 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ;ramp-signal-foreground = ${colors.foreground-alt}
 
+
 [module/eth]
 type = internal/network
-interface = enp4s0
+interface = ${config.network-eth}
 interval = 3.0
 
 ;format-connected-underline = #55aa55
@@ -258,16 +286,6 @@ label-connected = " %local_ip% [ %upspeed%   %downspeed%]"
 accumulate-stats = true
 
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-;[module/wireless-network]
-;type = internal/network
-;interface = enp4s0
-;interval = 1.0
-;ping-interval = 10
 
 ;format-connected = <ramp-signal> <label-connected>
 ;#label-connected = %local_ip%    %downspeed%    %upspeed%
@@ -289,7 +307,7 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date = "[%a]"
 date-alt = "%Y-%m-%d |"
@@ -300,10 +318,10 @@ time-alt = %H:%M:%S
 format-prefix = 🕓
 ;format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #0a6cf5
-
 label = %date% %time%
 
 format = <label>
+
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -311,16 +329,16 @@ type = internal/xbacklight
 format = <label>
 label = [ %percentage:2%%
 
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+;bar-width = 10
+;bar-indicator = |
+;bar-indicator-foreground = #fff
+;bar-indicator-font = 2
+;bar-fill = ─
+;bar-fill-font = 2
+;bar-fill-foreground = #9f78e1
+;bar-empty = ─
+;bar-empty-font = 2
+;bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -355,33 +373,33 @@ label-muted-foreground = #666
 ;bar-volume-empty-font = 2
 ;bar-volume-empty-foreground = ${colors.foreground-alt}
 
-[module/alsa]
-type = internal/alsa
+;[module/alsa]
+;type = internal/alsa
 
-format-volume = <label-volume> <bar-volume>
-label-volume = 
-label-volume-foreground = ${root.foreground}
+;format-volume = <label-volume> <bar-volume>
+;label-volume = 
+;label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+;format-muted-prefix = " "
+;format-muted-foreground = ${colors.foreground-alt}
+;label-muted = sound muted
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-;bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+;bar-volume-width = 10
+;bar-volume-foreground-0 = #55aa55
+;bar-volume-foreground-1 = #55aa55
+;bar-volume-foreground-2 = #55aa55
+;bar-volume-foreground-3 = #55aa55
+;bar-volume-foreground-4 = #55aa55
+;bar-volume-foreground-5 = #f5a70a
+;bar-volume-foreground-6 = #ff5555
+;bar-volume-gradient = false
+;;bar-volume-indicator = |
+;bar-volume-indicator-font = 2
+;bar-volume-fill = ─
+;bar-volume-fill-font = 2
+;bar-volume-empty = ─
+;bar-volume-empty-font = 2
+;bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -419,11 +437,6 @@ label-discharging = %percentage%%
 
 label-full = 
 
-;animation-discharging-0 = 
-;animation-discharging-1 = 
-;animation-discharging-2 = 
-;animation-discharging-3 = 
-;animation-discharging-4 = 
 
 [module/temperature]
 type = internal/temperature
@@ -478,12 +491,31 @@ label-separator-foreground = ${colors.foreground-alt}
 ;menu-2-1 = cancel
 ;menu-2-1-exec = menu-open-0
 
-[module/weather]
-type = custom/script
-exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
-interval = 600
+[module/title]
+type = internal/xwindow
+format-foreground = 
+format-underline =
+format-padding = 0
 
-label-font = 4
+label-maxlen = 200
+label-empty = Desktop
+
+
+;[module/github]
+;type = internal/github
+;token = ${config.github-token}
+;empty-notifications = false
+;interval = 10
+;label =  %notifications%
+
+
+;[module/weather]
+;type = custom/script
+;exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
+;interval = 6
+
+;label-font = 4
+
 
 [settings]
 screenchange-reload = true
