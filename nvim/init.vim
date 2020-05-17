@@ -261,7 +261,7 @@ map <F9> :call CompileRunGcc()<CR>
 
 "autocmd BufNewFile * call SetTitle()
 augroup file-title
-  autocmd FileType c,python,java source ~/.config/nvim/my_extra/file-processing.vim
+  autocmd FileType c,python,java,sh source ~/.config/nvim/my_extra/file-processing.vim
   nmap tit :call SetTitle()<CR>
   nmap upd :call SetLastModifiedTime(-1)<CR>
 augroup END

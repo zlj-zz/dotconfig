@@ -5,9 +5,11 @@
 >- **ncmpc**: mpd Ncurses client
 >- **mpc**: command line user interface of the mpd server
 
+
 - install **MPD** `sudo pacman -S mpd`
 - install client, I use **ncmpc** `sudo pacman -S ncmpc`
 - move the directory to `~/.config`
+- execute **init** file, `sh init.sh`
 - you can refer to `/usr/share/doc/mpd/mpdconf.example`
 
 `rc-update add mpd default`
