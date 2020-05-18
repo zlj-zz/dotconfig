@@ -12,4 +12,25 @@
 - execute **init** file, `sh init.sh`
 - you can refer to `/usr/share/doc/mpd/mpdconf.example`
 
-`rc-update add mpd default`
+<u>You may need to change the `music_directory` in the configuration to yours.</u>
+
+
+# Problem
+
+- [x] **If the port is modified in the configuration file**.
+
+    A: you need to set the port when connecting, like: `ncmpc -p 6666`. And I recommend using `-C` to disable color.
+
+- [x] **To auto-start MPD upon login, type.**
+
+    A: `systemctl --user enable mpd`.
+
+- [x] **TO auto-start MPD on tty login.**
+
+    A: add the following to `~/.profile` or anthor autostart file.
+    ```bash
+    # MPD daemon start (if no other user instance exists)
+    [ ! -s ~/.config/mpd/pid ] && mpd
+    ```
+
+

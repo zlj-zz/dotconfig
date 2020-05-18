@@ -48,6 +48,8 @@ let `S` to save file (same as command `:w`).
 
 let `Q` to quit (same as command `:q`).
 
+You can use `ZZ` command, this command writes the file and exits.
+
 In normal mode make `Y` to copy till the end of the line (same as `y$`).
 
 In visual mode make `Y` copy to system clipboard (same as `"+y`).

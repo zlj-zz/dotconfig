@@ -31,20 +31,21 @@ hide_edge_borders none
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+exec_always --no-startup-id picom -b &
+# start input method
+exec_always --no-startup-id fcitx
 # lunach polybar on start
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
 #exec_always --no-startup-id /$HOME/.config/polybar/launch.sh light
 # change my key map
 exec_always --no-startup-id ~/.config/i3/changeKeyMap.sh &
-# start input method
-exec_always --no-startup-id fcitx 
 # wallpaper set
 #exec_always feh --randomize --bg-fill ~/wallpaper &
 exec_always --no-startup-id variety
-exec_always --no-startup-id albert 
-exec_always --no-startup-id picom -b &
 # set screen dpi
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
+# start mpd
+exec_always --no-startup-id sleep 1 && mpd
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

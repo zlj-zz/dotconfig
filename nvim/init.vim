@@ -44,7 +44,9 @@ source ~/.config/nvim/_machine_specific.vim
 " =                  =
 " ====================
 set nocompatible          " close vi compatibility mode
-syntax on
+if &t_Co > 1
+  syntax enable
+endif
 filetype on               " open file classic check
 filetype plugin indent on " turn on auto-completion
 "set completeopt=longest,menu
@@ -151,6 +153,7 @@ noremap! <m-l> <Right>
 "noremap! <M-l> <S-Right>
 " jump to sentence tail
 noremap 4 $
+noremap 6 ^
 noremap ; :
 
 
