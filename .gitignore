@@ -42,3 +42,4 @@ mpd/mpdstate
 mpd/mpd.log
 mpd/mpd.db
 mpd/mpd.pid
+nvim/init.vim.html
