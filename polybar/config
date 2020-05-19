@@ -20,7 +20,7 @@
 ;  bar module option[i3 cpu memory title wlan eth xkeyboard xbacklight pulseaudio battery temperature date powermenu weather]
 bar-left = i3 cpu memory title
 bar-center = mpd
-bar-right = weather wlan eth xbacklight pulseaudio battery temperature date powermenu
+bar-right = backlight wlan eth xbacklight pulseaudio battery temperature date powermenu
 
 network-eth = enp4s0
 network-wlan = wlp0s20f3
@@ -48,7 +48,6 @@ alert = #bd2c40
 buffer = #4F99D3
 nord6 = #080000
 nord7 = #EEAD0E
-nord8 = #00FF78
 nord9 = #50e3d6
 urgent = #BF616A
 notify = #EBCB8B
@@ -57,10 +56,11 @@ notify = #EBCB8B
 black = #000000
 withe = #ffffff
 red = #ff0000
-wine-red = #D08770
+winered = #D08770
 green = #00FF00
+grassgreen = #00FF78
 blue = #0000FF
-sky-blue = #08A9F4
+skyblue = #08A9F4
 lightblue = #00FFFF
 orange = #EE9A00
 yellow = #EEEE00
@@ -107,6 +107,7 @@ font-3 = Weather Icons:style=Regular:size=10;1
 font-4 = fixed:pixelsize=10;1
 ; show chinese `fc-list :lang=zh`
 font-5 = Noto Sans CJK SC:style=Regular:size=10
+font-6 = Material Icons:style=Regular
 
 modules-left = ${config.bar-left}
 modules-center = ${config.bar-center}
@@ -262,10 +263,10 @@ label-song-underline = ${colors.withe}
 label-song = %title:0:10:...% - %artist:0:10:...%
 
 icon-play = 
-icon-play-foreground = ${colors.sky-blue}
+icon-play-foreground = ${colors.skyblue}
 icon-play-margin = 1
 icon-pause = 
-icon-pause-foreground = ${colors.wine-red}
+icon-pause-foreground = ${colors.winered}
 icon-pause-margin = 1
 icon-stop = 
 icon-stop-foreground = ${colors.urgent}
@@ -281,7 +282,7 @@ icon-repeat-margin = 1
 icon-random = 
 icon-random-margin = 1
 
-toggle-on-foreground = ${colors.sky-blue}
+toggle-on-foreground = ${colors.skyblue}
 toggle-off-foreground = ${colors.urgent}
 
 bar-progress-width = 20
@@ -289,7 +290,7 @@ bar-progress-indicator = |
 bar-progress-fill = -
 bar-progress-empty = -
 bar-progress-gradient = true
-bar-progress-foreground-0 = ${colors.nord8}
+bar-progress-foreground-0 = ${colors.grassgreen}
 bar-progress-foreground-1 = ${colors.nord7}
 bar-progress-foreground-2 = ${colors.nord9}
 
@@ -416,19 +417,19 @@ format-disconnected =
 [module/date]
 ; {{{
 type = internal/date
-interval = 1
+interval = 1.0
 
-
-date = "[%a]"
-date-alt = "%Y-%m-%d |"
+date = "%a"
+date-alt = "%Y-%m-%d"
 
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 🕓
-;format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = 
+format-prefix-foreground = ${colors.skyblue}
 ;format-underline = #0a6cf5
-label = %date% %time%
+
+label =  [%date%]%time%
 
 format = <label>
 ; }}}
@@ -438,9 +439,25 @@ format = <label>
 ; {{{
 type = internal/xbacklight
 
-format = <label>
+format = [<ramp> <label>
 
-label = [ %percentage:2%%
+label =  %percentage:2%%
+
+; Only applies if <ramp> is used
+ramp-0 = 
+ramp-0-foreground = #808080
+
+ramp-1 = 
+ramp-1-foreground = #C0C0C0
+
+ramp-2 = 
+ramp-2-foreground = #DCDCDC
+
+ramp-3 = 
+ramp-3-foreground = #F5F5F5
+
+ramp-4 = 
+ramp-4-foreground = #FFF
 
 ;bar-width = 10
 ;bar-indicator = |
@@ -468,12 +485,17 @@ card = intel_backlight
 type = internal/pulseaudio
 
 ;format-volume = <label-volume> <bar-volume>
-format-volume = <label-volume>
+format-volume = <ramp-volume><label-volume>
 label-volume =  %percentage%%]
 label-volume-foreground = ${root.foreground}
 
 label-muted = ]
 label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
 
 ;bar-volume-width = 10
 ;bar-volume-foreground-0 = #55aa55
@@ -491,6 +513,10 @@ label-muted-foreground = #666
 ;bar-volume-empty = ─
 ;bar-volume-empty-font = 2
 ;bar-volume-empty-foreground = ${colors.foreground-alt}
+
+; Right and Middle click (unreleased)
+click-right = pavucontrol &
+; click-middle =
 ; }}}
 
 
@@ -528,9 +554,14 @@ label-muted-foreground = #666
 [module/battery]
 ; {{{
 type = internal/battery
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = ADP1
+
 full-at = 98
+
+poll-interval = 9
 
 format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
@@ -543,17 +574,23 @@ animation-charging-framerate = 750
 
 format-discharging = <ramp-capacity> <label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
+
 ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.urgent}
+
 ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.urgent}
+
 ramp-capacity-2 = 
+ramp-capacity-2-foreground = ${colors.nord7}
+
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-;ramp-capacity-foreground = #FFA500
 
 format-full = <ramp-capacity> <label-full>
 ;format-full = <label-full>
 
-format-charging-prefix = " "
+;format-charging-prefix = " "
 ;format-full-prefix-foreground = ${colors.foreground-alt}
 ;format-full-underline = ${self.format-charging-underline}
 
