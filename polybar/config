@@ -16,38 +16,63 @@
 ;==========================================================
 
 
+[config]
+;  bar module option[i3 cpu memory title wlan eth xkeyboard xbacklight pulseaudio battery temperature date powermenu weather]
+bar-left = i3 cpu memory title
+bar-center = mpd
+bar-right = weather wlan eth xbacklight pulseaudio battery temperature date powermenu
+
+network-eth = enp4s0
+network-wlan = wlp0s20f3
+
+cpu-icon = 
+memory-icon = 
+
+mpd-host = 127.0.0.1
+mpd-port = 6600
+
+github-token = bbc4f402e9cdb3eb41ebc128e8e8546b82f2991b
+
+
 [colors]
-;background = ${xrdb:color0:#222}
+; {{{
 ; for transparent
 background = #cc222222
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+
+buffer = #4F99D3
+nord6 = #080000
+nord7 = #EEAD0E
+nord8 = #00FF78
+nord9 = #50e3d6
+urgent = #BF616A
+notify = #EBCB8B
+
 ; custom colors
 black = #000000
 withe = #ffffff
 red = #ff0000
+wine-red = #D08770
 green = #00FF00
 blue = #0000FF
+sky-blue = #08A9F4
 lightblue = #00FFFF
 orange = #EE9A00
 yellow = #EEEE00
 pink = #FFB5C5
 puple = #CD00CD
+lightpuple = #B48EAD
 grey = #5C5C5C
-
-[config]
-network-eth = enp4s0
-network-wlan = wlp0s20f3
-
-github-token = bbc4f402e9cdb3eb41ebc128e8e8546b82f2991b
+; }}}
 
 
-[bar/example]
+[bar/zz]
+; {{{
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 25
@@ -72,21 +97,22 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 2
 
-;font-0 = fixed:pixelsize=10;1
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=true;0
 ;font-2 = siji:pixelsize=10;1
-font-0 = Sarasa mono SC:size=10;1
+;font-0 = Sarasa mono SC:size=10;1
+font-0 = fixed:pixelsize=10;1
 font-1 = Font Awesome 5 Free:style=Solid:pixelsize=10;1
 font-2 = Font Awesome 5 Brands:pixelsize=10;1
 font-3 = Weather Icons:style=Regular:size=10;1
 font-4 = fixed:pixelsize=10;1
+; show chinese `fc-list :lang=zh`
+font-5 = Noto Sans CJK SC:style=Regular:size=10
 
-modules-left = i3 cpu memory title
-modules-center = mpd
-modules-right = weather wlan eth xbacklight pulseaudio battery temperature date powermenu
-;modules-right = wlan eth xbacklight alsa pulseaudio battery xkeyboard temperature date powermenu
+modules-left = ${config.bar-left}
+modules-center = ${config.bar-center}
+modules-right = ${config.bar-right}
 
-dim-value = 0.75
+dim-value = 1.00
 
 tray-position = right
 tray-padding = 2
@@ -105,14 +131,26 @@ override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+; }}}
 
-;[module/xwindow]
-;type = internal/xwindow
-;label = %title:0:30:...%
+
+[module/title]
+; {{{
+type = internal/xwindow
+format-foreground = 
+format-underline =
+format-padding = 0
+
+label-maxlen = 200
+label-empty = Desktop
+label = %title:0:20:...%
+; }}}
+
 
 [module/xkeyboard]
-;type = internal/xkeyboard
-;blacklist-0 = num lock
+; {{{
+type = internal/xkeyboard
+blacklist-0 = num lock
 
 format =
 format-prefix = " "
@@ -126,9 +164,12 @@ label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
+; }}}
+
 
 [module/filesystem]
-;type = internal/fs
+; {{{
+type = internal/fs
 interval = 25
 
 mount-0 = /
@@ -138,8 +179,11 @@ mount-2 = /var
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
+; }}}
+
 
 ;[module/bspwm]
+;; {{{
 ;type = internal/bspwm
 
 ;label-focused = %index%
@@ -160,8 +204,11 @@ label-unmounted-foreground = ${colors.foreground-alt}
 
 ; Separator in between workspaces
 ; label-separator = |
+; }}}
+
 
 [module/i3]
+; {{{
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
@@ -185,54 +232,107 @@ label-unfocused = %name%
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %name%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 ; Separator in between workspaces
 ; label-separator = |
+; }}}
 
 
 [module/mpd]
+; {{{
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
+host = ${config.mpd-host}
+
+; Format
+format-online = <toggle> <icon-prev> <label-song> <icon-next> <icon-stop> [ <bar-progress> ] <icon-repeat> <icon-random>
+format-paused = <toggle> <icon-prev> <label-song> <icon-next> <icon-stop>
+format-stopped =  <toggle>
+
+label-song-underline = ${colors.withe}
+label-song = %title:0:10:...% - %artist:0:10:...%
+
+icon-play = 
+icon-play-foreground = ${colors.sky-blue}
+icon-play-margin = 1
+icon-pause = 
+icon-pause-foreground = ${colors.wine-red}
+icon-pause-margin = 1
 icon-stop = 
-icon-play = 
-icon-pause =  
-icon-next = 
+icon-stop-foreground = ${colors.urgent}
+icon-stop-margin = 1
+icon-prev = 
+icon-prev-foreground = ${colors.lightpuple}
+icon-prev-margin = 1
+icon-next = 
+icon-next-foreground = ${colors.lightpuple}
+icon-next-margin = 1
+icon-repeat = 
+icon-repeat-margin = 1
+icon-random = 
+icon-random-margin = 1
 
-label-song-maxlen = 25
-label-song-ellipsis = true
+toggle-on-foreground = ${colors.sky-blue}
+toggle-off-foreground = ${colors.urgent}
+
+bar-progress-width = 20
+bar-progress-indicator = |
+bar-progress-fill = -
+bar-progress-empty = -
+bar-progress-gradient = true
+bar-progress-foreground-0 = ${colors.nord8}
+bar-progress-foreground-1 = ${colors.nord7}
+bar-progress-foreground-2 = ${colors.nord9}
+
+;icon-seekb = ⏪
+;icon-seekf = ⏩
+;icon-random = 🔀
+;icon-repeat = 🔁
+;icon-repeatone = 🔂
+;icon-single = 🔂
+;icon-consume = ✀
+;icon-prev = 
+;icon-next = 
+;label-song-ellipsis = true
+; }}}
 
 
 [module/cpu]
+; {{{
 type = internal/cpu
-interval = 2.5
+interval = 3.0
+
 ;format-prefix = ""
 format-prefix-foreground = #262626
 ;format-underline = #f90000
+
 format = [<ramp-load> <label>
 label = :%percentage:2%%
 
-ramp-load-0 = 
+ramp-load-0 = ${config.cpu-icon}
 ;ramp-load-0-foreground = #16F408
-ramp-load-1 = 
+
+ramp-load-1 = ${config.cpu-icon}
 ramp-load-1-foreground = #F4BE08
-ramp-load-2 = 
+
+ramp-load-2 = ${config.cpu-icon}
 ramp-load-2-foreground = #F42C08
+; }}}
 
 
 [module/memory]
+; {{{
 type = internal/memory
-interval = 2
+interval = 3.0
 ;format-prefix = "RAM "
 format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #4bffdc
@@ -243,20 +343,26 @@ format = <ramp-used> <label>
 ;label = : %gb_used%/%gb_free%]
 label = : %gb_used%]
 
-ramp-used-0 = 
+ramp-used-0 = ${config.memory-icon}
 ;ramp-used-0-foreground = #16F408
-ramp-used-1 = 
+
+ramp-used-1 = ${config.memory-icon}
 ramp-used-1-foreground = #F4BE08
-ramp-used-2 = 
+
+ramp-used-2 = ${config.memory-icon}
 ramp-used-2-foreground = #F42C08
+; }}}
 
 
 [module/wlan]
+; {{{
 type = internal/network
 interface = ${config.network-wlan}
 interval = 3.0
+
 format-connected = <ramp-signal> <label-connected>
 ;format-connected-underline = #9f78e1
+
 label-connected = "%essid% [ %upspeed%   %downspeed%]"
 accumulate-stats = true
 
@@ -271,9 +377,11 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ;ramp-signal-foreground = ${colors.foreground-alt}
+; }}}
 
 
 [module/eth]
+; {{{
 type = internal/network
 interface = ${config.network-eth}
 interval = 3.0
@@ -281,15 +389,13 @@ interval = 3.0
 ;format-connected-underline = #55aa55
 format-connected-prefix = " "
 ;format-connected-prefix-foreground = ${colors.foreground-alt}
+
 label-connected = " %local_ip% [ %upspeed%   %downspeed%]"
 
 accumulate-stats = true
 
 format-disconnected =
 
-;format-connected = <ramp-signal> <label-connected>
-;#label-connected = %local_ip%    %downspeed%    %upspeed%
-;label-connected = %local_ip%   ↓ %downspeed%   ↑ %upspeed%
 ;label-disconnected =    not connected
 ;label-disconnected-foreground = #66
 
@@ -304,10 +410,14 @@ format-disconnected =
 ;animation-packetloss-1 = 
 ;animation-packetloss-1-foreground = ${bar/top.foreground}
 ;animation-packetloss-framerate = 500
+; }}}
+
 
 [module/date]
+; {{{
 type = internal/date
 interval = 1
+
 
 date = "[%a]"
 date-alt = "%Y-%m-%d |"
@@ -321,12 +431,15 @@ format-prefix = 🕓
 label = %date% %time%
 
 format = <label>
+; }}}
 
 
 [module/xbacklight]
+; {{{
 type = internal/xbacklight
 
 format = <label>
+
 label = [ %percentage:2%%
 
 ;bar-width = 10
@@ -339,13 +452,19 @@ label = [ %percentage:2%%
 ;bar-empty = ─
 ;bar-empty-font = 2
 ;bar-empty-foreground = ${colors.foreground-alt}
+; }}}
+
 
 [module/backlight-acpi]
+; {{{
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+; }}}
+
 
 [module/pulseaudio]
+; {{{
 type = internal/pulseaudio
 
 ;format-volume = <label-volume> <bar-volume>
@@ -372,8 +491,11 @@ label-muted-foreground = #666
 ;bar-volume-empty = ─
 ;bar-volume-empty-font = 2
 ;bar-volume-empty-foreground = ${colors.foreground-alt}
+; }}}
+
 
 ;[module/alsa]
+;; {{{
 ;type = internal/alsa
 
 ;format-volume = <label-volume> <bar-volume>
@@ -400,8 +522,11 @@ label-muted-foreground = #666
 ;bar-volume-empty = ─
 ;bar-volume-empty-font = 2
 ;bar-volume-empty-foreground = ${colors.foreground-alt}
+; }}}
+
 
 [module/battery]
+; {{{
 type = internal/battery
 battery = BAT0
 adapter = ADP1
@@ -436,9 +561,11 @@ label-charging = %percentage%%.
 label-discharging = %percentage%%
 
 label-full = 
+; }}}
 
 
 [module/temperature]
+; {{{
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 75
@@ -452,7 +579,6 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
@@ -461,8 +587,11 @@ ramp-4 = 
 ramp-5 = 
 ramp-6 = 
 ;ramp-foreground = ${colors.foreground-alt}
+; }}}
+
 
 [module/powermenu]
+; {{{
 type = custom/menu
 
 expand-right = true
@@ -490,31 +619,27 @@ label-separator-foreground = ${colors.foreground-alt}
 ;menu-2-0-exec = sudo poweroff
 ;menu-2-1 = cancel
 ;menu-2-1-exec = menu-open-0
-
-[module/title]
-type = internal/xwindow
-format-foreground = 
-format-underline =
-format-padding = 0
-
-label-maxlen = 200
-label-empty = Desktop
+; }}}
 
 
-;[module/github]
-;type = internal/github
-;token = ${config.github-token}
-;empty-notifications = false
-;interval = 10
-;label =  %notifications%
+[module/github]
+; {{{
+type = internal/github
+token = ${config.github-token}
+empty-notifications = false
+interval = 10
+label =  %notifications%
+; }}}
 
 
 ;[module/weather]
+;; {{{
 ;type = custom/script
 ;exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
 ;interval = 6
 
 ;label-font = 4
+; }}}
 
 
 [settings]
@@ -525,8 +650,10 @@ compositing-background = screen
 ;compositing-border = over
 ;pseudo-transparency = false
 
+
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
 
 ; vim:ft=dosini

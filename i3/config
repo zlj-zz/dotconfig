@@ -35,7 +35,7 @@ exec_always --no-startup-id picom -b &
 # start input method
 exec_always --no-startup-id fcitx
 # lunach polybar on start
-exec_always --no-startup-id ~/.config/i3/polybar.sh &
+exec_always --no-startup-id ~/.config/polybar/launch.sh &
 #exec_always --no-startup-id /$HOME/.config/polybar/launch.sh light
 # change my key map
 exec_always --no-startup-id ~/.config/i3/changeKeyMap.sh &
