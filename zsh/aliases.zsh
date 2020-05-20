@@ -9,3 +9,4 @@ alias h='htop'
 alias r='ranger'
 alias t='tmux'
 alias lg='lazygit'
+eval $(thefuck --alias)
