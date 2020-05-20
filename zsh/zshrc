@@ -1,29 +1,28 @@
 # ln -s ~/.config/zsh/zshrc ~/.zshrc
 
 #echo -ne "\e[5 q"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
 
-source ~/.config/zsh/vi.zsh
+source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/env.zsh
 source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/mappings.zsh
 source ~/.config/zsh/completion.zsh
-source ~/.config/zsh/autopair.zsh
-source ~/.config/zsh/aliases.zsh
-source ~/.config/zsh/tmux.zsh
+source ~/.config/zsh/vi.zsh
+#source ~/.config/zsh/autopair.zsh
+#source ~/.config/zsh/tmux.zsh
 
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"
 #ZSH_THEME="af-magic"
+
 #ZSH_THEME="garyblessington"
 
 
@@ -75,10 +74,12 @@ ENABLE_CORRECTION="true"
 # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions --depth=1
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting --depth=1
 # git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions --depth=1
+# sudo git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k --depth=1
 plugins=(
   z
   k
 	git
+  fzf
   history-substring-search
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -87,6 +88,8 @@ plugins=(
 
 # zsh-completions needed
 autoload -U compinit && compinit
+
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -100,7 +103,6 @@ autoload -U compinit && compinit
 # else
 #   export EDITOR='mvim'
 # fi
-
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

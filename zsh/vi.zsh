@@ -1,11 +1,11 @@
-#bindkey '^v' edit-command-line
+bindkey '^v' edit-command-line
 bindkey -v
 bindkey -M vicmd "i" vi-insert
 bindkey -M vicmd "I" vi-insert-bol
 bindkey -M vicmd "h" vi-backward-char
 bindkey -M vicmd "l" vi-forward-char
-#bindkey -M vicmd "0" vi-beginning-of-line
-#bindkey -M vicmd "4" vi-end-of-line
+bindkey -M vicmd "0" vi-beginning-of-line
+bindkey -M vicmd "4" vi-end-of-line
 bindkey -M vicmd "j" down-line-or-history
 bindkey -M vicmd "k" up-line-or-history
 bindkey -M vicmd "u" undo
