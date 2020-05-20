@@ -808,7 +808,7 @@ let g:mkdp_browser = 'firefox'
 noremap <LEADER>tm :TableModeToggle<CR>
 "let g:table_mode_disable_mappings = 1
 let g:table_mode_cell_text_object_i_map = 'k<Bar>'
-Plug 'junegunn/vim-easy-align' " gaip= to align the = in paragraph,
+Plug 'junegunn/vim-easy-align' " ga= to align the = in paragraph,
 " ===
 " === vim-easy-align
 xmap ga <Plug>(EasyAlign)

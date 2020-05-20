@@ -2,7 +2,39 @@
 
 ![demo](https://img-blog.csdnimg.cn/20200512091003564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDEwNDk0,size_16,color_FFFFFF,t_70) 
 
-# After Installation, You Need To
+
+<!-- vim-markdown-toc GFM -->
+
+* [After Installation, You Need To](#after-installation-you-need-to)
+* [After Installation, You Might Want To](#after-installation-you-might-want-to)
+    * [First of all](#first-of-all)
+    * [For Python Debugger (via `vimspector`)](#for-python-debugger-via-vimspector)
+    * [Config Python path](#config-python-path)
+    * [For Taglist:](#for-taglist)
+    * [For FZF](#for-fzf)
+    * [And also...](#and-also)
+* [Keyboard Shortcuts](#keyboard-shortcuts)
+    * [Curosr movement](#curosr-movement)
+    * [Remapped cursor movement](#remapped-cursor-movement)
+    * [Remapped commands in Normal Mode](#remapped-commands-in-normal-mode)
+    * [Window management](#window-management)
+    * [Tab management](#tab-management)
+    * [Other](#other)
+* [Plugin](#plugin)
+    * [Coc](#coc)
+    * [vim-visual-multi](#vim-visual-multi)
+    * [vim-easymotion](#vim-easymotion)
+    * [vim-after-object](#vim-after-object)
+    * [vim-easy-align](#vim-easy-align)
+    * [vim-startify](#vim-startify)
+    * [vim-markdown-toc](#vim-markdown-toc)
+    * [vim-table-mode](#vim-table-mode)
+    * [nerdcommenter](#nerdcommenter)
+    * [vim-keysound](#vim-keysound)
+
+<!-- vim-markdown-toc -->
+
+## After Installation, You Need To
 
 Install `pynvim` (pip)
 
@@ -10,7 +42,7 @@ Install `nodejs`, and do `npm install -g neovim`
 
 Install nerd-fonts (actually it's optional)
 
-# After Installation, You Might Want To
+## After Installation, You Might Want To
 
 ### First of all
 
@@ -40,7 +72,7 @@ Install `figlet` for inputing text ASCII art
 
 Install `xclip` for system clipboard access (Linux and `xorg` only)
 
-# Keyboard Shortcuts
+## Keyboard Shortcuts
 
 let `<LEADER>` to be `<space>`.
 
@@ -94,8 +126,6 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `<LEADER>fd`       | find two same word                 |
 | `<LEADER>rc`       | open the neovim config anytime     |
 | `rc`               | resource neovim config             |
-| `<LEADER>cn`       | comment a line                     |
-| `<LEADER>cu`       | uncomment a line                   |
 
 ### Window management
 
@@ -106,8 +136,6 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `sk`     | split window to the up            |  | `tk`     | move cursor to the up window       |
 | `sl`     | split window to the right         |  | `tl`     | move cursor to the right window    |
 | `ch`     | place the two screens up and down |  | `cv`     | place the two screens side by side |
-
-
 
 ### Tab management
 
@@ -127,31 +155,17 @@ let `ctrl+a` to select all (same as `ggVG`).
 
 `ra` use **ranger** in neovim.
 
-# Plugin
+## Plugin
 
-## Coc
+### Coc
 
-**complete** 
-
-![coc-complete](https://img-blog.csdnimg.cn/202005112344456.gif) 
+**coc-complete** (a auto-complete plugin)
 
 | shortcut          | action        |
 |-------------------|---------------|
 | `<tab>`           | next item     |
 | `<shift>`+`<tab>` | previous item |
 | `<enter>`         | select item   |
-
-**snippet** 
-
-![coc-snippet](https://img-blog.csdnimg.cn/20200512090039297.gif) 
-
-| shortcut | action                       |
-|----------|------------------------------|
-| `<c-j>`  | trigger snippet expand       |
-| `<c-j>`  | jump to next placeholder     |
-| `<c-k>`  | jump to previous placeholder |
-
-**coding** 
 
 | shortcut | action                  |
 |----------|-------------------------|
@@ -161,7 +175,19 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `gr`     | jump to references      |
 | `rn`     | symbol renaming         |
 
-**explorer** 
+![coc-complete](https://img-blog.csdnimg.cn/202005112344456.gif) 
+
+**coc-snippet** (a code snippet plugin)
+
+| shortcut | action                       |
+|----------|------------------------------|
+| `<c-j>`  | trigger snippet expand       |
+| `<c-j>`  | jump to next placeholder     |
+| `<c-k>`  | jump to previous placeholder |
+
+![coc-snippet](https://img-blog.csdnimg.cn/20200512090039297.gif) 
+
+**coc-explorer** (a file browser plugin)
 
 | shortcut  | action               |  | shortcut | action        |  | shortcut | action         |
 |-----------|----------------------|--|----------|---------------|--|----------|----------------|
@@ -173,7 +199,9 @@ let `ctrl+a` to select all (same as `ggVG`).
 | `t`       | open in new tab      |  | `.`      | toggleHidden  |  | `R`      | refresh        |
 | `q`       | quit                 |  | `?`      | help          |  |          |                |
 
-## vim-visual-multi
+![explorer](https://img-blog.csdnimg.cn/20200520184210522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDEwNDk0,size_16,color_FFFFFF,t_70)
+
+### vim-visual-multi
 
 It can help you realize the function of multi-cursor.
 
@@ -181,13 +209,23 @@ You can use `ctrl` + `← ↓ ↑ →` to select cursor position. Use `i` or `I`
 
 To remove a cursor, use `q`. `u` to undo, `ctrl` + `r` to redo, like vim native.
 
-## vim-easymotion
+### vim-easymotion
 
 Fast move you cursor, use `'` easymotion
 
 ![vim-easymotion](https://img-blog.csdnimg.cn/20200512164720342.gif) 
 
-## vim-startify
+### vim-after-object
+
+Use `da` + `=` to delete what's after `=`.
+
+### vim-easy-align
+
+Press `ga ` + **symbol** in normal or visual mode to align text based on **symbol**.
+
+![easy-align](https://raw.githubusercontent.com/junegunn/i/master/easy-align/equals.gif)
+
+### vim-startify
 
 Enter `F5` to open a new tab and running Startify.
 
@@ -195,7 +233,31 @@ First start will generate 5 temporary file with suffixes of `.c`, `.java`, `.py`
 
 ![vim-startup](https://img-blog.csdnimg.cn/20200512234641826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDEwNDk0,size_16,color_FFFFFF,t_70) 
 
-## vim-keysound
+### vim-markdown-toc 
+
+>(generate table of contents for markdown files)
+
+In `markdown` files, type `:Gen` then tab, you'll see your options.
+
+![markdown-toc](https://raw.githubusercontent.com/mzlogin/vim-markdown-toc/master/screenshots/english.gif)
+
+### vim-table-mode
+
+| shortcut        | action            |
+|-----------------|-------------------|
+| `space` `t` `m` | toggle table mode |
+| `space` `t` `r` | realign table     |
+
+### nerdcommenter
+
+> A code comment plugin.
+
+| shortcut     | action           |
+|--------------|------------------|
+| `<LEADER>cn` | comment a line   |
+| `<LEADER>cu` | uncomment a line |
+
+### vim-keysound
 
 *make your vim a typewriter*
 
