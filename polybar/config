@@ -18,9 +18,9 @@
 
 [config]
 ;  bar module option[i3 cpu memory title wlan eth xkeyboard xbacklight pulseaudio battery temperature date powermenu weather]
-bar-left = i3 cpu memory title
+bar-left = i3 cpu temperature memory weather
 bar-center = mpd
-bar-right = backlight wlan eth xbacklight pulseaudio battery temperature date powermenu
+bar-right = backlight wlan eth xbacklight pulseaudio battery date powermenu
 
 network-eth = enp4s0
 network-wlan = wlp0s20f3
@@ -669,12 +669,12 @@ label =  %notifications%
 ; }}}
 
 
-;[module/weather]
+[module/weather]
 ;; {{{
-;type = custom/script
-;exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
+type = custom/script
+exec = ~/.config/polybar/scripts/weather.sh
+interval = 3600
 ;interval = 6
-
 ;label-font = 4
 ; }}}
 
