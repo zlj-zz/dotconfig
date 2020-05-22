@@ -9,6 +9,7 @@ func! SetTitle()
         call append(line(".")+5, "Last Modified: ")
         call append(line(".")+6, '"""')
         call append(line(".")+7, "<++>")
+
     elseif &filetype == 'c'
         call setline(1, "#include <stdio.h>")
         call append(line("."), "/************************************************************")
@@ -21,6 +22,7 @@ func! SetTitle()
         call append(line(".")+7, "Description: <++>")
         call append(line(".")+8, "***********************************************************/")
         call append(line(".")+9, "<++>")
+
     elseif &filetype == 'java'
         call setline(1, "/**")
         call append(line("."), "* @description <++>")
@@ -29,8 +31,9 @@ func! SetTitle()
         call append(line(".")+3, "* @date ".strftime("%Y-%m-%d %H:%M:%S"))
         call append(line(".")+4, "*/")
         call append(line(".")+5, "<++>")
+
     elseif &filetype == "sh"
-        call setline(1, "\#!/bin/bash")
+        call setline(1, "\#!/bin/env bash")
         call append(line("."), "")
         call append(line(".")+1, "\#########################################################################")
         call append(line(".")+2, "\# File Name: ".expand("%"))
@@ -40,6 +43,7 @@ func! SetTitle()
         call append(line(".")+6, "\# Description: <++>")
         call append(line(".")+7, "\#########################################################################")
         call append(line(".")+8, "<++>")
+
     elseif &filetype == 'plaintex'
         call setline(1,"% -*- coding:UTF-8 -*-")
         call append(line("."),"% #########################################################################")
@@ -56,6 +60,7 @@ func! SetTitle()
         call append(line(".")+11, "\\begin{document}")
         call append(line(".")+12, "<++>")
         call append(line(".")+13, "\\end{document}")
+
     elseif &filetype == 'tex'
         call setline(1,"% -*- coding:UTF-8 -*-")
         call append(line("."),"% #########################################################################")
