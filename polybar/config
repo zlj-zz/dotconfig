@@ -108,6 +108,7 @@ font-4 = fixed:pixelsize=10;1
 ; show chinese `fc-list :lang=zh`
 font-5 = Noto Sans CJK SC:style=Regular:size=10
 font-6 = Material Icons:style=Regular
+font-7 = Source Code Pro:size=10
 
 modules-left = ${config.bar-left}
 modules-center = ${config.bar-center}
@@ -448,16 +449,16 @@ ramp-0 = 
 ramp-0-foreground = #808080
 
 ramp-1 = 
-ramp-1-foreground = #C0C0C0
+ramp-1-foreground = #f3715c
 
 ramp-2 = 
-ramp-2-foreground = #DCDCDC
+ramp-2-foreground = #dea32c
 
 ramp-3 = 
-ramp-3-foreground = #F5F5F5
+ramp-3-foreground = 
 
 ramp-4 = 
-ramp-4-foreground = #FFF
+ramp-4-foreground = 
 
 ;bar-width = 10
 ;bar-indicator = |
@@ -486,16 +487,27 @@ type = internal/pulseaudio
 
 ;format-volume = <label-volume> <bar-volume>
 format-volume = <ramp-volume><label-volume>
-label-volume =  %percentage%%]
+label-volume =  %percentage%%]
 label-volume-foreground = ${root.foreground}
 
 label-muted = ]
 label-muted-foreground = #666
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
+ramp-volume-0 = 
+ramp-volume-0-foreground = #808080
+
+ramp-volume-1 = 
+ramp-volume-1-foreground = #f3715c
+
+ramp-volume-2 = 
+ramp-volume-2-foreground = #dea32c
+
+ramp-volume-3 = 
+ramp-volume-3-foreground = 
+
+ramp-volume-4 = 
+ramp-volume-4-foreground = 
 
 ;bar-volume-width = 10
 ;bar-volume-foreground-0 = #55aa55
@@ -661,6 +673,7 @@ label-separator-foreground = ${colors.foreground-alt}
 
 [module/github]
 ; {{{
+; show github notifications
 type = internal/github
 token = ${config.github-token}
 empty-notifications = false
@@ -673,7 +686,7 @@ label =  %notifications%
 ;; {{{
 type = custom/script
 exec = ~/.config/polybar/scripts/weather.sh
-interval = 3600
+interval = 180
 ;interval = 6
 ;label-font = 4
 ; }}}
