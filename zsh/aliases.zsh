@@ -1,5 +1,5 @@
 # aliases
-alias c=clear
+alias c=clear -x
 alias cs=cowsay
 alias sudo='sudo -E'
 alias dcursor='echo -ne "\e[5 q"'
