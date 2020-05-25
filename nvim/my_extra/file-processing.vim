@@ -13,7 +13,7 @@ func! SetTitle()
         call append(line(".")+9, "__author__ = 'zachary'")
         call append(line(".")+10, "<++>")
 
-    elseif &filetype == 'c'
+    elseif &filetype == 'c' || &filetype == 'cpp'
         call setline(1, "/*")
         call append(line("."), " * Copyright(C) 1997-".strftime("%Y").", Tech. Co.,Ltd.")
         call append(line(".")+1, " * FileName: ".expand("%"))
