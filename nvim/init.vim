@@ -113,10 +113,12 @@ let mapleader=" "
 map S :w<CR>
 " quit
 map Q :q<CR>
+" force exit without saving
+map <c-q> :q!<CR>
 " make Y to copy till the end of the line
 nnoremap Y y$
 " Copy to system clipboard
-vnoremap Y "+y
+vnoremap <c-c> "+y
 " Indentation
 nnoremap < <<
 nnoremap > >>
@@ -257,22 +259,21 @@ endif
 " Open up pudb, a python debug,(pip install --user pudb)
 "noremap <c-d> :tab sp<CR>:term python3 -m pudb %<CR>
 
+"let g:python_host_prog="/usr/bin/python2.7"
+"let g:python3_host_prog="/usr/bin/python3.8"
+
 
 " === my extra ==============================={{{
 source ~/.config/nvim/my_extra/compile_run.vim
 map <F9> :call CompileRunGcc()<CR>
 
 "autocmd BufNewFile * call SetTitle()
-augroup file-title
+augroup fileTitle
   autocmd FileType c,cpp,python,java,sh source ~/.config/nvim/my_extra/file-processing.vim
   nmap tit :call SetTitle()<CR>
   nmap upd :call SetLastModifiedTime(-1)<CR>
 augroup END
 " -------------------------------------------}}}
-
-
-"let g:python_host_prog="/usr/bin/python2.7"
-"let g:python3_host_prog="/usr/bin/python3.8"
 
 " === Widgets ================================{{{
 call plug#begin('~/.config/nvim/plugged')
@@ -362,19 +363,19 @@ let g:ascii = [
       \]
 let g:startify_custom_header = g:ascii
 let g:startify_files_number = 15
-if empty(glob('~/.config/nvim/demo/'))
-    silent! exec "!mkdir ~/.config/nvim/demo"
-    silent! exec "!touch ~/.config/nvim/demo/tmp.c ~/.config/nvim/demo/tmp.py ~/.config/nvim/demo/tmp.java ~/.config/nvim/demo/tmp.js ~/.config/nvim/demo/tmp.html ~/.config/nvim/demo/tmp.css"
-
+if empty(glob('~/.config/nvim/tmp/demo/'))
+    silent! exec "!mkdir ~/.config/nvim/tmp/demo"
+    silent! exec "!touch ~/.config/nvim/tmp/demo/tmp.{c,py,java,js,html,css,sh}"
 endif
 function s:temporaryMenu()
   return [
-        \ { 'line': 'c', 'cmd': 'e ~/.config/nvim/demo/tmp.c' },
-        \ { 'line': 'py', 'cmd': 'e ~/.config/nvim/demo/tmp.py' },
-        \ { 'line': 'java', 'cmd': 'e ~/.config/nvim/demo/tmp.java' },
-        \ { 'line': 'js', 'cmd': 'e ~/.config/nvim/demo/tmp.js' },
-        \ { 'line': 'html', 'cmd': 'e ~/.config/nvim/demo/tmp.html' },
-        \ { 'line': 'css', 'cmd': 'e ~/.config/nvim/demo/tmp.css' },
+        \ { 'line': 'c', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.c' },
+        \ { 'line': 'py', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.py' },
+        \ { 'line': 'java', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.java' },
+        \ { 'line': 'js', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.js' },
+        \ { 'line': 'html', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.html' },
+        \ { 'line': 'css', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.css' },
+        \ { 'line': 'bash', 'cmd': 'e ~/.config/nvim/tmp/demo/tmp.sh' },
         \ ]
 endfunction
 let g:startify_lists = [
