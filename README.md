@@ -6,11 +6,11 @@ There is my **linux** configuration, if you want to use my configuration, most o
 
 ## Existing configuration:
 
-**Windows manager** : <kbd>[i3][1]</kbd>
+**Windows manager** : <kbd>[i3][3]</kbd>
 
-**Status bar** : <kbd>[polybar][2]</kbd>
+**Status bar** : <kbd>[polybar][13]</kbd>
 
-**Editor** : <kbd>[neovim][3]</kbd>, <kbd>[vim][13]</kbd>
+**Editor** : <kbd>[neovim][1]</kbd>, <kbd>[vim][2]</kbd>
 
 **Shell** : <kbd>[fish][10]</kbd>, <kbd>[zsh][11]</kbd>
 
@@ -44,6 +44,24 @@ Use it like: `neofetch --ascii_distro bilibili`
 
 Change the mirror source to a domestic source in China.
 
+#### Font
+
+I use the `Source Code Pro` font and `nerd-fonts-source-code-pro`.
+
+#### About Noto
+
+Just install `noto-fonts` (not `-all`). It's already bloated. Check `/usr/share/fonts/noto`
+
+#### Emoji
+
+```
+yay -S ttf-linux-libertine ttf-inconsolata ttf-joypixels ttf-twemoji-color noto-fonts-emoji ttf-liberation ttf-droid
+```
+
+#### Chinese
+```
+yay -S wqy-bitmapfont wqy-microhei wqy-microhei-lite wqy-zenhei adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts
+```
 
 
 
@@ -52,9 +70,10 @@ Change the mirror source to a domestic source in China.
 
 
 
-[1]: https://github.com/zlj-zz/conff/tree/master/i3
-[2]: https://github.com/zlj-zz/conff/tree/master/polybar
-[3]: https://github.com/zlj-zz/conff/tree/master/nvim
+
+[1]: https://github.com/zlj-zz/nvim
+[2]: https://github.com/zlj-zz/vimrc
+[3]: https://github.com/zlj-zz/conff/tree/master/i3
 [4]: https://github.com/zlj-zz/linuxConfig/tree/master/tmux
 [5]: https://github.com/zlj-zz/conff/tree/master/ranger
 [6]: https://github.com/zlj-zz/conff/tree/master/alacritty
@@ -64,4 +83,4 @@ Change the mirror source to a domestic source in China.
 [10]: https://github.com/zlj-zz/dotconfig/tree/master/fish
 [11]: https://github.com/zlj-zz/dotconfig/tree/master/zsh
 [12]: https://github.com/zlj-zz/dotconfig/tree/master/rofi
-[13]: https://github.com/zlj-zz/vimrc
+[13]: https://github.com/zlj-zz/conff/tree/master/polybar

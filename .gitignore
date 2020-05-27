@@ -19,18 +19,6 @@
 #
 !/i3/
 !/neofetch/
-# === nvim ===
-!/nvim
-!/nvim/init.vim
-!/nvim/coc-settings.json
-!/nvim/autoload/
-!/nvim/my_extra/
-!/nvim/README.md
-/nvim/plugged
-/nvim/tmp
-/nvim/demo
-/nvim/_machine_specific.vim
-nvim/init.vim.html
 #
 !/picom/
 !/pip/
