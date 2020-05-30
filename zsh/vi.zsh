@@ -12,7 +12,7 @@ bindkey -M vicmd "u" undo
 #bindkey -M vicmd "-" vi-rev-repeat-search
 bindkey -M vicmd "=" vi-repeat-search
 bindkey -M vicmd "e" vi-forward-word-end
-bindkey "^F" autosuggest-accept
+bindkey "^D" autosuggest-accept
 
 #function zle-line-init zle-keymap-select {
 	#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
