@@ -28,6 +28,7 @@
 !/tmux/
 !/rofi/
 !/mpd
+!/htop
 
 mpd/mpdstate
 mpd/mpd.log
