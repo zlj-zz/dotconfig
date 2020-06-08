@@ -3,11 +3,11 @@
 Here is my polybar configurarion. If you want to use, you should modify `[config]`.
 
 
-## **Display** 
+## Display My bar
 
-![demo](https://img-blog.csdnimg.cn/20200503203112742.png) 
+![demo](https://img-blog.csdnimg.cn/20200608150728193.png)
 
-## **Proposed changes**
+## Proposed changes
 
 - **verify network setting**
 
@@ -64,7 +64,12 @@ Here is my polybar configurarion. If you want to use, you should modify `[config
     github-token = <your token>
     ```
 
-    
+## Icon
+
+If you want to change **icon**, I recommend going [https://fontawesome.com/cheatsheet/free/solid](https://fontawesome.com/cheatsheet/free/solid).
+
+```
+```
 
 
 

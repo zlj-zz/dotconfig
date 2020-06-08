@@ -426,11 +426,11 @@ date-alt = "%Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.skyblue}
 ;format-underline = #0a6cf5
 
-label =  [%date%]%time%
+label = " [%date%]%time%"
 
 format = <label>
 ; }}}

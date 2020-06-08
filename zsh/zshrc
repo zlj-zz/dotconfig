@@ -83,8 +83,9 @@ unset __conda_setup
 
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)orz"
+    prompt_segment black default "%(!.%{%F{yellow}%}.)"
   fi
+  #       
 }
 prompt_dir() {
     local current_dir="${PWD/#$HOME/~}"
