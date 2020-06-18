@@ -57,7 +57,7 @@ black = #000000
 withe = #ffffff
 red = #ff0000
 winered = #D08770
-green = #00FF00
+lawngreen = #7cfc00
 grassgreen = #00FF78
 blue = #0000FF
 skyblue = #08A9F4
@@ -336,7 +336,7 @@ ramp-load-2-foreground = #F42C08
 type = internal/memory
 interval = 3.0
 ;format-prefix = "RAM "
-format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #4bffdc
 ;label = %percentage_used%%
 ;label = : %gb_used%/%gb_free%]
@@ -346,13 +346,14 @@ format = <ramp-used> <label>
 label = : %gb_used%]
 
 ramp-used-0 = ${config.memory-icon}
-;ramp-used-0-foreground = #16F408
 
 ramp-used-1 = ${config.memory-icon}
-ramp-used-1-foreground = #F4BE08
 
 ramp-used-2 = ${config.memory-icon}
-ramp-used-2-foreground = #F42C08
+ramp-used-2-foreground = #F4BE08
+
+ramp-used-3 = ${config.memory-icon}
+ramp-used-3-foreground = #F42C08
 ; }}}
 
 
@@ -378,7 +379,7 @@ ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
-;ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.lawngreen}
 ; }}}
 
 
@@ -389,10 +390,10 @@ interface = ${config.network-eth}
 interval = 3.0
 
 ;format-connected-underline = #55aa55
-format-connected-prefix = " "
-;format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.lawngreen}
 
-label-connected = " %local_ip% [ %downspeed%   %upspeed%]"
+label-connected = " %local_ip% [ %downspeed%   %upspeed%]"
 
 accumulate-stats = true
 
