@@ -10,7 +10,8 @@ alias h='htop'
 alias ra='ranger'
 alias sra='sudo -E ranger'
 alias t='tmux'
-alias lg='lazygit'
+# the same as `ranger` and `neovim`
+alias gl='lazygit'
 # git
 alias gc1='git clone --depth=1'
 
