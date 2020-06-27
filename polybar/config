@@ -18,7 +18,7 @@
 
 [config]
 ;  bar module option[i3 cpu memory title wlan eth xkeyboard xbacklight pulseaudio battery temperature date powermenu weather]
-bar-left = i3 cpu temperature memory weather
+bar-left = i3 cpu temperature memory
 bar-center = mpd
 bar-right = backlight wlan eth xbacklight pulseaudio battery date powermenu
 
