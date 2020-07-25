@@ -4,11 +4,11 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
 #ZSH_THEME="af-magic"
 
 #ZSH_THEME="garyblessington"
@@ -34,8 +34,7 @@ ENABLE_CORRECTION="true"
 # sudo git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k --depth=1
 plugins=(
   z
-  k
-	git
+  git
   fzf
   history-substring-search
   zsh-autosuggestions
