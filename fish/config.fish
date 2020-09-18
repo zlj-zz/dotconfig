@@ -15,7 +15,7 @@ end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
+#eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
 alias sudo="sudo -E"
@@ -32,7 +32,7 @@ alias lg='lazygit'
 export TERMINFO=/usr/share/terminfo
 
 # the fuck
-thefuck --alias | source
+#thefuck --alias | source
 
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim

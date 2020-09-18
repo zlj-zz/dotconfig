@@ -29,6 +29,7 @@
 !/rofi/
 !/mpd
 !/htop
+!autoInit.sh
 
 mpd/mpdstate
 mpd/mpd.log
