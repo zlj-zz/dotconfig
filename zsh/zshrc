@@ -1,118 +1,39 @@
-# ln -s ~/.config/zsh/zshrc ~/.zshrc
+# [Install my zsh]
+# source ~/.config/zsh/zshrc
+# echo "source ~/.config/zsh/zshrc">>~/.zshrc
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-#ZSH_THEME="af-magic"
-
-#ZSH_THEME="garyblessington"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-
-# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions --depth=1
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting --depth=1
-# git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions --depth=1
-# sudo git clone https://github.com/supercrabtree/k $ZSH_CUSTOM/plugins/k --depth=1
-plugins=(
-  z
-  git
-  fzf
-  history-substring-search
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-completions
-)
-
-# zsh-completions needed
-autoload -U compinit && compinit
-
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
-
-source $ZSH/oh-my-zsh.sh
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)"
-  fi
-  #       
-}
-prompt_dir() {
-    local current_dir="${PWD/#$HOME/~}"
-    if [[ ${current_dir} != '~' ]]; then
-        last_dir="${current_dir:t}"
-        pre_array=(${(@s:/:)current_dir:h})
-        pre=""
-        for i in ${pre_array};do
-            if [[ ${i:0:1} == '.' ]]; then
-                pre+="${i:0:2}/"
-            else
-                pre+="${i:0:1}/"
-            fi
-        done
-        current_dir="${pre}${last_dir}"
-    fi
-    prompt_segment blue $CURRENT_FG ${current_dir}
-    #prompt_segment blue $CURRENT_FG '%~'
-}
-
-
-
-source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/env.zsh
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/vi.zsh
 source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/mappings.zsh
 source ~/.config/zsh/completion.zsh
-#source ~/.config/zsh/autopair.zsh
 #source ~/.config/zsh/tmux.zsh
+
+
+# prompt_context() {
+  #if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    #prompt_segment black default "%(!.%{%F{yellow}%}.)"
+  #fi
+  ##       
+#}
+#prompt_dir() {
+    #local current_dir="${PWD/#$HOME/~}"
+    #if [[ ${current_dir} != '~' ]]; then
+        #last_dir="${current_dir:t}"
+        #pre_array=(${(@s:/:)current_dir:h})
+        #pre=""
+        #for i in ${pre_array};do
+            #if [[ ${i:0:1} == '.' ]]; then
+                #pre+="${i:0:2}/"
+            #else
+                #pre+="${i:0:1}/"
+            #fi
+        #done
+        #current_dir="${pre}${last_dir}"
+    #fi
+    #prompt_segment blue $CURRENT_FG ${current_dir}
+    ##prompt_segment blue $CURRENT_FG '%~'
+#}
 

@@ -15,4 +15,4 @@ alias gl='lazygit'
 # git
 alias gc1='git clone --depth=1'
 
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
