@@ -1,4 +1,5 @@
-#
+# Create time: 2020.09.17
+# Author: Zachary Zhang
 
 for_system_use_pacman(){
     # switch to china source
@@ -7,17 +8,16 @@ for_system_use_pacman(){
     if [[ $CHIOCE1 -eq 'y' || $CHIOCE1 -eq 'Y' ]]; then
         sudo pacman-mirror -i -c China -m rank
         sudo pacman -Syyu
+        # add archlinuxcn
+        echo "[archlinuxcn]">>/etc/pacman.conf
+        echo "SigLevel = Optional TrustedOnly">>/etc/pacman.conf
+        echo "Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch">>/etc/pacman.conf
+        sudo pacman -Syy & sudo pacman -S archlinuxcn-keyring
     fi
 
     echo "-----------------------------------------------"
     echo "-----------------------------------------------"
     echo "-----------------------------------------------"
-
-    # add archlinuxcn
-    echo "[archlinuxcn]">>/etc/pacman.conf
-    echo "SigLevel = Optional TrustedOnly">>/etc/pacman.conf
-    echo "Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch">>/etc/pacman.conf
-    sudo pacman -Syy & sudo pacman -S archlinuxcn-keyring
 
     # update base-devel
     sudo pacman -Sy base-devel
@@ -53,10 +53,15 @@ for_system_use_pacman(){
     echo "-----------------------------------------------"
     echo "-----------------------------------------------"
     # install product tools
-    sudo pacman -S android-sdk android-studio
+    sudo pacman -S android-sdk 
 }
 
 # main
 echo "Start install system environment"
+echo "Change the keyboard mapping?[Y/n]"
+read ICKM
+if [[ $ICKM -eq 'Y' || $ICKM -eq 'y' ]]; then
+    echo "sh ~/.config/change-key-map.sh & ">>~/.profile
+fi
 for_system_use_pacman
 echo "Finished!"

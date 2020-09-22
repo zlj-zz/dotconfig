@@ -29,7 +29,8 @@
 !/rofi/
 !/mpd
 !/htop
-!autoInit.sh
+!auto-install-init.sh
+!change-key-map.sh
 
 mpd/mpdstate
 mpd/mpd.log
