@@ -7,12 +7,19 @@ alias sudo='sudo -E'
 alias s='neofetch --cpu_temp C --memory_display barinfo --shell_path on --ascii "$(fortune | cowsay -W 35 | lolcat)"'
 alias v="nvim"
 alias h='htop'
+alias t='tmux'
+# ranger
 alias ra='ranger'
 alias sra='sudo -E ranger'
-alias t='tmux'
 # the same as `ranger` and `neovim`
 alias gl='lazygit'
 # git
-alias gc1='git clone --depth=1'
+alias gits='git status'
+alias gita='git commit -a'
+alias gitlog='git log --graph --all --decorate'
+alias gitnew='git checkout -b '
+alias gitcd1='git clone --depth=1 '
+
+alias sf='grep -rEI ' # sf(search file)
 
 #eval $(thefuck --alias)

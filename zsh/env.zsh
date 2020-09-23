@@ -26,7 +26,6 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 #export GOPATH=$HOME/go
 #export PATH=$PATH:$HOME/.gem/ruby/2.7.0
 
-source $HOME/.profile
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!

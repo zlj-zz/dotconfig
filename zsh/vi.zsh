@@ -1,4 +1,3 @@
-bindkey '^v' edit-command-line
 bindkey -v
 bindkey -M vicmd "i" vi-insert
 bindkey -M vicmd "I" vi-insert-bol
