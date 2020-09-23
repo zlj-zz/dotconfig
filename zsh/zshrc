@@ -9,7 +9,7 @@ source ~/.config/zsh/vi.zsh
 source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/mappings.zsh
 source ~/.config/zsh/completion.zsh
-#source ~/.config/zsh/tmux.zsh
+source ~/.config/zsh/tmux.zsh
 
 
 # prompt_context() {

@@ -18,6 +18,7 @@ You may should install `rainbarf`.
 |-----------------|----------------------------------------|
 | `=`             | split current window horizontally      |
 | `-`             | split current window vertically        |
+| `x`             | close current page                     |
 | `h`             | move to left pane                      |
 | `j`             | move to down pane                      |
 | `k`             | move to up pane                        |
@@ -46,4 +47,4 @@ You may should install `rainbarf`.
 
 **change statue bar:**
 
-![statue](https://img-blog.csdnimg.cn/20200509175250232.png)
+![statue](https://img-blog.csdnimg.cn/20200923150050560.png)
