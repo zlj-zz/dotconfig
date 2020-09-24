@@ -32,7 +32,7 @@ for_system_use_pacman(){
     echo "-----------------------------------------------"
     echo "-----------------------------------------------"
     # install my system tools
-    sudo pacman -S git neovim ranger w3m lolcat neofetch thefuck flameshot peek screenkey alacritty
+    sudo pacman -S git neovim lolcat neofetch thefuck flameshot peek screenkey alacritty
 
     yay -S lazygit
 
@@ -46,6 +46,7 @@ for_system_use_pacman(){
     echo "-----------------------------------------------"
     echo "-----------------------------------------------"
     # install font, emjoy and chinese
+    sudo pacman -S noto-fonts nerd-fonts-source-code-pro
     yay -S ttf-linux-libertine ttf-inconsolata ttf-joypixels ttf-twemoji-color noto-fonts-emoji ttf-liberation ttf-droid
     yay -S wqy-bitmapfont wqy-microhei wqy-microhei-lite wqy-zenhei adobe-source-han-mono-cn-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts
 
