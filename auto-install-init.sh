@@ -32,7 +32,7 @@ for_system_use_pacman(){
     echo "-----------------------------------------------"
     echo "-----------------------------------------------"
     # install my system tools
-    sudo pacman -S git neovim lolcat neofetch thefuck flameshot peek screenkey alacritty
+    sudo pacman -S git neovim lolcat neofetch thefuck flameshot peek screenkey alacritty tree htop
 
     yay -S lazygit
 
