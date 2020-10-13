@@ -1,5 +1,5 @@
 # [Install my zsh]
-# source ~/.config/zsh/zshrc
+# source ~/.config/zsh/zimrc
 # echo "source ~/.config/zsh/zshrc">>~/.zshrc
 
 source ~/.config/zsh/env.zsh
