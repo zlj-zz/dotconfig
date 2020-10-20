@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sleep 1
+source $HOME/.config/.locale.conf
+
 if [ -e ~/.Xmodmaprc ]
 then
     xmodmap ~/.Xmodmaprc
