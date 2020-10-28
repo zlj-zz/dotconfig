@@ -1,9 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export LOCALBIN=$XDG_CONFIG_HOME/bin
 export PATH=$PATH:$LOCALBIN
-#export LOCALPROG=$HOME/prog
 export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/home/zachary/.zachary/bin
 export PATH=$PATH:/home/zachary/.zachary/sbin
 export PATH=$PATH:$HOME/.zachary/bin
@@ -19,10 +17,20 @@ export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-#export PATH=$PATH:$LOCALPROG/flutter/bin
-#export PATH=$PATH:$LOCALPROG/flutter/bin/cache/dart-sdk/bin
+
+export LOCALPROG=$HOME/prog
+# Flutter
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PATH=$PATH:${LOCALPROG}/flutter/bin
+export PATH=$PATH:${LOCALPROG}/flutter/bin/cache/dart-sdk/bin
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-#export GOPATH=$HOME/go
+# Android sdk
+export ANDROID_HOME=${LOCALPROG}/Android/Sdk
+export PATH=$PATH:${ANDROID_HOME}/tools
+export PATH=$PATH:${ANDROID_HOME}/platform-tools
+# go
+export PATH=$PATH:$HOME/go/bin
 #export PATH=$PATH:$HOME/.gem/ruby/2.7.0
 
 
