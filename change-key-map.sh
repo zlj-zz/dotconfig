@@ -2,16 +2,16 @@
 
 source $HOME/.config/.locale.conf
 
-if [ -e ~/.Xmodmaprc ]
+if [ -e ~/.Xmodmap ]
 then
-    xmodmap ~/.Xmodmaprc
+    xmodmap ~/.Xmodmap
 else
-    touch ~/.Xmodmaprc
-    echo "keycode 66 = Escape NoSymbol Escape" >> ~/.Xmodmaprc
-    echo "keycode 9 = Caps_Lock NoSymbol Caps_Lock" >> ~/.Xmodmaprc
-    echo "clear Lock" >> ~/.Xmodmaprc
+    touch ~/.Xmodmap
+    echo "keycode 66 = Escape NoSymbol Escape" >> ~/.Xmodmap
+    echo "keycode 9 = Caps_Lock NoSymbol Caps_Lock" >> ~/.Xmodmap
+    echo "clear Lock" >> ~/.Xmodmap
     sleep 1
-    xmodmap ~/.Xmodmaprc
+    xmodmap ~/.Xmodmap
 fi
 
 #remove Lock = Caps_Lock
