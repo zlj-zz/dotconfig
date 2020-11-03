@@ -13,6 +13,7 @@ export TERM_ITALICS=true
 export TERM=xterm-256color
 #export TERM=screen-256color
 export TERMINFO=/usr/share/terminfo
+# set default editor and visual
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export ZSH_AUTOSUGGEST_USE_ASYNC=1

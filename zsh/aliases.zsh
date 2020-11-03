@@ -14,11 +14,6 @@ alias sra='sudo -E ranger'
 # the same as `ranger` and `neovim`
 alias gl='lazygit'
 # git
-alias gits='git status'
-alias gita='git commit --amend'
-alias gitl='git log --graph --all --decorate'
-alias gitnew='git checkout -b '
-alias gitcd1='git clone --depth=1 '
 
 alias sf='grep -rEI ' # sf(search file)
 
