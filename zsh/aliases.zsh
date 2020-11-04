@@ -12,8 +12,6 @@ alias t='tmux'
 alias ra='ranger'
 alias sra='sudo -E ranger'
 # the same as `ranger` and `neovim`
-alias gl='lazygit'
-# git
 
 alias sf='grep -rEI ' # sf(search file)
 
