@@ -43,6 +43,7 @@ function g {
                 git log --graph --all --decorate ${@:2:$((${#@}))}
             fi
             ;;
+        'r' )git reset ${@:2:$((${#@}))};;
         * )
             git $@
     esac
