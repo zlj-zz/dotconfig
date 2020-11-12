@@ -6,16 +6,16 @@ let `prefix` be `c-x`, and resered `c-b`
 
 You may should install `rainbarf`.
 
-**session:** 
+**session:**
 
 | bind  | function    |
-|-------|-------------|
+| ----- | ----------- |
 | `c-c` | new session |
 
-**pane:** 
+**pane:**
 
 | bind            | function                               |
-|-----------------|----------------------------------------|
+| --------------- | -------------------------------------- |
 | `=`             | split current window horizontally      |
 | `-`             | split current window vertically        |
 | `x`             | close current page                     |
@@ -27,10 +27,10 @@ You may should install `rainbarf`.
 | `<`             | swap create pane with the previous one |
 | `H` `J` `K` `L` | resize current pane 2 units            |
 
-**window:** 
+**window:**
 
 | bind    | function                |
-|---------|-------------------------|
+| ------- | ----------------------- |
 | `c`     | new window              |
 | `0`-`9` | select window           |
 | `w`     | show window list        |
@@ -39,11 +39,13 @@ You may should install `rainbarf`.
 | `&`     | close current window    |
 | `,`     | rename current widow    |
 
-**other:** 
+**other:**
 
-| bind | function                  |
-|------|---------------------------|
-| `!`  | split widow and open htop |
+| bind | function                   |
+| ---- | -------------------------- |
+| `!`  | split widow and open htop  |
+| `@`  | split widow and open range |
+| `s`  | toggle status bar          |
 
 **change statue bar:**
 
