@@ -15,6 +15,7 @@ function g {
     case $1 in
         "p" )git pull;;
         "P" )git push;;
+        "PP" )git push --force;;
         'f' )git fetch;;
         's' )git status;;
         'S' )git stash ${@:2:$((${#@}))};;
