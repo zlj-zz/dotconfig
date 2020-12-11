@@ -19,6 +19,7 @@ export VISUAL=/usr/bin/vim
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
+
 export LOCALPROG=$HOME/prog
 # Flutter
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
@@ -27,7 +28,7 @@ export PATH=$PATH:${LOCALPROG}/flutter/bin
 export PATH=$PATH:${LOCALPROG}/flutter/bin/cache/dart-sdk/bin
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 # Android sdk
-export ANDROID_HOME=${LOCALPROG}/Android/Sdk
+export ANDROID_HOME=${LOCALPROG}/Android/sdk
 export PATH=$PATH:${ANDROID_HOME}/tools
 export PATH=$PATH:${ANDROID_HOME}/platform-tools
 # go
