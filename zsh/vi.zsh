@@ -13,11 +13,11 @@ bindkey -M vicmd "=" vi-repeat-search
 bindkey -M vicmd "e" vi-forward-word-end
 bindkey "^D" autosuggest-accept
 
-#function zle-line-init zle-keymap-select {
-	#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
-	#RPS2=$RPS1
-	#zle reset-prompt
-#}
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
 
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then

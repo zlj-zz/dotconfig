@@ -2,10 +2,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 export LOCALBIN=$XDG_CONFIG_HOME/bin
 export PATH=$PATH:$LOCALBIN
 export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:/home/zachary/.zachary/bin
-export PATH=$PATH:/home/zachary/.zachary/sbin
-export PATH=$PATH:$HOME/.zachary/bin
-export PATH=$PATH:$HOME/.zachary/sbin
+export PATH=$PATH:/home/zacharyzhang/.zacharyzhang/bin
+export PATH=$PATH:/home/zacharyzhang/.zacharyzhang/sbin
+export PATH=$PATH:$HOME/.zacharyzhang/bin
+export PATH=$PATH:$HOME/.zacharyzhang/sbin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/snap/bin
 export RANGER_LOAD_DEFAULT_RC="false"
@@ -14,8 +14,8 @@ export TERM=xterm-256color
 #export TERM=screen-256color
 export TERMINFO=/usr/share/terminfo
 # set default editor and visual
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
@@ -39,7 +39,8 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
-
+#HomeBrew
+export PATH="/opt/homebrew/bin:$PATH"
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!

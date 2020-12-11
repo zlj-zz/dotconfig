@@ -33,6 +33,7 @@
 !auto-install-init.sh
 !change-key-map.sh
 !package.txt
+!brew-install.sh
 
 mpd/mpdstate
 mpd/mpd.log
