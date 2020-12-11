@@ -13,6 +13,8 @@ export TERM_ITALICS=true
 export TERM=xterm-256color
 #export TERM=screen-256color
 export TERMINFO=/usr/share/terminfo
+
+
 # set default editor and visual
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
@@ -42,6 +44,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 #HomeBrew
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
