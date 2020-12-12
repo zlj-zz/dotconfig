@@ -16,11 +16,11 @@ Many operations are the same as `vim`.
 ### Cursor movement
 
 | ←   | ↓   | ↑   | →   |
-|-----|-----|-----|-----|
+| --- | --- | --- | --- |
 | `h` | `j` | `k` | `l` |
 
 | shortcut  | action                     |
-|-----------|----------------------------|
+| --------- | -------------------------- |
 | `J`       | move cursor down 5 line    |
 | `K`       | move cursor up 5 line      |
 | `alt`+`j` | scroll preview down 1 line |
@@ -33,7 +33,7 @@ Many operations are the same as `vim`.
 ### File operation
 
 | shortcut | action                                           |
-|----------|--------------------------------------------------|
+| -------- | ------------------------------------------------ |
 | `e`      | edit                                             |
 | `q`/`Q`  | quit / quit all                                  |
 | `r`      | rename                                           |
@@ -50,7 +50,7 @@ Many operations are the same as `vim`.
 ### Command operation
 
 | shortcut   | action     |
-|------------|------------|
+| ---------- | ---------- |
 | `:` or `;` | console    |
 | `V`        | sudo nvim  |
 | `R`        | reload cwd |
@@ -61,7 +61,7 @@ Many operations are the same as `vim`.
 ### Window management
 
 | shortcut      | action         |
-|---------------|----------------|
+| ------------- | -------------- |
 | `ctrl`+`n`    | new tab        |
 | `ctrl`+`w`    | close tab      |
 | `tab`         | next tab       |
@@ -71,7 +71,7 @@ Many operations are the same as `vim`.
 ### Bookmarks / Tagging / Marking setting
 
 | shortcut     | action                 |
-|--------------|------------------------|
+| ------------ | ---------------------- |
 | `'`+`<any>`  | enter bookmark `<any>` |
 | `m`+`<any>`  | set bookmark `<any>`   |
 | `um`+`<any>` | unset bookmark `<any>` |
@@ -80,18 +80,32 @@ Many operations are the same as `vim`.
 | `<space>`    | mark one file toggel   |
 | `v`          | mark all file toogel   |
 
-
 ---
 
-## Ranger Devicons plugin 
+## Ranger Devicons plugin
 
 This plugin introduces a new linemode that prefixes file names with a file icon, [here](https://github.com/alexanderjeurissen/ranger_devicons) is its address.
 
-This plugin uses glyphs from a patched NERDfont
-the plugin
+This plugin uses glyphs from a patched NERDfont,[https://github.com/ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
+
+### For pacman
 
 ```shell
 sudo pacman -S nerd-fonts-complete
 sudo pacman -S adobe-source-code-pro-fonts
 ```
 
+### For MacOS
+
+> Best optio if on macOS and want to use Homebrew.
+
+All fonts are available via Homebrew Cask Fonts on macOS (OS X)
+
+```shell
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-fontn
+```
+
+If the NerdFont installed and the icons will not properly appear in Ranger.
+
+**So may you need to select the font in you terminal.**
