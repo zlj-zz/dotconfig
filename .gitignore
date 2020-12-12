@@ -39,3 +39,6 @@ mpd/mpdstate
 mpd/mpd.log
 mpd/mpd.db
 mpd/mpd.pid
+
+fish/.DS_Store
+tmux/.DS_Store
