@@ -47,6 +47,7 @@ fi
 #HomeBrew
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+alias ibrew='arch -x86_64 /usr/local/bin/brew' # X86 Homebrew
 
 
 export PATH="${LOCALPROG}/nvim-osx64/bin:$PATH"

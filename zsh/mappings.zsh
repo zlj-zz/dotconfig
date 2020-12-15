@@ -21,18 +21,18 @@ function g {
         "PP" )git push --force;;
 
         'f' )
-            if [[ $2  && ! \($3\)]]; then
-                git fetch origin $2:$2;;
+            if [[ $2  && ! \($3\) ]]; then
+                git fetch origin $2:$2
             else
-                git fetch ${@:2:$((${#@}))};;
+                git fetch ${@:2:$((${#@}))}
             fi
             ;;
 
         'h' )
             if [[ $2 == 'p' ]]; then
-                git stash pop;;
+                git stash pop
             else
-                git stash ${@:2:$((${#@}))};;
+                git stash ${@:2:$((${#@}))}
             fi
             ;;
 
