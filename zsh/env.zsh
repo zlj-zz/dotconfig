@@ -16,13 +16,15 @@ export TERMINFO=/usr/share/terminfo
 
 
 # set default editor and visual
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+#export EDITOR=/usr/bin/vim
+#export VISUAL=/usr/bin/vim
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 
 export LOCALPROG=$HOME/prog
+export EDITOR=${LOCALPROG}/nvim-osx64/bin/nvim
+export VISUAL=${LOCALPROG}/nvim-osx64/bin/nvim
 # Flutter
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
@@ -45,6 +47,10 @@ fi
 #HomeBrew
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+alias ibrew='arch -x86_64 /usr/local/bin/brew' # X86 Homebrew
+
+
+export PATH="${LOCALPROG}/nvim-osx64/bin:$PATH"
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
