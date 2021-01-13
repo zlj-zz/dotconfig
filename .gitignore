@@ -34,6 +34,7 @@
 !change-key-map.sh
 !package.txt
 !brew-install.sh
+!clear-git
 
 mpd/mpdstate
 mpd/mpd.log
