@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# ===================================
+# This is a bash scirpt, it can help
+#   you to clear your .git folder.
+# ===================================
 
 
 if [[ $1 ]]; then
@@ -9,19 +13,30 @@ fi
 
 TRASHCODES=$(git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -${COUNT} | cut -b 1-40)
 
-for TRASHCODE in $TRASHCODES;do
-    TRASHNAME=`git rev-list --objects --all | grep $TRASHCODE | cut -b 42-`
-    echo -e "\n\n\e[32m==>\e[0m ${TRASHNAME}"
-    git log --pretty=oneline --branches -- $TRASHNAME
+show_items(){
+    for ITEM in $TRASHCODES;do
+        echo ":: $ITEM"
+    done
+}
 
-    git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $TRASHNAME" --prune-empty -- --all
+clear_(){
+    for TRASHCODE in $TRASHCODES;do
+        TRASHNAME=`git rev-list --objects --all | grep $TRASHCODE | cut -b 42-`
+        echo -e "\n\n\e[32m==>\e[0m ${TRASHNAME}"
+        git log --pretty=oneline --branches -- $TRASHNAME
 
-    rm -Rf .git/refs/original
-    rm -Rf .git/logs/
-    git reflog expire --expire=now --all
-    git fsck --full --unreachable
-    git repack -A -d
-    git gc --aggressive --prune=now
-done
+        git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $TRASHNAME" --prune-empty -- --all
+
+        rm -Rf .git/refs/original
+        rm -Rf .git/logs/
+        git reflog expire --expire=now --all
+        git fsck --full --unreachable
+        git repack -A -d
+        git gc --aggressive --prune=now
+    done
+}
+
+show_items
+clear_
 
 #
