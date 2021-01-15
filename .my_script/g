@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 g() {
   # adjust wether has git
   if command -v git >/dev/null 2>&1; then
@@ -64,27 +65,28 @@ g() {
       'savepd')git config credential.helper store;;
 
       '-h')
-          echo -e 'usage:\n'\
-          's       --: git status\n'\
-          'p       --: git push\n'\
-          'P       --: git push\n'\
-          'PP      --: git push --force\n'\
-          'a       --: git add .\n'\
-          '          g a [file] ... \n'\
-          'c       --: git commit\n'\
-          'A       --: git commit --amend \n'\
-          'f       --: git fetch \n'\
-          '          g f [branch-name] \n'\
-          'k       --: git checkout \n'\
-          'd       --: git diff \n'\
-          'm       --: git merge origin/master \n'\
-          '          g m [branch-name] \n'\
-          'l       --: git log --graph --all --decorate \n'\
-          '          g l 1    --: git log --graph --all --decorate --oneline \n'\
-          'h       --: git stash \n'\
-          '          g h p     --: git stash pop \n'\
-          'r       --: git reset \n'\
-          'savepd  -- Remember your account number and password \n'\
+          echo "usage: g <command> [<args>]\n\n"\
+          "These are short commands that can replace git operations:\n"\
+          "    s       \033[33m--:\033[0m git status\n"\
+          "    p       \033[33m--:\033[0m git push\n"\
+          "    P       \033[33m--:\033[0m git push\n"\
+          "    PP      \033[33m--:\033[0m git push --force\n"\
+          "    a       \033[33m--:\033[0m git add .\n"\
+          "               g a [file] ... \n"\
+          "    c       \033[33m--:\033[0m git commit\n"\
+          "    A       \033[33m--:\033[0m git commit --amend \n"\
+          "    f       \033[33m--:\033[0m git fetch \n"\
+          "               g f [branch-name] \n"\
+          "    k       \033[33m--:\033[0m git checkout \n"\
+          "    d       \033[33m--:\033[0m git diff \n"\
+          "    m       \033[33m--:\033[0m git merge origin/master \n"\
+          "               g m [branch-name] \n"\
+          "    l       \033[33m--:\033[0m git log --graph --all --decorate \n"\
+          "               g l 1    --: git log --graph --all --decorate --oneline \n"\
+          "    h       \033[33m--:\033[0m git stash \n"\
+          "               g h p     --: git stash pop \n"\
+          "    r       \033[33m--:\033[0m git reset \n"\
+          "    savepd  \033[33m--\033[0m Remember your account number and password \n"\
           ;;
 
       *)git $@
@@ -94,3 +96,4 @@ g() {
   fi
 }
 
+g $@

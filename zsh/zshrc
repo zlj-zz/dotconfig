@@ -7,7 +7,7 @@ source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/mappings.zsh
 source ~/.config/zsh/completion.zsh
 source ~/.config/zsh/tmux.zsh
-source ~/.config/zsh/simple-git.zsh
+#source ~/.config/zsh/simple-git.zsh
 
 
 # prompt_context() {
