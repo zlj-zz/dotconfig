@@ -30,6 +30,9 @@
 !/mpd
 !/htop
 
+!.my_script
+!install-my-script.sh
+
 !auto-install-init.sh
 !change-key-map.sh
 !package.txt
