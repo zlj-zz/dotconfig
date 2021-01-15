@@ -14,15 +14,16 @@ fi
 TRASHCODES=$(git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -${COUNT} | cut -b 1-40)
 
 show_items(){
+    echo -e "These are the largest $COUNT files"
     for ITEM in $TRASHCODES;do
-        echo ":: $ITEM"
+        echo -e "\033[32m::\033[0m $ITEM"
     done
 }
 
 clear_(){
     for TRASHCODE in $TRASHCODES;do
         TRASHNAME=`git rev-list --objects --all | grep $TRASHCODE | cut -b 42-`
-        echo -e "\n\n\e[32m==>\e[0m ${TRASHNAME}"
+        echo -e "\n\n\033[33m==>\033[0m \033[31m${TRASHNAME}\033[0m"
         git log --pretty=oneline --branches -- $TRASHNAME
 
         git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $TRASHNAME" --prune-empty -- --all
@@ -36,7 +37,25 @@ clear_(){
     done
 }
 
+if_force_push(){
+    echo -e "\n\n== Do you need to force push (yes/no):"
+    if read -t 7 FORCEPUSH; then
+        if [[ $FORCEPUSH=="y" || $FORCEPUSH=="Y" || $FORCEPUSH=="yes" ]];then
+            echo "Start force push ... "
+            remote_branch=$(git branch | cut -b 3-)
+            git push --force origin $remote_branch
+        else
+            echo ""
+        fi
+    else
+        echo -e "\033[33mWarm\033[0m: Timeout, will not force push."
+    fi
+}
+
+# Main
 show_items
 clear_
+if_force_push
+echo -e "Clear Over."
 
 #
