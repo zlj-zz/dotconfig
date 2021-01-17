@@ -11,7 +11,7 @@ else
     alias v='nvim'
 fi
 alias h='htop'
-alias t='tmux'
+alias t='sudo tmux -2'
 # ranger
 alias ra='ranger'
 alias sra='sudo -E ranger'
