@@ -1,26 +1,30 @@
 # DEPRECATION WARNING
+
 This project is in a maintenance mode and no future functionality is likely to be added. tmux-powerline, with all other powerline projects, is replaced by the new unifying [powerline](https://github.com/Lokaltog/powerline). However this project is still functional and can serve as a lightweight alternative for non-python users.
 
 # tmux-powerline
+
 This is a set of scripts for making a nice and dynamic tmux statusbar consisting of segments. This is much like [Lokaltog/vim-powerline](https://github.com/Lokaltog/vim-powerline) but for tmux.
 
 The following segments exists for now:
-* LAN & WAN IP addresses.
-* Now Playing for MPD, Spotify (GNU/Linux native or wine, OS X), iTunes (OS X), Rhythmbox, Banshee, MOC, Audacious, Rdio (OS X), cmus, Pithos and Last.fm (last scrobbled track).
-* New mail count for GMail, Maildir, mbox, mailcheck, and Apple Mail.
-* GNU/Linux and Macintosh OS X battery status (uses [richo/dotfiles/bin/battery](https://github.com/richoH/dotfiles/blob/master/bin/battery)).
-* Weather in Celsius, Fahrenheit and Kelvin using Yahoo Weather.
-* System load, cpu usage and uptime.
-* Git, SVN and Mercurial branch in CWD.
-* Date and time.
-* Hostname.
-* tmux info.
-* CWD in pane.
-* Current X keyboard layout.
-* Network download/upload speed.
-* Earthquake warnings.
+
+- LAN & WAN IP addresses.
+- Now Playing for MPD, Spotify (GNU/Linux native or wine, OS X), iTunes (OS X), Rhythmbox, Banshee, MOC, Audacious, Rdio (OS X), cmus, Pithos and Last.fm (last scrobbled track).
+- New mail count for GMail, Maildir, mbox, mailcheck, and Apple Mail.
+- GNU/Linux and Macintosh OS X battery status (uses [richo/dotfiles/bin/battery](https://github.com/richoH/dotfiles/blob/master/bin/battery)).
+- Weather in Celsius, Fahrenheit and Kelvin using Yahoo Weather.
+- System load, cpu usage and uptime.
+- Git, SVN and Mercurial branch in CWD.
+- Date and time.
+- Hostname.
+- tmux info.
+- CWD in pane.
+- Current X keyboard layout.
+- Network download/upload speed.
+- Earthquake warnings.
 
 # Screenshots
+
 **Full screenshot**
 
 ![Full screenshot](img/full.png)
@@ -50,23 +54,25 @@ Remaining battery.
 ![right-status, weather and battery](img/right-status_weather_battery.png)
 
 # Requirements
+
 Requirements for the lib to work are:
 
-* Recent tmux version
-* `bash --version` >= 3.2 (Does not have to be your default shell.)
-* A patched font. Follow instructions at [Powerline Installation](http://powerline.readthedocs.org/en/latest/installation/linux.html) or [download](https://github.com/powerline/fonts) a new one. However you can use other substitute symbols as well; see `config.sh`.
+- Recent tmux version
+- `bash --version` >= 3.2 (Does not have to be your default shell.)
+- A patched font. Follow instructions at [Powerline Installation](http://powerline.readthedocs.org/en/latest/installation/linux.html) or [download](https://github.com/powerline/fonts) a new one. However you can use other substitute symbols as well; see `config.sh`.
 
 ## Segment Requirements
+
 Requirements for some segments. You only need to fulfill the requirements for those segments you want to use.
 
-* `wan_ip.sh`, `now_playing.sh` (last.fm), `weather_yahoo.sh`: curl, bc
-* `now_playing.sh` (mpd) : [libmpdclient](http://sourceforge.net/projects/musicpd/files/libmpdclient/)
-* `xkb_layout.sh`: X11, XKB
-* `mailcount.sh` (gmail): wget, (mailcheck): [mailcheck](http://packages.debian.org/sid/mailcheck).
-* `ifstat.sh`: ifstat (there is a simpler segment not using ifstat but samples /sys/class/net)
-* `tmux_mem_cpu_load.sh`: [tmux-mem-cpu-load](https://github.com/thewtex/tmux-mem-cpu-load)
-* `rainbarf.sh`: [rainbarf](https://github.com/creaktive/rainbarf)
-* `weather.sh`: GNU `grep` with Perl regexp enabled (FreeBSD specific)
+- `wan_ip.sh`, `now_playing.sh` (last.fm), `weather_yahoo.sh`: curl, bc
+- `now_playing.sh` (mpd) : [libmpdclient](http://sourceforge.net/projects/musicpd/files/libmpdclient/)
+- `xkb_layout.sh`: X11, XKB
+- `mailcount.sh` (gmail): wget, (mailcheck): [mailcheck](http://packages.debian.org/sid/mailcheck).
+- `ifstat.sh`: ifstat (there is a simpler segment not using ifstat but samples /sys/class/net)
+- `tmux_mem_cpu_load.sh`: [tmux-mem-cpu-load](https://github.com/thewtex/tmux-mem-cpu-load)
+- `rainbarf.sh`: [rainbarf](https://github.com/creaktive/rainbarf)
+- `weather.sh`: GNU `grep` with Perl regexp enabled (FreeBSD specific)
 
 ## OS X specific requirements
 
@@ -80,8 +86,8 @@ brew install grep
 
 Preinstalled `grep` in FreeBSD doesn't support Perl regexp. Solution is rather simple -- you need to use `textproc/gnugrep` port instead. You also need to make sure, that it has support for PCRE and is compiled with `--enable-perl-regexp` flag.
 
-
 # Installation
+
 Start with checking out the repository with:
 
 ```console
@@ -92,6 +98,7 @@ $ git clone https://github.com/erikw/tmux-powerline.git
 Now edit your `~/.tmux.conf` to use the scripts:
 
 <!-- Close syntax enough. -->
+
 ```vim
 set-option -g status on
 set-option -g status-interval 2
@@ -125,7 +132,6 @@ Some segments e.g. cwd and cvs_branch needs to find the current working director
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 ```
 
-
 If the active shell is Fish, PS1 is not being set normally. Instead, it has a `fish_prompt` function that is being called when prompt rendering is required. This means that one can append the following command at the end of the function in `fish_prompt.fish` file:
 
 ```fish
@@ -142,13 +148,15 @@ The default segments that are shown are defined in `themes/default.sh`. You will
 $ cp themes/default.sh themes/mytheme.sh
 $ $EDITOR themes/mytheme.sh
 ```
-Now  generate a default configuration file by doing
+
+Now generate a default configuration file by doing
 
 ```console
 $ ./generate_rc.sh
 $ mv ~/.tmux-powerlinerc.default ~/.tmux-powerlinerc
 $ $EDITOR ~/.tmux-powerlinerc
 ```
+
 and change theme to use and values for segments you want to use. If you want to keep the repo checkout clean you can set custom segment and theme paths in the general section and then store your files outside the repo.
 
 # Debugging
@@ -175,21 +183,24 @@ less /tmp/tmux-powerline.log
 tail -f /tmp/tmux-powerline.log # or follow output like this.
 ```
 
-If you can not solve the problems you can post an [issue](https://github.com/erikw/tmux-powerline/issues?state=open) and be sure to include relevant information about your system and script output (from bash -x) and/or screenshots if needed.  Be sure to search in the [resolved issues](https://github.com/erikw/tmux-powerline/issues?page=1&state=closed) section for similar problems you're experiencing before posting.
+If you can not solve the problems you can post an [issue](https://github.com/erikw/tmux-powerline/issues?state=open) and be sure to include relevant information about your system and script output (from bash -x) and/or screenshots if needed. Be sure to search in the [resolved issues](https://github.com/erikw/tmux-powerline/issues?page=1&state=closed) section for similar problems you're experiencing before posting.
 
 ## Common problems
 
-
 ### VCS_branch / PWD is not updating
+
 The issue is probably that the update of the current directory in the active pane is not updated correctly. Make sure that your PS1 or PROMPT variable actually contains the line from the installation step above by simply inspecting the output of `echo $PS1`. You might have placed the PS1 line in you shell configuration such that it is overwritten later. The simplest solution is to put it at the very end to make sure that nothing overwrites it. See [issue #52](https://github.com/erikw/tmux-powerline/issues/52).
 
 ### Nothing is displayed
+
 You have edited `~/.tmux.conf` but no powerline is displayed. This might be because tmux is not aware of the changes so you have to restart your tmux session or reloaded that file by typing this on the command line (or in tmux command mode with `prefix :`)
 
 ```console
 $ tmux source-file ~/.tmux.conf
 ```
+
 ### Multiple lines in bash or no powerline in zsh using iTerm (OS X)
+
 If your tmux looks like [this](https://github.com/erikw/tmux-powerline/issues/125) then you may have to in iTerm uncheck [Unicode East Asian Ambiguous characters are wide] in Preferences -> Settings -> Advanced.
 
 # Hacking
@@ -197,6 +208,7 @@ If your tmux looks like [this](https://github.com/erikw/tmux-powerline/issues/12
 This project can only gain positively from contributions. Fork today and make your own enhancements and segments to share back! If you'd like, add your name and E-mail to AUTHORS before making a pull request so you can get some credit for your work :-)
 
 ## How to make a segment
+
 If you want to (of course you do!) send a pull request for a cool segment you written make sure that it follows the style of existing segments, unless you have good reason for it. Each segment resides in the `segments/` directory with a descriptive and simple name. A segment must have at least one function and that is `run_segment` which is like the main function that is called from the tmux-powerline lib. What ever text is echoed out from this function to stdout is the text displayed in the tmux statusbar. If the segment at a certain point does not have anything to show, simply don't echo anything out and the segment will be hidden. A successful execution of the `run_segment` function should return an exit code of 0. If the segment failed to execute in a fatal way return a non-zero exit code so the user can pick up the error and fix it when debug mode is on (e.g. missing program that is needed for the segment).
 
 Usage of helper function to organize the work of a segment is encourage and should be named in the format `__helper_func`. If a segment has settings it should have a function `generate_rc` which outputs default values of all settings and a short explanation of the setting and its values. Study e.g. `segments/now_playing.sh` to see how it is done. A segment having settings should typically call a helper function `__process_settings` as the first statement in `run_segment` that sets default values to the settings that has not been set by the user.
