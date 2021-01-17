@@ -37,6 +37,7 @@ run_segment() {
 	fi
 
 	# NOTE: '%5.01' for fixed length always
-	printf "${type} ⇊ %5.01f${RXDIF_UNIT} ⇈ %5.01f${TXDIF_UNIT}"  ${RXDIF} ${TXDIF}
+	#printf "${type} ⇊ %5.01f${RXDIF_UNIT} ⇈ %5.01f${TXDIF_UNIT}"  ${RXDIF} ${TXDIF}
+	printf "⇊%5.01f${RXDIF_UNIT} ⇈%5.01f${TXDIF_UNIT}"  ${RXDIF} ${TXDIF}
 	return 0
 }
