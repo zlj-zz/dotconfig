@@ -6,6 +6,8 @@ let `prefix` be `c-x`, and resered `c-b`
 
 You may should install `rainbarf`.
 
+`c-d` exit TMUX.
+
 **session:**
 
 | bind  | function    |
@@ -48,5 +50,7 @@ You may should install `rainbarf`.
 | `s`  | toggle status bar          |
 
 **change statue bar:**
+
+If you want to change the botton bar state, you can check the `./tmux-powerline/themes/default.sh` and modify it.
 
 ![statue](https://img-blog.csdnimg.cn/20200923150050560.png)
