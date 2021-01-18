@@ -11,7 +11,7 @@ fi
 
 alias cs='cowsay'
 alias h='htop'
-alias t='sudo tmux -2'
+alias t='tmux -2'
 # ranger
 alias ra='ranger'
 alias sra='sudo -E ranger'
