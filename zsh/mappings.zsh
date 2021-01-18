@@ -10,4 +10,3 @@ function openlazygit {
 
 zle -N openlazygit; bindkey "^G" openlazygit
 
-# simple git
