@@ -100,7 +100,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    #family: Source Code Pro
+    #family: Source Code Pro # My Linux
     family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -112,7 +112,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: Source Code Pro
+    #family: Source Code Pro # My Linux
     family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -125,9 +125,10 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Hack Nerd Font
+    style: Italic
 
   # Bold italic font face
   bold_italic:
@@ -136,10 +137,10 @@ font:
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
-    style: Hack Nerd Font
+    style: Bold Italic
 
   # Point size
   size: 14
@@ -177,8 +178,8 @@ font:
 draw_bold_text_with_bright_colors: true
 
 
-# Import color scheme
 import:
+    # Import color scheme
     - ~/.config/alacritty/color_schemes.yml
 
 # Visual Bell
@@ -279,7 +280,7 @@ live_config_reload: true
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -289,9 +290,9 @@ live_config_reload: true
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: true
 
-  #url:
+  url:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.
@@ -303,9 +304,10 @@ live_config_reload: true
     #   - (macOS) open
     #   - (Linux/BSD) xdg-open
     #   - (Windows) explorer
-    #launcher:
-    #  program: xdg-open
-    #  args: []
+    launcher:
+      #program: xdg-open
+      program: open
+      args: []
 
     # URL modifiers
     #

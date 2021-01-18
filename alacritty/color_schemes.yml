@@ -1,36 +1,37 @@
-# Colors (Hyper)
-colors:
-  # Default colors
-  primary:
-    background: '#000000'
-    foreground: '#ffffff'
-  cursor:
-    text: '#F81CE5'
-    cursor: '#ffffff'
+## Colors (Hyper) ==================
+#colors:
+  ## Default colors
+  #primary:
+    #background: '#000000'
+    #foreground: '#ffffff'
+  #cursor:
+    #text: '#F81CE5'
+    #cursor: '#ffffff'
 
-  # Normal colors
-  normal:
-    black:   '#000000'
-    red:     '#fe0100'
-    green:   '#33ff00'
-    yellow:  '#feff00'
-    blue:    '#0066ff'
-    magenta: '#cc00ff'
-    cyan:    '#00ffff'
-    white:   '#d0d0d0'
+  ## Normal colors
+  #normal:
+    #black:   '#000000'
+    #red:     '#fe0100'
+    #green:   '#33ff00'
+    #yellow:  '#feff00'
+    #blue:    '#0066ff'
+    #magenta: '#cc00ff'
+    #cyan:    '#00ffff'
+    #white:   '#d0d0d0'
 
-  # Bright colors
-  bright:
-    black:   '#808080'
-    red:     '#fe0100'
-    green:   '#33ff00'
-    yellow:  '#feff00'
-    blue:    '#0066ff'
-    magenta: '#cc00ff'
-    cyan:    '#00ffff'
-    white:   '#FFFFFF'
+  ## Bright colors
+  #bright:
+    #black:   '#808080'
+    #red:     '#fe0100'
+    #green:   '#33ff00'
+    #yellow:  '#feff00'
+    #blue:    '#0066ff'
+    #magenta: '#cc00ff'
+    #cyan:    '#00ffff'
+    #white:   '#FFFFFF'
 
-# KDE Breeze (Ported from Konsole)
+
+# KDE Breeze (Ported from Konsole) ==================
 #colors:
   ## Default colors
   #primary:
@@ -75,73 +76,43 @@ colors:
     #cyan: '#186c60'
     #white: '#63686d'
 
-#colors:
-  ## Default colors
-  #primary:
-    #background: '#292C3E'
-    #foreground: '#EBEBEB'
 
-  ## Cursor colors
-  #cursor:
-   #text: '#FF261E'
-   #cursor: '#FF261E'
-
-  ## Normal colors
-  #normal:
-    #black:   '#0d0d0d'
-    #red:     '#FF301B'
-    #green:   '#A0E521'
-    #yellow:  '#FFC620'
-    #blue:    '#1BA6FA'
-    #magenta: '#8763B8'
-    #cyan:    '#21DEEF'
-    #white:   '#EBEBEB'
-
-  ## Bright colors
-  #bright:
-    #black:   '#6D7070'
-    #red:     '#FF4352'
-    #green:   '#B8E466'
-    #yellow:  '#FFD750'
-    #blue:    '#1BA6FA'
-    #magenta: '#A578EA'
-    #cyan:    '#73FBF1'
-    #white:   '#FEFEF8'
-
-# Colors (Monokai Dark)
-#colors:
-  ## Default colors
-  #primary:
+# Colors (Monokai Dark) ==================
+colors:
+  # Default colors
+  primary:
+    background: '#000000'
+    foreground: '#ffffff'
     #background: '#272822'
     #foreground: '#F8F8F2'
 
-  ## Normal colors
-  #normal:
-   #black:   '#272822'
-   #red:     '#F92672'
-   #green:   '#A6E22E'
-   #yellow:  '#F4BF75'
-   #blue:    '#66D9EF'
-   #magenta: '#AE81FF'
-   #cyan:    '#A1EFE4'
-   #white:   '#F8F8F2'
+  # normal colors
+  normal:
+   black:   '#272822'
+   red:     '#f92672'
+   green:   '#a6e22e'
+   yellow:  '#f4bf75'
+   blue:    '#66d9ef'
+   magenta: '#ae81ff'
+   cyan:    '#a1efe4'
+   white:   '#f8f8f2'
 
-  ## Bright colors
-  #bright:
-   #black:   '#75715E'
-   #red:     '#F92672'
-   #green:   '#A6E22E'
-   #yellow:  '#F4BF75'
-   #blue:    '#66D9EF'
-   #magenta: '#AE81FF'
-   #cyan:    '#A1EFE4'
-   #white:   '#F9F8F5'
+  # bright colors
+  bright:
+   black:   '#75715e'
+   red:     '#f92672'
+   green:   '#a6e22e'
+   yellow:  '#f4bf75'
+   blue:    '#66d9ef'
+   magenta: '#ae81ff'
+   cyan:    '#a1efe4'
+   white:   '#f9f8f5'
 
-  #indexed_colors: []
+  indexed_colors: []
 
 
 
-# Colors (Tomorrow Night Bright)
+# Colors (Tomorrow Night Bright) ==================
 #colors:
   # Default colors
   #primary:
