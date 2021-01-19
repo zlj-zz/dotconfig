@@ -10,6 +10,7 @@
 # See https://git-scm.com/docs/pretty-formats
 _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 
+# Output format
 COLOREND=\\033[0m
 BLACK=\\033[30m
 RED=\\033[31m
@@ -23,11 +24,8 @@ BLOD=\\033[1m
 
 
 simple_git() {
-    # adjust wether has git
-    if ! command -v git >/dev/null 2>&1; then
-        echo "${RED}Not found git, please install git first.${COLOREND}"
-        exit 0
-    fi
+    _check_git_status
+
     # process command
     case $1 in
         # Branch
@@ -170,114 +168,182 @@ simple_git() {
         '-h')_help_mesg "english";;
         '-hc')_help_mesg "chinese";; # Chinese
 
-        *)git $@
+
+        *)
+            if [[ $1 =~ 'b' ]];then
+                echo ${BRANCH_MSG}
+            elif [[ $1 =~ 'c' ]];then
+                echo ${COMMIT_MSG}
+            elif [[ $1 =~ 'C' ]];then
+                echo ${CONFLICT_MSG}
+            elif [[ $1 =~ 'f' ]];then
+                echo ${FETCH_MSG}
+            elif [[ $1 =~ 'i' ]];then
+                echo ${INDEX_MSG}
+            elif [[ $1 =~ 'l' ]];then
+                echo ${LOG_MSG}
+            elif [[ $1 =~ 'm' ]];then
+                echo ${MERGE_NSG}
+            elif [[ $1 =~ 'p' ]];then
+                echo ${PUSH_MSG}
+            elif [[ $1 =~ 'R' ]];then
+                echo ${REMOTE_MSG}
+            elif [[ $1 =~ 's' ]];then
+                echo ${STASH_MSG}
+            elif [[ $1 =~ 'w' ]];then
+                echo ${WORKING_TREE_MSG}
+            else
+                git $@
+            fi
+        ;;
     esac
 }
 
-_help_mesg() { # {{{
+_check_git_status() {
+    # adjust wether has git
+    if ! command -v git >/dev/null 2>&1; then
+        echo "${RED}Not found git, please install git first.${COLOREND}"
+        exit 0
+    fi
+}
+
+# {{{
+BRANCH_MSG="${BLOD}Branch(b)\033[0m\n\n
+\t b  \t ${YELLOW}--:${COLOREND} lists, creates, renames, and deletes branches.\n
+\t bc \t ${YELLOW}--:${COLOREND} creates a new branch.\n
+\t bl \t ${YELLOW}--:${COLOREND} lists branches and their commits.\n
+\t bL \t ${YELLOW}--:${COLOREND} lists local and remote branches and their commits.\n
+\t bs \t ${YELLOW}--:${COLOREND} lists branches and their commits with ancestry graphs.\n
+\t bS \t ${YELLOW}--:${COLOREND} lists local and remote branches and their commits with ancestry graphs.\n
+\t bm \t ${YELLOW}--:${COLOREND} renames a branch.\n
+\t bM \t ${YELLOW}--:${COLOREND} renames a branch even if the new branch name already exists.\n"
+
+COMMIT_MSG="${BLOD}Commit(c)${COLOREND}\n
+\t    c  \t     ${YELLOW}--:${COLOREND} records changes to the repository.\n
+\t    ca \t     ${YELLOW}--:${COLOREND} commits all modified and deleted files.\n
+\t    cA \t     ${YELLOW}--:${COLOREND} commits all modified and deleted files interactivly.\n
+\t    cm \t     ${YELLOW}--:${COLOREND} commits with the given message.\n
+\t    co \t     ${YELLOW}--:${COLOREND} checks out a branch or paths to the working tree.\n
+\t    cO \t     ${YELLOW}--:${COLOREND} checks out hunks from the index or the tree interactively.\n
+\t    cf \t     ${YELLOW}--:${COLOREND} amends the tip of the current branch reusing the same log message as HEAD.\n
+\t    cF \t     ${YELLOW}--:${COLOREND} amends the tip of the current branch.\n
+\t    cr \t     ${YELLOW}--:${COLOREND} reverts existing commits by reverting patches and recording new commits.\n
+\t    cR \t     ${YELLOW}--:${COLOREND} removes the HEAD commit.\n
+\t    cs \t     ${YELLOW}--:${COLOREND} shows one or more objects (blobs, trees, tags and commits).\n"
+
+CONFLICT_MSG="${BLOD}Conflict(C)${COLOREND}\n
+\t    Cl \t     ${YELLOW}--:${COLOREND} lists unmerged files.\n
+\t    Ca \t     ${YELLOW}--:${COLOREND} adds unmerged file contents to the index.\n
+\t    Ce \t     ${YELLOW}--:${COLOREND} executes merge-tool on all unmerged files.\n
+\t    Co \t     ${YELLOW}--:${COLOREND} checks out our changes for unmerged paths.\n
+\t    CO \t     ${YELLOW}--:${COLOREND} checks out our changes for all unmerged paths.\n
+\t    Ct \t     ${YELLOW}--:${COLOREND} checks out their changes for unmerged paths.\n
+\t    CT \t     ${YELLOW}--:${COLOREND} checks out their changes for all unmerged paths.\n"
+
+FETCH_MSG="${BLOD}Fetch(f)${COLOREND}\n
+\t    f  \t     ${YELLOW}--:${COLOREND} downloads objects and references from another repository.\n
+\t    fc \t     ${YELLOW}--:${COLOREND} clones a repository into a new directory.\n
+\t    fm \t     ${YELLOW}--:${COLOREND} fetches from and merges with another repository or local branch.\n
+\t    fr \t     ${YELLOW}--:${COLOREND} fetches from and rebases on top of another repository or local branch.\n
+\t    fu \t     ${YELLOW}--:${COLOREND} removes unexisting remote-tracking references, fetches all remotes and merges.\n
+\t    fb \t     ${YELLOW}--:${COLOREND} fetch other branch to local as same name.\n"
+
+INDEX_MSG="${BLOD}Index(i)${COLOREND}\n
+\t    ia \t     ${YELLOW}--:${COLOREND} adds file contents to the index(default: all files).\n
+\t    iA \t     ${YELLOW}--:${COLOREND} adds file contents to the index interactively.\n
+\t    iu \t     ${YELLOW}--:${COLOREND} adds file contents to the index (updates only known files).\n
+\t    id \t     ${YELLOW}--:${COLOREND} displays changes between the index and a named commit (diff).\n
+\t    iD \t     ${YELLOW}--:${COLOREND} displays changes between the index and a named commit (word diff).\n
+\t    ir \t     ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state.\n
+\t    iR \t     ${YELLOW}--:${COLOREND} resets the current index interactively.\n
+\t    ix \t     ${YELLOW}--:${COLOREND} removes files from the index (recursively).\n
+\t    iX \t     ${YELLOW}--:${COLOREND} removes files from the index (recursively and forced).\n"
+
+LOG_MSG="${BLOD}Log(l)${COLOREND}\n
+\t    l  \t     ${YELLOW}--:${COLOREND} displays the log.\n
+\t    ls \t     ${YELLOW}--:${COLOREND} displays the stats log.\n
+\t    ld \t     ${YELLOW}--:${COLOREND} displays the diff log.\n
+\t    lv \t     ${YELLOW}--:${COLOREND} displays the log, verifying the GPG signature of commits.\n
+\t    lc \t     ${YELLOW}--:${COLOREND} displays the commit count for each contributor in descending order.\n
+\t    lr \t     ${YELLOW}--:${COLOREND} manages reflog information.\n"
+
+MERGE_NSG="${BLOD}Merge(m)${COLOREND}\n
+\t    m  \t     ${YELLOW}--:${COLOREND} joins two or more development histories together.\n
+\t    ma \t     ${YELLOW}--:${COLOREND} aborts the conflict resolution, and reconstructs the pre-merge state.\n
+\t    mC \t     ${YELLOW}--:${COLOREND} performs the merge but does not commit.\n
+\t    mF \t     ${YELLOW}--:${COLOREND} creates a merge commit even if the merge could be resolved as a fast-forward.\n
+\t    mS \t     ${YELLOW}--:${COLOREND} performs the merge and GPG-signs the resulting commit.\n
+\t    mv \t     ${YELLOW}--:${COLOREND} verifies the GPG signature of the tip commit of the side branch being merged.\n
+\t    mt \t     ${YELLOW}--:${COLOREND} runs the merge conflict resolution tools to resolve conflicts.\n"
+
+PUSH_MSG="${BLOD}Push(p)${COLOREND}\n 
+\t    p   \t     ${YELLOW}--:${COLOREND} updates remote refs along with associated objects.\n 
+\t    pf  \t     ${YELLOW}--:${COLOREND} forces a push safely (with \"lease\").\n 
+\t    pF  \t     ${YELLOW}--:${COLOREND} forces a push.\n 
+\t    pa  \t     ${YELLOW}--:${COLOREND} pushes all branches.\n 
+\t    pA  \t     ${YELLOW}--:${COLOREND} pushes all branches and tags.\n 
+\t    pt  \t     ${YELLOW}--:${COLOREND} pushes all tags.\n 
+\t    pc  \t     ${YELLOW}--:${COLOREND} pushes the current branch and adds origin as an upstream reference for it.\n 
+\t    pp  \t     ${YELLOW}--:${COLOREND} pulls and pushes the current branch from origin to origin.\n" 
+
+REMOTE_MSG="${BLOD}Remote(R)${COLOREND}\n
+\t    R  \t      ${YELLOW}--:${COLOREND} manages tracked repositories.\n
+\t    Rl \t      ${YELLOW}--:${COLOREND} lists remote names and their URLs.\n
+\t    Ra \t      ${YELLOW}--:${COLOREND} adds a new remote.\n
+\t    Rx \t      ${YELLOW}--:${COLOREND} removes a remote.\n
+\t    Rm \t      ${YELLOW}--:${COLOREND} renames a remote.\n
+\t    Ru \t      ${YELLOW}--:${COLOREND} fetches remotes updates.\n
+\t    Rp \t      ${YELLOW}--:${COLOREND} prunes all stale remote tracking branches.\n
+\t    Rs \t      ${YELLOW}--:${COLOREND} shows information about a given remote.\n
+\t    RS \t      ${YELLOW}--:${COLOREND} changes URLs for a remote.\n"
+
+STASH_MSG="${BLOD}Stash(s)${COLOREND}\n
+\t    s  \t      ${YELLOW}--:${COLOREND} stashes the changes of the dirty working directory.\n
+\t    sp \t      ${YELLOW}--:${COLOREND} removes and applies a single stashed state from the stash list.\n"
+
+WORKING_TREE_MSG="${BLOD}Working tree(w)${COLOREND}\n
+\t    ws  \t     ${YELLOW}--:${COLOREND} displays working-tree status in the short format.\n
+\t    wS  \t     ${YELLOW}--:${COLOREND} displays working-tree status.\n
+\t    wd  \t     ${YELLOW}--:${COLOREND} displays changes between the working tree and the index (diff).\n
+\t    wD  \t     ${YELLOW}--:${COLOREND} displays changes between the working tree and the index (word diff).\n
+\t    wr  \t     ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n
+\t    wR  \t     ${YELLOW}--:${COLOREND} resets the current HEAD, index and working tree to the specified state.\n
+\t    wc  \t     ${YELLOW}--:${COLOREND} cleans untracked files from the working tree (dry-run).\n
+\t    wC  \t     ${YELLOW}--:${COLOREND} cleans untracked files from the working tree.\n
+\t    wm  \t     ${YELLOW}--:${COLOREND} moves or renames files.\n
+\t    wM  \t     ${YELLOW}--:${COLOREND} moves or renames files (forced).\n
+\t    wx  \t     ${YELLOW}--:${COLOREND} removes files from the working tree and from the index (recursively).\n
+\t    wX  \t     ${YELLOW}--:${COLOREND} removes files from the working tree and from the index (recursively and forced).\n"
+
+_help_mesg() {
     LANG=$1
     case $LANG in
         "english" )
             echo "usage: g <command> [<args>]\n\n"\
             "These are short commands that can replace git operations:\n\n"\
-            "${BLOD}Branch(b)\033[0m\n"\
-            "    b       ${YELLOW}--:${COLOREND} lists, creates, renames, and deletes branches.\n"\
-            "    bc      ${YELLOW}--:${COLOREND} creates a new branch.\n"\
-            "    bl      ${YELLOW}--:${COLOREND} lists branches and their commits.\n"\
-            "    bL      ${YELLOW}--:${COLOREND} lists local and remote branches and their commits.\n"\
-            "    bs      ${YELLOW}--:${COLOREND} lists branches and their commits with ancestry graphs.\n"\
-            "    bS      ${YELLOW}--:${COLOREND} lists local and remote branches and their commits with ancestry graphs.\n"\
-            "    bm      ${YELLOW}--:${COLOREND} renames a branch.\n"\
-            "    bM      ${YELLOW}--:${COLOREND} renames a branch even if the new branch name already exists.\n"\
-            "\n${BLOD}Commit(c)${COLOREND}\n"\
-            "    c       ${YELLOW}--:${COLOREND} records changes to the repository.\n"\
-            "    ca      ${YELLOW}--:${COLOREND} commits all modified and deleted files.\n"\
-            "    cA      ${YELLOW}--:${COLOREND} commits all modified and deleted files interactivly.\n"\
-            "    cm      ${YELLOW}--:${COLOREND} commits with the given message.\n"\
-            "    co      ${YELLOW}--:${COLOREND} checks out a branch or paths to the working tree.\n"\
-            "    cO      ${YELLOW}--:${COLOREND} checks out hunks from the index or the tree interactively.\n"\
-            "    cf      ${YELLOW}--:${COLOREND} amends the tip of the current branch reusing the same log message as HEAD.\n"\
-            "    cF      ${YELLOW}--:${COLOREND} amends the tip of the current branch.\n"\
-            "    cr      ${YELLOW}--:${COLOREND} reverts existing commits by reverting patches and recording new commits.\n"\
-            "    cR      ${YELLOW}--:${COLOREND} removes the HEAD commit.\n"\
-            "    cs      ${YELLOW}--:${COLOREND} shows one or more objects (blobs, trees, tags and commits).\n"\
-            "\n${BLOD}Conflict(C)${COLOREND}\n"\
-            "    Cl      ${YELLOW}--:${COLOREND} lists unmerged files.\n"\
-            "    Ca      ${YELLOW}--:${COLOREND} adds unmerged file contents to the index.\n"\
-            "    Ce      ${YELLOW}--:${COLOREND} executes merge-tool on all unmerged files.\n"\
-            "    Co      ${YELLOW}--:${COLOREND} checks out our changes for unmerged paths.\n"\
-            "    CO      ${YELLOW}--:${COLOREND} checks out our changes for all unmerged paths.\n"\
-            "    Ct      ${YELLOW}--:${COLOREND} checks out their changes for unmerged paths.\n"\
-            "    CT      ${YELLOW}--:${COLOREND} checks out their changes for all unmerged paths.\n"\
-            "\n${BLOD}Fetch(f)${COLOREND}\n"\
-            "    f       ${YELLOW}--:${COLOREND} downloads objects and references from another repository.\n"\
-            "    fc      ${YELLOW}--:${COLOREND} clones a repository into a new directory.\n"\
-            "    fm      ${YELLOW}--:${COLOREND} fetches from and merges with another repository or local branch.\n"\
-            "    fr      ${YELLOW}--:${COLOREND} fetches from and rebases on top of another repository or local branch.\n"\
-            "    fu      ${YELLOW}--:${COLOREND} removes unexisting remote-tracking references, fetches all remotes and merges.\n"\
-            "    fb      ${YELLOW}--:${COLOREND} fetch other branch to local as same name.\n"\
-            "\n${BLOD}Index(i)${COLOREND}\n"\
-            "    ia      ${YELLOW}--:${COLOREND} adds file contents to the index(default: all files).\n"\
-            "    iA      ${YELLOW}--:${COLOREND} adds file contents to the index interactively.\n"\
-            "    iu      ${YELLOW}--:${COLOREND} adds file contents to the index (updates only known files).\n"\
-            "    id      ${YELLOW}--:${COLOREND} displays changes between the index and a named commit (diff).\n"\
-            "    iD      ${YELLOW}--:${COLOREND} displays changes between the index and a named commit (word diff).\n"\
-            "    ir      ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state.\n"\
-            "    iR      ${YELLOW}--:${COLOREND} resets the current index interactively.\n"\
-            "    ix      ${YELLOW}--:${COLOREND} removes files from the index (recursively).\n"\
-            "    iX      ${YELLOW}--:${COLOREND} removes files from the index (recursively and forced).\n"\
-            "\n${BLOD}Log(l)${COLOREND}\n"\
-            "    l       ${YELLOW}--:${COLOREND} displays the log.\n"\
-            "    ls      ${YELLOW}--:${COLOREND} displays the stats log.\n"\
-            "    ld      ${YELLOW}--:${COLOREND} displays the diff log.\n"\
-            "    lv      ${YELLOW}--:${COLOREND} displays the log, verifying the GPG signature of commits.\n"\
-            "    lc      ${YELLOW}--:${COLOREND} displays the commit count for each contributor in descending order.\n"\
-            "    lr      ${YELLOW}--:${COLOREND} manages reflog information.\n"\
-            "\n${BLOD}Merge(m)${COLOREND}\n"\
-            "    m       ${YELLOW}--:${COLOREND} joins two or more development histories together.\n"\
-            "    ma      ${YELLOW}--:${COLOREND} aborts the conflict resolution, and reconstructs the pre-merge state.\n"\
-            "    mC      ${YELLOW}--:${COLOREND} performs the merge but does not commit.\n"\
-            "    mF      ${YELLOW}--:${COLOREND} creates a merge commit even if the merge could be resolved as a fast-forward.\n"\
-            "    mS      ${YELLOW}--:${COLOREND} performs the merge and GPG-signs the resulting commit.\n"\
-            "    mv      ${YELLOW}--:${COLOREND} verifies the GPG signature of the tip commit of the side branch being merged.\n"\
-            "    mt      ${YELLOW}--:${COLOREND} runs the merge conflict resolution tools to resolve conflicts.\n"\
-            "\n${BLOD}Push(p)${COLOREND}\n"\
-            "    p        ${YELLOW}--:${COLOREND} updates remote refs along with associated objects.\n"\
-            "    pf       ${YELLOW}--:${COLOREND} forces a push safely (with "lease").\n"\
-            "    pF       ${YELLOW}--:${COLOREND} forces a push.\n"\
-            "    pa       ${YELLOW}--:${COLOREND} pushes all branches.\n"\
-            "    pA       ${YELLOW}--:${COLOREND} pushes all branches and tags.\n"\
-            "    pt       ${YELLOW}--:${COLOREND} pushes all tags.\n"\
-            "    pc       ${YELLOW}--:${COLOREND} pushes the current branch and adds origin as an upstream reference for it.\n"\
-            "    pp       ${YELLOW}--:${COLOREND} pulls and pushes the current branch from origin to origin.\n"\
-            "\n${BLOD}Remote(R)${COLOREND}\n"\
-            "    R        ${YELLOW}--:${COLOREND} manages tracked repositories.\n"\
-            "    Rl       ${YELLOW}--:${COLOREND} lists remote names and their URLs.\n"\
-            "    Ra       ${YELLOW}--:${COLOREND} adds a new remote.\n"\
-            "    Rx       ${YELLOW}--:${COLOREND} removes a remote.\n"\
-            "    Rm       ${YELLOW}--:${COLOREND} renames a remote.\n"\
-            "    Ru       ${YELLOW}--:${COLOREND} fetches remotes updates.\n"\
-            "    Rp       ${YELLOW}--:${COLOREND} prunes all stale remote tracking branches.\n"\
-            "    Rs       ${YELLOW}--:${COLOREND} shows information about a given remote.\n"\
-            "    RS       ${YELLOW}--:${COLOREND} changes URLs for a remote.\n"\
-            "\n${BLOD}Stash(s)${COLOREND}\n"\
-            "    s        ${YELLOW}--:${COLOREND} stashes the changes of the dirty working directory.\n"\
-            "    sp       ${YELLOW}--:${COLOREND} removes and applies a single stashed state from the stash list.\n"\
-            "\n${BLOD}Working tree(w)${COLOREND}\n"\
-            "    ws       ${YELLOW}--:${COLOREND} displays working-tree status in the short format.\n"\
-            "    wS       ${YELLOW}--:${COLOREND} displays working-tree status.\n"\
-            "    wd       ${YELLOW}--:${COLOREND} displays changes between the working tree and the index (diff).\n"\
-            "    wD       ${YELLOW}--:${COLOREND} displays changes between the working tree and the index (word diff).\n"\
-            "    wr       ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n"\
-            "    wR       ${YELLOW}--:${COLOREND} resets the current HEAD, index and working tree to the specified state.\n"\
-            "    wc       ${YELLOW}--:${COLOREND} cleans untracked files from the working tree (dry-run).\n"\
-            "    wC       ${YELLOW}--:${COLOREND} cleans untracked files from the working tree.\n"\
-            "    wm       ${YELLOW}--:${COLOREND} moves or renames files.\n"\
-            "    wM       ${YELLOW}--:${COLOREND} moves or renames files (forced).\n"\
-            "    wx       ${YELLOW}--:${COLOREND} removes files from the working tree and from the index (recursively).\n"\
-            "    wX       ${YELLOW}--:${COLOREND} removes files from the working tree and from the index (recursively and forced).\n"\
+            $BRANCH_MSG\
+            "\n"\
+            ${COMMIT_MSG}\
+            "\n"\
+            ${CONFLICT_MSG}\
+            "\n"\
+            ${FETCH_MSG}\
+            "\n"\
+            ${INDEX_MSG}\
+            "\n"\
+            ${LOG_MSG}\
+            "\n"\
+            ${MERGE_NSG}\
+            "\n"\
+            ${PUSH_MSG}\
+            "\n"\
+            ${REMOTE_MSG}\
+            "\n"\
+            ${STASH_MSG}\
+            "\n"\
+            ${WORKING_TREE_MSG}\
             "\n${BLOD}Setting${COLOREND}\n"\
-            "    savepd  ${YELLOW}--${COLOREND} Remember your account number and password. \n"\
+            "\tsavepd \t${YELLOW}--${COLOREND} Remember your account number and password. \n"\
         ;;
 
         "chinese" )
@@ -383,7 +449,8 @@ _help_mesg() { # {{{
             "    savepd  ${YELLOW}--${COLOREND} Git 将开始保存你的用户名和密码\n"
         ;;
     esac
-} # }}}
+}
+# }}}
 
 # Start
 simple_git $@
