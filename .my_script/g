@@ -10,17 +10,6 @@
 # See https://git-scm.com/docs/pretty-formats
 _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 
-# Output format
-COLOREND=\\033[0m
-BLACK=\\033[30m
-RED=\\033[31m
-GREEN=\\033[32m
-YELLOW=\\033[33m
-PURPEL=\\033[34m
-BLACK=\\033[35m
-SKYFBLUE=\\033[36m
-WHITE=\\033[37m
-BLOD=\\033[1m
 
 
 simple_git() {
@@ -168,9 +157,10 @@ simple_git() {
 
 
         # Setting
-        'savepd')git config credential.helper store;;
-        'user'  )git config user.name ${@:2:$((${#@}))};;
+        'savepd'  )git config credential.helper store;;
+        'user'    )git config user.name ${@:2:$((${#@}))};;
         'email'   )git config user.email ${@:2:$((${#@}))};;
+        'clear'   )_git_clear ${@:2:$((${#@}))};;
 
 
         # Help message
@@ -213,124 +203,139 @@ simple_git() {
 _check_git_status() {
     # adjust wether has git
     if ! command -v git >/dev/null 2>&1; then
-        echo "${RED}Not found git, please install git first.${COLOREND}"
+        echo "${RED_COLOR}Not found git, please install git first.${FORMAT_RES}"
         exit 0
     fi
 }
 
-# {{{
+
+# Output format {{{
+FORMAT_RES=\\033[0m
+BLACK_COLOR=\\033[30m
+RED_COLOR=\\033[31m
+GREEN_COLOR=\\033[32m
+YELLOW_COLOR=\\033[33m
+PURPEL_COLOR=\\033[34m
+BLACK_COLOR=\\033[35m
+SKYFBLUE_COLOR=\\033[36m
+WHITE_COLOR=\\033[37m
+BLOD=\\033[1m
+# }}}
+
+
+# Msg {{{
 BRANCH_MSG="${BLOD}Branch(b)\033[0m\n\n
-\t b  \t ${YELLOW}--:${COLOREND} lists, creates, renames, and deletes branches.\n
-\t bc \t ${YELLOW}--:${COLOREND} creates a new branch.\n
-\t bl \t ${YELLOW}--:${COLOREND} lists branches and their commits.\n
-\t bL \t ${YELLOW}--:${COLOREND} lists local and remote branches and their commits.\n
-\t bs \t ${YELLOW}--:${COLOREND} lists branches and their commits with ancestry graphs.\n
-\t bS \t ${YELLOW}--:${COLOREND} lists local and remote branches and their commits with ancestry graphs.\n
-\t bm \t ${YELLOW}--:${COLOREND} renames a branch.\n
-\t bM \t ${YELLOW}--:${COLOREND} renames a branch even if the new branch name already exists.\n"
+\t b  \t ${YELLOW_COLOR}--:${FORMAT_RES} lists, creates, renames, and deletes branches.\n
+\t bc \t ${YELLOW_COLOR}--:${FORMAT_RES} creates a new branch.\n
+\t bl \t ${YELLOW_COLOR}--:${FORMAT_RES} lists branches and their commits.\n
+\t bL \t ${YELLOW_COLOR}--:${FORMAT_RES} lists local and remote branches and their commits.\n
+\t bs \t ${YELLOW_COLOR}--:${FORMAT_RES} lists branches and their commits with ancestry graphs.\n
+\t bS \t ${YELLOW_COLOR}--:${FORMAT_RES} lists local and remote branches and their commits with ancestry graphs.\n
+\t bm \t ${YELLOW_COLOR}--:${FORMAT_RES} renames a branch.\n
+\t bM \t ${YELLOW_COLOR}--:${FORMAT_RES} renames a branch even if the new branch name already exists.\n"
 
-COMMIT_MSG="${BLOD}Commit(c)${COLOREND}\n
-\t    c  \t     ${YELLOW}--:${COLOREND} records changes to the repository.\n
-\t    ca \t     ${YELLOW}--:${COLOREND} commits all modified and deleted files.\n
-\t    cA \t     ${YELLOW}--:${COLOREND} commits all modified and deleted files interactivly.\n
-\t    cm \t     ${YELLOW}--:${COLOREND} commits with the given message.\n
-\t    co \t     ${YELLOW}--:${COLOREND} checks out a branch or paths to the working tree.\n
-\t    cO \t     ${YELLOW}--:${COLOREND} checks out hunks from the index or the tree interactively.\n
-\t    cf \t     ${YELLOW}--:${COLOREND} amends the tip of the current branch reusing the same log message as HEAD.\n
-\t    cF \t     ${YELLOW}--:${COLOREND} amends the tip of the current branch.\n
-\t    cr \t     ${YELLOW}--:${COLOREND} reverts existing commits by reverting patches and recording new commits.\n
-\t    cR \t     ${YELLOW}--:${COLOREND} removes the HEAD commit.\n
-\t    cs \t     ${YELLOW}--:${COLOREND} shows one or more objects (blobs, trees, tags and commits).\n"
+COMMIT_MSG="${BLOD}Commit(c)${FORMAT_RES}\n
+\t    c  \t     ${YELLOW_COLOR}--:${FORMAT_RES} records changes to the repository.\n
+\t    ca \t     ${YELLOW_COLOR}--:${FORMAT_RES} commits all modified and deleted files.\n
+\t    cA \t     ${YELLOW_COLOR}--:${FORMAT_RES} commits all modified and deleted files interactivly.\n
+\t    cm \t     ${YELLOW_COLOR}--:${FORMAT_RES} commits with the given message.\n
+\t    co \t     ${YELLOW_COLOR}--:${FORMAT_RES} checks out a branch or paths to the working tree.\n
+\t    cO \t     ${YELLOW_COLOR}--:${FORMAT_RES} checks out hunks from the index or the tree interactively.\n
+\t    cf \t     ${YELLOW_COLOR}--:${FORMAT_RES} amends the tip of the current branch reusing the same log message as HEAD.\n
+\t    cF \t     ${YELLOW_COLOR}--:${FORMAT_RES} amends the tip of the current branch.\n
+\t    cr \t     ${YELLOW_COLOR}--:${FORMAT_RES} reverts existing commits by reverting patches and recording new commits.\n
+\t    cR \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes the HEAD commit.\n
+\t    cs \t     ${YELLOW_COLOR}--:${FORMAT_RES} shows one or more objects (blobs, trees, tags and commits).\n"
 
-CONFLICT_MSG="${BLOD}Conflict(C)${COLOREND}\n
-\t    Cl \t     ${YELLOW}--:${COLOREND} lists unmerged files.\n
-\t    Ca \t     ${YELLOW}--:${COLOREND} adds unmerged file contents to the index.\n
-\t    Ce \t     ${YELLOW}--:${COLOREND} executes merge-tool on all unmerged files.\n
-\t    Co \t     ${YELLOW}--:${COLOREND} checks out our changes for unmerged paths.\n
-\t    CO \t     ${YELLOW}--:${COLOREND} checks out our changes for all unmerged paths.\n
-\t    Ct \t     ${YELLOW}--:${COLOREND} checks out their changes for unmerged paths.\n
-\t    CT \t     ${YELLOW}--:${COLOREND} checks out their changes for all unmerged paths.\n"
+CONFLICT_MSG="${BLOD}Conflict(C)${FORMAT_RES}\n
+\t    Cl \t     ${YELLOW_COLOR}--:${FORMAT_RES} lists unmerged files.\n
+\t    Ca \t     ${YELLOW_COLOR}--:${FORMAT_RES} adds unmerged file contents to the index.\n
+\t    Ce \t     ${YELLOW_COLOR}--:${FORMAT_RES} executes merge-tool on all unmerged files.\n
+\t    Co \t     ${YELLOW_COLOR}--:${FORMAT_RES} checks out our changes for unmerged paths.\n
+\t    CO \t     ${YELLOW_COLOR}--:${FORMAT_RES} checks out our changes for all unmerged paths.\n
+\t    Ct \t     ${YELLOW_COLOR}--:${FORMAT_RES} checks out their changes for unmerged paths.\n
+\t    CT \t     ${YELLOW_COLOR}--:${FORMAT_RES} checks out their changes for all unmerged paths.\n"
 
-FETCH_MSG="${BLOD}Fetch(f)${COLOREND}\n
-\t    f  \t     ${YELLOW}--:${COLOREND} downloads objects and references from another repository.\n
-\t    fc \t     ${YELLOW}--:${COLOREND} clones a repository into a new directory.\n
-\t    fm \t     ${YELLOW}--:${COLOREND} fetches from and merges with another repository or local branch.\n
-\t    fr \t     ${YELLOW}--:${COLOREND} fetches from and rebases on top of another repository or local branch.\n
-\t    fu \t     ${YELLOW}--:${COLOREND} removes unexisting remote-tracking references, fetches all remotes and merges.\n
-\t    fb \t     ${YELLOW}--:${COLOREND} fetch other branch to local as same name.\n"
+FETCH_MSG="${BLOD}Fetch(f)${FORMAT_RES}\n
+\t    f  \t     ${YELLOW_COLOR}--:${FORMAT_RES} downloads objects and references from another repository.\n
+\t    fc \t     ${YELLOW_COLOR}--:${FORMAT_RES} clones a repository into a new directory.\n
+\t    fm \t     ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and merges with another repository or local branch.\n
+\t    fr \t     ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and rebases on top of another repository or local branch.\n
+\t    fu \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes unexisting remote-tracking references, fetches all remotes and merges.\n
+\t    fb \t     ${YELLOW_COLOR}--:${FORMAT_RES} fetch other branch to local as same name.\n"
 
-INDEX_MSG="${BLOD}Index(i)${COLOREND}\n
-\t    ia \t     ${YELLOW}--:${COLOREND} adds file contents to the index(default: all files).\n
-\t    iA \t     ${YELLOW}--:${COLOREND} adds file contents to the index interactively.\n
-\t    iu \t     ${YELLOW}--:${COLOREND} adds file contents to the index (updates only known files).\n
-\t    id \t     ${YELLOW}--:${COLOREND} displays changes between the index and a named commit (diff).\n
-\t    iD \t     ${YELLOW}--:${COLOREND} displays changes between the index and a named commit (word diff).\n
-\t    ir \t     ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state.\n
-\t    iR \t     ${YELLOW}--:${COLOREND} resets the current index interactively.\n
-\t    ix \t     ${YELLOW}--:${COLOREND} removes files from the index (recursively).\n
-\t    iX \t     ${YELLOW}--:${COLOREND} removes files from the index (recursively and forced).\n"
+INDEX_MSG="${BLOD}Index(i)${FORMAT_RES}\n
+\t    ia \t     ${YELLOW_COLOR}--:${FORMAT_RES} adds file contents to the index(default: all files).\n
+\t    iA \t     ${YELLOW_COLOR}--:${FORMAT_RES} adds file contents to the index interactively.\n
+\t    iu \t     ${YELLOW_COLOR}--:${FORMAT_RES} adds file contents to the index (updates only known files).\n
+\t    id \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays changes between the index and a named commit (diff).\n
+\t    iD \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays changes between the index and a named commit (word diff).\n
+\t    ir \t     ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state.\n
+\t    iR \t     ${YELLOW_COLOR}--:${FORMAT_RES} resets the current index interactively.\n
+\t    ix \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the index (recursively).\n
+\t    iX \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the index (recursively and forced).\n"
 
-LOG_MSG="${BLOD}Log(l)${COLOREND}\n
-\t    l  \t     ${YELLOW}--:${COLOREND} displays the log.\n
-\t    ls \t     ${YELLOW}--:${COLOREND} displays the stats log.\n
-\t    ld \t     ${YELLOW}--:${COLOREND} displays the diff log.\n
-\t    lv \t     ${YELLOW}--:${COLOREND} displays the log, verifying the GPG signature of commits.\n
-\t    lc \t     ${YELLOW}--:${COLOREND} displays the commit count for each contributor in descending order.\n
-\t    lr \t     ${YELLOW}--:${COLOREND} manages reflog information.\n"
+LOG_MSG="${BLOD}Log(l)${FORMAT_RES}\n
+\t    l  \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays the log.\n
+\t    ls \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays the stats log.\n
+\t    ld \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays the diff log.\n
+\t    lv \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays the log, verifying the GPG signature of commits.\n
+\t    lc \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays the commit count for each contributor in descending order.\n
+\t    lr \t     ${YELLOW_COLOR}--:${FORMAT_RES} manages reflog information.\n"
 
-MERGE_NSG="${BLOD}Merge(m)${COLOREND}\n
-\t    m  \t     ${YELLOW}--:${COLOREND} joins two or more development histories together.\n
-\t    ma \t     ${YELLOW}--:${COLOREND} aborts the conflict resolution, and reconstructs the pre-merge state.\n
-\t    mC \t     ${YELLOW}--:${COLOREND} performs the merge but does not commit.\n
-\t    mF \t     ${YELLOW}--:${COLOREND} creates a merge commit even if the merge could be resolved as a fast-forward.\n
-\t    mS \t     ${YELLOW}--:${COLOREND} performs the merge and GPG-signs the resulting commit.\n
-\t    mv \t     ${YELLOW}--:${COLOREND} verifies the GPG signature of the tip commit of the side branch being merged.\n
-\t    mt \t     ${YELLOW}--:${COLOREND} runs the merge conflict resolution tools to resolve conflicts.\n"
+MERGE_NSG="${BLOD}Merge(m)${FORMAT_RES}\n
+\t    m  \t     ${YELLOW_COLOR}--:${FORMAT_RES} joins two or more development histories together.\n
+\t    ma \t     ${YELLOW_COLOR}--:${FORMAT_RES} aborts the conflict resolution, and reconstructs the pre-merge state.\n
+\t    mC \t     ${YELLOW_COLOR}--:${FORMAT_RES} performs the merge but does not commit.\n
+\t    mF \t     ${YELLOW_COLOR}--:${FORMAT_RES} creates a merge commit even if the merge could be resolved as a fast-forward.\n
+\t    mS \t     ${YELLOW_COLOR}--:${FORMAT_RES} performs the merge and GPG-signs the resulting commit.\n
+\t    mv \t     ${YELLOW_COLOR}--:${FORMAT_RES} verifies the GPG signature of the tip commit of the side branch being merged.\n
+\t    mt \t     ${YELLOW_COLOR}--:${FORMAT_RES} runs the merge conflict resolution tools to resolve conflicts.\n"
 
-PUSH_MSG="${BLOD}Push(p)${COLOREND}\n 
-\t    p   \t     ${YELLOW}--:${COLOREND} updates remote refs along with associated objects.\n 
-\t    pf  \t     ${YELLOW}--:${COLOREND} forces a push safely (with \"lease\").\n 
-\t    pF  \t     ${YELLOW}--:${COLOREND} forces a push.\n 
-\t    pa  \t     ${YELLOW}--:${COLOREND} pushes all branches.\n 
-\t    pA  \t     ${YELLOW}--:${COLOREND} pushes all branches and tags.\n 
-\t    pt  \t     ${YELLOW}--:${COLOREND} pushes all tags.\n 
-\t    pc  \t     ${YELLOW}--:${COLOREND} pushes the current branch and adds origin as an upstream reference for it.\n 
-\t    pp  \t     ${YELLOW}--:${COLOREND} pulls and pushes the current branch from origin to origin.\n" 
+PUSH_MSG="${BLOD}Push(p)${FORMAT_RES}\n 
+\t    p   \t     ${YELLOW_COLOR}--:${FORMAT_RES} updates remote refs along with associated objects.\n 
+\t    pf  \t     ${YELLOW_COLOR}--:${FORMAT_RES} forces a push safely (with \"lease\").\n 
+\t    pF  \t     ${YELLOW_COLOR}--:${FORMAT_RES} forces a push.\n 
+\t    pa  \t     ${YELLOW_COLOR}--:${FORMAT_RES} pushes all branches.\n 
+\t    pA  \t     ${YELLOW_COLOR}--:${FORMAT_RES} pushes all branches and tags.\n 
+\t    pt  \t     ${YELLOW_COLOR}--:${FORMAT_RES} pushes all tags.\n 
+\t    pc  \t     ${YELLOW_COLOR}--:${FORMAT_RES} pushes the current branch and adds origin as an upstream reference for it.\n 
+\t    pp  \t     ${YELLOW_COLOR}--:${FORMAT_RES} pulls and pushes the current branch from origin to origin.\n" 
 
-REMOTE_MSG="${BLOD}Remote(R)${COLOREND}\n
-\t    R  \t      ${YELLOW}--:${COLOREND} manages tracked repositories.\n
-\t    Rl \t      ${YELLOW}--:${COLOREND} lists remote names and their URLs.\n
-\t    Ra \t      ${YELLOW}--:${COLOREND} adds a new remote.\n
-\t    Rx \t      ${YELLOW}--:${COLOREND} removes a remote.\n
-\t    Rm \t      ${YELLOW}--:${COLOREND} renames a remote.\n
-\t    Ru \t      ${YELLOW}--:${COLOREND} fetches remotes updates.\n
-\t    Rp \t      ${YELLOW}--:${COLOREND} prunes all stale remote tracking branches.\n
-\t    Rs \t      ${YELLOW}--:${COLOREND} shows information about a given remote.\n
-\t    RS \t      ${YELLOW}--:${COLOREND} changes URLs for a remote.\n"
+REMOTE_MSG="${BLOD}Remote(R)${FORMAT_RES}\n
+\t    R  \t      ${YELLOW_COLOR}--:${FORMAT_RES} manages tracked repositories.\n
+\t    Rl \t      ${YELLOW_COLOR}--:${FORMAT_RES} lists remote names and their URLs.\n
+\t    Ra \t      ${YELLOW_COLOR}--:${FORMAT_RES} adds a new remote.\n
+\t    Rx \t      ${YELLOW_COLOR}--:${FORMAT_RES} removes a remote.\n
+\t    Rm \t      ${YELLOW_COLOR}--:${FORMAT_RES} renames a remote.\n
+\t    Ru \t      ${YELLOW_COLOR}--:${FORMAT_RES} fetches remotes updates.\n
+\t    Rp \t      ${YELLOW_COLOR}--:${FORMAT_RES} prunes all stale remote tracking branches.\n
+\t    Rs \t      ${YELLOW_COLOR}--:${FORMAT_RES} shows information about a given remote.\n
+\t    RS \t      ${YELLOW_COLOR}--:${FORMAT_RES} changes URLs for a remote.\n"
 
-STASH_MSG="${BLOD}Stash(s)${COLOREND}\n
-\t    s  \t      ${YELLOW}--:${COLOREND} stashes the changes of the dirty working directory.\n
-\t    sp \t      ${YELLOW}--:${COLOREND} removes and applies a single stashed state from the stash list.\n
-\t    sl \t      ${YELLOW}--:${COLOREND} lists stashed states.\n"
+STASH_MSG="${BLOD}Stash(s)${FORMAT_RES}\n
+\t    s  \t      ${YELLOW_COLOR}--:${FORMAT_RES} stashes the changes of the dirty working directory.\n
+\t    sp \t      ${YELLOW_COLOR}--:${FORMAT_RES} removes and applies a single stashed state from the stash list.\n
+\t    sl \t      ${YELLOW_COLOR}--:${FORMAT_RES} lists stashed states.\n"
 
-TAG_MSG="${BLOD}Tag(t)${COLOREND}\n
-\t  t  \t ${YELLOW}--:${COLOREND} creates, lists, deletes or verifies a tag object signed with GPG.\n
-\t  ta \t ${YELLOW}--:${COLOREND} create a new tag.\n
-\t  tx \t ${YELLOW}--:${COLOREND} deletes tags with given names.\n"
+TAG_MSG="${BLOD}Tag(t)${FORMAT_RES}\n
+\t  t  \t ${YELLOW_COLOR}--:${FORMAT_RES} creates, lists, deletes or verifies a tag object signed with GPG.\n
+\t  ta \t ${YELLOW_COLOR}--:${FORMAT_RES} create a new tag.\n
+\t  tx \t ${YELLOW_COLOR}--:${FORMAT_RES} deletes tags with given names.\n"
 
-WORKING_TREE_MSG="${BLOD}Working tree(w)${COLOREND}\n
-\t    ws  \t     ${YELLOW}--:${COLOREND} displays working-tree status in the short format.\n
-\t    wS  \t     ${YELLOW}--:${COLOREND} displays working-tree status.\n
-\t    wd  \t     ${YELLOW}--:${COLOREND} displays changes between the working tree and the index (diff).\n
-\t    wD  \t     ${YELLOW}--:${COLOREND} displays changes between the working tree and the index (word diff).\n
-\t    wr  \t     ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n
-\t    wR  \t     ${YELLOW}--:${COLOREND} resets the current HEAD, index and working tree to the specified state.\n
-\t    wc  \t     ${YELLOW}--:${COLOREND} cleans untracked files from the working tree (dry-run).\n
-\t    wC  \t     ${YELLOW}--:${COLOREND} cleans untracked files from the working tree.\n
-\t    wm  \t     ${YELLOW}--:${COLOREND} moves or renames files.\n
-\t    wM  \t     ${YELLOW}--:${COLOREND} moves or renames files (forced).\n
-\t    wx  \t     ${YELLOW}--:${COLOREND} removes files from the working tree and from the index (recursively).\n
-\t    wX  \t     ${YELLOW}--:${COLOREND} removes files from the working tree and from the index (recursively and forced).\n"
+WORKING_TREE_MSG="${BLOD}Working tree(w)${FORMAT_RES}\n
+\t    ws  \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays working-tree status in the short format.\n
+\t    wS  \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays working-tree status.\n
+\t    wd  \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays changes between the working tree and the index (diff).\n
+\t    wD  \t     ${YELLOW_COLOR}--:${FORMAT_RES} displays changes between the working tree and the index (word diff).\n
+\t    wr  \t     ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n
+\t    wR  \t     ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD, index and working tree to the specified state.\n
+\t    wc  \t     ${YELLOW_COLOR}--:${FORMAT_RES} cleans untracked files from the working tree (dry-run).\n
+\t    wC  \t     ${YELLOW_COLOR}--:${FORMAT_RES} cleans untracked files from the working tree.\n
+\t    wm  \t     ${YELLOW_COLOR}--:${FORMAT_RES} moves or renames files.\n
+\t    wM  \t     ${YELLOW_COLOR}--:${FORMAT_RES} moves or renames files (forced).\n
+\t    wx  \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the working tree and from the index (recursively).\n
+\t    wX  \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the working tree and from the index (recursively and forced).\n"
 
 _help_mesg() {
     LANG=$1
@@ -361,115 +366,173 @@ _help_mesg() {
             ${TAG_MSG}\
             "\n"\
             ${WORKING_TREE_MSG}\
-            "\n${BLOD}Setting${COLOREND}\n"\
-            "\tsavepd   \t${YELLOW}--${COLOREND} Remember your account number and password. \n"\
-            "\tuser     \t${YELLOW}--${COLOREND} Set your username. \n"\
-            "\temail    \t${YELLOW}--${COLOREND} Set your email. \n"\
+            "\n${BLOD}Setting${FORMAT_RES}\n"\
+            "\tsavepd   \t${YELLOW_COLOR}--${FORMAT_RES} Remember your account number and password. \n"\
+            "\tuser     \t${YELLOW_COLOR}--${FORMAT_RES} Set your username. \n"\
+            "\temail    \t${YELLOW_COLOR}--${FORMAT_RES} Set your email. \n"\
+            "\tclear    \t${YELLOW_COLOR}--${FORMAT_RES} Clear the \`.git\` history. \n"\
         ;;
 
         "chinese" )
             echo "用法: g <command> [<args>]\n\n"\
             "这里是可以替代 Git 操作的简单命令:\n\n"\
             "${BLOD}Branch(b)\033[0m\n"\
-            "    b       ${YELLOW}--:${COLOREND} 展示、创建、重命名和删除分支\n"\
-            "    bc      ${YELLOW}--:${COLOREND} 创建一个新的分支\n"\
-            "    bl      ${YELLOW}--:${COLOREND} 展示分支和他们的提交信息\n"\
-            "    bL      ${YELLOW}--:${COLOREND} 展示本地和远程分支与他们的提交信息\n"\
-            "    bs      ${YELLOW}--:${COLOREND} lists branches and their commits with ancestry graphs.\n"\
-            "    bS      ${YELLOW}--:${COLOREND} lists local and remote branches and their commits with ancestry graphs.\n"\
-            "    bm      ${YELLOW}--:${COLOREND} 重命名分支\n"\
-            "    bM      ${YELLOW}--:${COLOREND} 重命名分支无论是否已存在\n"\
-            "\n${BLOD}Commit(c)${COLOREND}\n"\
-            "    c       ${YELLOW}--:${COLOREND} 提交\n"\
-            "    ca      ${YELLOW}--:${COLOREND} 提交所有修改和删除\n"\
-            "    cA      ${YELLOW}--:${COLOREND} 交互方式提交所有修改和删除\n"\
-            "    cm      ${YELLOW}--:${COLOREND} 使用你给出的消息提交\n"\
-            "    co      ${YELLOW}--:${COLOREND} checks out a branch or paths to the working tree.\n"\
-            "    cO      ${YELLOW}--:${COLOREND} checks out hunks from the index or the tree interactively.\n"\
-            "    cf      ${YELLOW}--:${COLOREND} amends the tip of the current branch reusing the same log message as HEAD.\n"\
-            "    cF      ${YELLOW}--:${COLOREND} amends the tip of the current branch.\n"\
-            "    cr      ${YELLOW}--:${COLOREND} reverts existing commits by reverting patches and recording new commits.\n"\
-            "    cR      ${YELLOW}--:${COLOREND} removes the HEAD commit.\n"\
-            "    cs      ${YELLOW}--:${COLOREND} shows one or more objects (blobs, trees, tags and commits).\n"\
-            "\n${BLOD}Conflict(C)${COLOREND}\n"\
-            "    Cl      ${YELLOW}--:${COLOREND} 展示未合并的文件\n"\
-            "    Ca      ${YELLOW}--:${COLOREND} 添加未合并的文件到索引\n"\
-            "    Ce      ${YELLOW}--:${COLOREND} 使用 merge-tool 在所有未合并的文件上\n"\
-            "    Co      ${YELLOW}--:${COLOREND} 在未合并的文件上使用我们的修改\n"\
-            "    CO      ${YELLOW}--:${COLOREND} 在所有未合并的文件上使用我们的修改\n"\
-            "    Ct      ${YELLOW}--:${COLOREND} 在未合并的文件上使用他们的修改\n"\
-            "    CT      ${YELLOW}--:${COLOREND} 在所有未合并的文件上使用他们的修改\n"\
-            "\n${BLOD}Fetch(f)${COLOREND}\n"\
-            "    f       ${YELLOW}--:${COLOREND} downloads objects and references from another repository.\n"\
-            "    fc      ${YELLOW}--:${COLOREND} clones a repository into a new directory.\n"\
-            "    fm      ${YELLOW}--:${COLOREND} fetches from and merges with another repository or local branch.\n"\
-            "    fr      ${YELLOW}--:${COLOREND} fetches from and rebases on top of another repository or local branch.\n"\
-            "    fu      ${YELLOW}--:${COLOREND} removes unexisting remote-tracking references, fetches all remotes and merges.\n"\
-            "    fb      ${YELLOW}--:${COLOREND} fetch other branch to local as same name.\n"\
-            "\n${BLOD}Index(i)${COLOREND}\n"\
-            "    ia      ${YELLOW}--:${COLOREND} 将文件添加到索引（默认所有）\n"\
-            "    iA      ${YELLOW}--:${COLOREND} 交互方式的添加文件到索引\n"\
-            "    iu      ${YELLOW}--:${COLOREND} 将文件添加到索引 (updates only known files).\n"\
-            "    id      ${YELLOW}--:${COLOREND} 显示索引和命名空间的更改(diff)\n"\
-            "    iD      ${YELLOW}--:${COLOREND} 显示索引和命名空间的更改(word diff)\n"\
-            "    ir      ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state.\n"\
-            "    iR      ${YELLOW}--:${COLOREND} resets the current index interactively.\n"\
-            "    ix      ${YELLOW}--:${COLOREND} removes files from the index (recursively).\n"\
-            "    iX      ${YELLOW}--:${COLOREND} removes files from the index (recursively and forced).\n"\
-            "\n${BLOD}Log(l)${COLOREND}\n"\
-            "    l       ${YELLOW}--:${COLOREND} 展示日志\n"\
-            "    ls      ${YELLOW}--:${COLOREND} 展示状态日志\n"\
-            "    ld      ${YELLOW}--:${COLOREND} 展示区别日志\n"\
-            "    lv      ${YELLOW}--:${COLOREND} displays the log, verifying the GPG signature of commits.\n"\
-            "    lc      ${YELLOW}--:${COLOREND} 已降序的方式展示提交者和提交数\n"\
-            "    lr      ${YELLOW}--:${COLOREND} 管理更新信息\n"\
-            "\n${BLOD}Merge(m)${COLOREND}\n"\
-            "    m       ${YELLOW}--:${COLOREND} 合并两个或更多的记录\n"\
-            "    ma      ${YELLOW}--:${COLOREND} aborts the conflict resolution, and reconstructs the pre-merge state.\n"\
-            "    mC      ${YELLOW}--:${COLOREND} performs the merge but does not commit.\n"\
-            "    mF      ${YELLOW}--:${COLOREND} creates a merge commit even if the merge could be resolved as a fast-forward.\n"\
-            "    mS      ${YELLOW}--:${COLOREND} performs the merge and GPG-signs the resulting commit.\n"\
-            "    mv      ${YELLOW}--:${COLOREND} verifies the GPG signature of the tip commit of the side branch being merged.\n"\
-            "    mt      ${YELLOW}--:${COLOREND} runs the merge conflict resolution tools to resolve conflicts.\n"\
-            "\n${BLOD}Push(p)${COLOREND}\n"\
-            "    p        ${YELLOW}--:${COLOREND} 更新远程引用及对象updates remote refs along with associated objects.\n"\
-            "    pf       ${YELLOW}--:${COLOREND} 安全的强制推送forces a push safely (with "lease").\n"\
-            "    pF       ${YELLOW}--:${COLOREND} 强制推送forces a push.\n"\
-            "    pa       ${YELLOW}--:${COLOREND} 推送所有分支pushes all branches.\n"\
-            "    pA       ${YELLOW}--:${COLOREND} 推送所有分支和标签pushes all branches and tags.\n"\
-            "    pt       ${YELLOW}--:${COLOREND} 推送所有标签pushes all tags.\n"\
-            "    pc       ${YELLOW}--:${COLOREND} pushes the current branch and adds origin as an upstream reference for it.\n"\
-            "    pp       ${YELLOW}--:${COLOREND} pulls and pushes the current branch from origin to origin.\n"\
-            "\n${BLOD}Remote(R)${COLOREND}\n"\
-            "    R        ${YELLOW}--:${COLOREND} 管理跟踪的仓库\n"\
-            "    Rl       ${YELLOW}--:${COLOREND} 展示所有远程连接的名字和 URLs\n"\
-            "    Ra       ${YELLOW}--:${COLOREND} 添加一个新的远程连接\n"\
-            "    Rx       ${YELLOW}--:${COLOREND} 移除一个远程连接\n"\
-            "    Rm       ${YELLOW}--:${COLOREND} 重命名一个远程连接\n"\
-            "    Ru       ${YELLOW}--:${COLOREND} fetches remotes updates.\n"\
-            "    Rp       ${YELLOW}--:${COLOREND} prunes all stale remote tracking branches.\n"\
-            "    Rs       ${YELLOW}--:${COLOREND} shows information about a given remote.\n"\
-            "    RS       ${YELLOW}--:${COLOREND} 修改一个远程连接的 URLs\n"\
-            "\n${BLOD}Stash(s)${COLOREND}\n"\
-            "    s        ${YELLOW}--:${COLOREND} 隐藏修改\n"\
-            "    sp       ${YELLOW}--:${COLOREND} 回复隐藏\n"\
-            "\n${BLOD}Working tree(w)${COLOREND}\n"\
-            "    ws       ${YELLOW}--:${COLOREND} 精简展示工作树状态\n"\
-            "    wS       ${YELLOW}--:${COLOREND} 展示工作树状态\n"\
-            "    wd       ${YELLOW}--:${COLOREND} 展示修改后与当前的不同\n"\
-            "    wD       ${YELLOW}--:${COLOREND} 展示修改后与当前的不同（单词不同）\n"\
-            "    wr       ${YELLOW}--:${COLOREND} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n"\
-            "    wR       ${YELLOW}--:${COLOREND} resets the current HEAD, index and working tree to the specified state.\n"\
-            "    wc       ${YELLOW}--:${COLOREND} cleans untracked files from the working tree (dry-run).\n"\
-            "    wC       ${YELLOW}--:${COLOREND} cleans untracked files from the working tree.\n"\
-            "    wm       ${YELLOW}--:${COLOREND} 移动或重命名文件\n"\
-            "    wM       ${YELLOW}--:${COLOREND} 强制移动或重命名文件\n"\
-            "    wx       ${YELLOW}--:${COLOREND} 删除文件\n"\
-            "    wX       ${YELLOW}--:${COLOREND} 强制删除文件\n"\
-            "\n${BLOD}Setting${COLOREND}\n"\
-            "    savepd  ${YELLOW}--${COLOREND} Git 将开始保存你的用户名和密码\n"
+            "    b       ${YELLOW_COLOR}--:${FORMAT_RES} 展示、创建、重命名和删除分支\n"\
+            "    bc      ${YELLOW_COLOR}--:${FORMAT_RES} 创建一个新的分支\n"\
+            "    bl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示分支和他们的提交信息\n"\
+            "    bL      ${YELLOW_COLOR}--:${FORMAT_RES} 展示本地和远程分支与他们的提交信息\n"\
+            "    bs      ${YELLOW_COLOR}--:${FORMAT_RES} lists branches and their commits with ancestry graphs.\n"\
+            "    bS      ${YELLOW_COLOR}--:${FORMAT_RES} lists local and remote branches and their commits with ancestry graphs.\n"\
+            "    bm      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支\n"\
+            "    bM      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支无论是否已存在\n"\
+            "\n${BLOD}Commit(c)${FORMAT_RES}\n"\
+            "    c       ${YELLOW_COLOR}--:${FORMAT_RES} 提交\n"\
+            "    ca      ${YELLOW_COLOR}--:${FORMAT_RES} 提交所有修改和删除\n"\
+            "    cA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式提交所有修改和删除\n"\
+            "    cm      ${YELLOW_COLOR}--:${FORMAT_RES} 使用你给出的消息提交\n"\
+            "    co      ${YELLOW_COLOR}--:${FORMAT_RES} checks out a branch or paths to the working tree.\n"\
+            "    cO      ${YELLOW_COLOR}--:${FORMAT_RES} checks out hunks from the index or the tree interactively.\n"\
+            "    cf      ${YELLOW_COLOR}--:${FORMAT_RES} amends the tip of the current branch reusing the same log message as HEAD.\n"\
+            "    cF      ${YELLOW_COLOR}--:${FORMAT_RES} amends the tip of the current branch.\n"\
+            "    cr      ${YELLOW_COLOR}--:${FORMAT_RES} reverts existing commits by reverting patches and recording new commits.\n"\
+            "    cR      ${YELLOW_COLOR}--:${FORMAT_RES} removes the HEAD commit.\n"\
+            "    cs      ${YELLOW_COLOR}--:${FORMAT_RES} shows one or more objects (blobs, trees, tags and commits).\n"\
+            "\n${BLOD}Conflict(C)${FORMAT_RES}\n"\
+            "    Cl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示未合并的文件\n"\
+            "    Ca      ${YELLOW_COLOR}--:${FORMAT_RES} 添加未合并的文件到索引\n"\
+            "    Ce      ${YELLOW_COLOR}--:${FORMAT_RES} 使用 merge-tool 在所有未合并的文件上\n"\
+            "    Co      ${YELLOW_COLOR}--:${FORMAT_RES} 在未合并的文件上使用我们的修改\n"\
+            "    CO      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用我们的修改\n"\
+            "    Ct      ${YELLOW_COLOR}--:${FORMAT_RES} 在未合并的文件上使用他们的修改\n"\
+            "    CT      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用他们的修改\n"\
+            "\n${BLOD}Fetch(f)${FORMAT_RES}\n"\
+            "    f       ${YELLOW_COLOR}--:${FORMAT_RES} downloads objects and references from another repository.\n"\
+            "    fc      ${YELLOW_COLOR}--:${FORMAT_RES} clones a repository into a new directory.\n"\
+            "    fm      ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and merges with another repository or local branch.\n"\
+            "    fr      ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and rebases on top of another repository or local branch.\n"\
+            "    fu      ${YELLOW_COLOR}--:${FORMAT_RES} removes unexisting remote-tracking references, fetches all remotes and merges.\n"\
+            "    fb      ${YELLOW_COLOR}--:${FORMAT_RES} fetch other branch to local as same name.\n"\
+            "\n${BLOD}Index(i)${FORMAT_RES}\n"\
+            "    ia      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引（默认所有）\n"\
+            "    iA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式的添加文件到索引\n"\
+            "    iu      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引 (updates only known files).\n"\
+            "    id      ${YELLOW_COLOR}--:${FORMAT_RES} 显示索引和命名空间的更改(diff)\n"\
+            "    iD      ${YELLOW_COLOR}--:${FORMAT_RES} 显示索引和命名空间的更改(word diff)\n"\
+            "    ir      ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state.\n"\
+            "    iR      ${YELLOW_COLOR}--:${FORMAT_RES} resets the current index interactively.\n"\
+            "    ix      ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the index (recursively).\n"\
+            "    iX      ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the index (recursively and forced).\n"\
+            "\n${BLOD}Log(l)${FORMAT_RES}\n"\
+            "    l       ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志\n"\
+            "    ls      ${YELLOW_COLOR}--:${FORMAT_RES} 展示状态日志\n"\
+            "    ld      ${YELLOW_COLOR}--:${FORMAT_RES} 展示区别日志\n"\
+            "    lv      ${YELLOW_COLOR}--:${FORMAT_RES} displays the log, verifying the GPG signature of commits.\n"\
+            "    lc      ${YELLOW_COLOR}--:${FORMAT_RES} 已降序的方式展示提交者和提交数\n"\
+            "    lr      ${YELLOW_COLOR}--:${FORMAT_RES} 管理更新信息\n"\
+            "\n${BLOD}Merge(m)${FORMAT_RES}\n"\
+            "    m       ${YELLOW_COLOR}--:${FORMAT_RES} 合并两个或更多的记录\n"\
+            "    ma      ${YELLOW_COLOR}--:${FORMAT_RES} aborts the conflict resolution, and reconstructs the pre-merge state.\n"\
+            "    mC      ${YELLOW_COLOR}--:${FORMAT_RES} performs the merge but does not commit.\n"\
+            "    mF      ${YELLOW_COLOR}--:${FORMAT_RES} creates a merge commit even if the merge could be resolved as a fast-forward.\n"\
+            "    mS      ${YELLOW_COLOR}--:${FORMAT_RES} performs the merge and GPG-signs the resulting commit.\n"\
+            "    mv      ${YELLOW_COLOR}--:${FORMAT_RES} verifies the GPG signature of the tip commit of the side branch being merged.\n"\
+            "    mt      ${YELLOW_COLOR}--:${FORMAT_RES} runs the merge conflict resolution tools to resolve conflicts.\n"\
+            "\n${BLOD}Push(p)${FORMAT_RES}\n"\
+            "    p        ${YELLOW_COLOR}--:${FORMAT_RES} 更新远程引用及对象updates remote refs along with associated objects.\n"\
+            "    pf       ${YELLOW_COLOR}--:${FORMAT_RES} 安全的强制推送forces a push safely (with "lease").\n"\
+            "    pF       ${YELLOW_COLOR}--:${FORMAT_RES} 强制推送forces a push.\n"\
+            "    pa       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支pushes all branches.\n"\
+            "    pA       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支和标签pushes all branches and tags.\n"\
+            "    pt       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有标签pushes all tags.\n"\
+            "    pc       ${YELLOW_COLOR}--:${FORMAT_RES} pushes the current branch and adds origin as an upstream reference for it.\n"\
+            "    pp       ${YELLOW_COLOR}--:${FORMAT_RES} pulls and pushes the current branch from origin to origin.\n"\
+            "\n${BLOD}Remote(R)${FORMAT_RES}\n"\
+            "    R        ${YELLOW_COLOR}--:${FORMAT_RES} 管理跟踪的仓库\n"\
+            "    Rl       ${YELLOW_COLOR}--:${FORMAT_RES} 展示所有远程连接的名字和 URLs\n"\
+            "    Ra       ${YELLOW_COLOR}--:${FORMAT_RES} 添加一个新的远程连接\n"\
+            "    Rx       ${YELLOW_COLOR}--:${FORMAT_RES} 移除一个远程连接\n"\
+            "    Rm       ${YELLOW_COLOR}--:${FORMAT_RES} 重命名一个远程连接\n"\
+            "    Ru       ${YELLOW_COLOR}--:${FORMAT_RES} fetches remotes updates.\n"\
+            "    Rp       ${YELLOW_COLOR}--:${FORMAT_RES} prunes all stale remote tracking branches.\n"\
+            "    Rs       ${YELLOW_COLOR}--:${FORMAT_RES} shows information about a given remote.\n"\
+            "    RS       ${YELLOW_COLOR}--:${FORMAT_RES} 修改一个远程连接的 URLs\n"\
+            "\n${BLOD}Stash(s)${FORMAT_RES}\n"\
+            "    s        ${YELLOW_COLOR}--:${FORMAT_RES} 隐藏修改\n"\
+            "    sp       ${YELLOW_COLOR}--:${FORMAT_RES} 回复隐藏\n"\
+            "\n${BLOD}Working tree(w)${FORMAT_RES}\n"\
+            "    ws       ${YELLOW_COLOR}--:${FORMAT_RES} 精简展示工作树状态\n"\
+            "    wS       ${YELLOW_COLOR}--:${FORMAT_RES} 展示工作树状态\n"\
+            "    wd       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同\n"\
+            "    wD       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同（单词不同）\n"\
+            "    wr       ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n"\
+            "    wR       ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD, index and working tree to the specified state.\n"\
+            "    wc       ${YELLOW_COLOR}--:${FORMAT_RES} cleans untracked files from the working tree (dry-run).\n"\
+            "    wC       ${YELLOW_COLOR}--:${FORMAT_RES} cleans untracked files from the working tree.\n"\
+            "    wm       ${YELLOW_COLOR}--:${FORMAT_RES} 移动或重命名文件\n"\
+            "    wM       ${YELLOW_COLOR}--:${FORMAT_RES} 强制移动或重命名文件\n"\
+            "    wx       ${YELLOW_COLOR}--:${FORMAT_RES} 删除文件\n"\
+            "    wX       ${YELLOW_COLOR}--:${FORMAT_RES} 强制删除文件\n"\
+            "\n${BLOD}Setting${FORMAT_RES}\n"\
+            "    savepd  ${YELLOW_COLOR}--${FORMAT_RES} Git 将开始保存你的用户名和密码\n"
         ;;
     esac
+}
+# }}}
+
+
+# clear the `.git` history {{{
+_show_will_clear_items(){
+    echo "These are the largest $COUNT files"
+    for ITEM in $TRASHCODES;do
+        echo "${YELLOW_COLOR}::${FORMAT_RES} $ITEM"
+    done
+}
+
+_clear_history(){
+    for TRASHCODE in $TRASHCODES;do
+        TRASHNAME=`git rev-list --objects --all | grep $TRASHCODE | cut -b 42-`
+        echo "\n\n${GREEN_COLOR}==> ${RED_COLOR}${TRASHNAME}${FORMAT_RES}"
+        git log --pretty=oneline --branches -- $TRASHNAME
+
+        git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $TRASHNAME" --prune-empty -- --all
+
+        rm -Rf .git/refs/original
+        rm -Rf .git/logs/
+        git reflog expire --expire=now --all
+        git fsck --full --unreachable
+        git repack -A -d
+        git gc --aggressive --prune=now
+    done
+}
+
+_if_force_push(){
+    echo "\n\n== Do you need to force push (yes/no):"
+    if read -t 7 FORCEPUSH; then
+        if [[ $FORCEPUSH == "y" || $FORCEPUSH == "Y" || $FORCEPUSH == "yes" || $FORCEPUSH == "YES" ]];then
+            echo "Start force push ... "
+            remote_branch=$(git branch | cut -b 3-)
+            git push --force origin $remote_branch
+        else
+            echo ""
+        fi
+    else
+        echo "${YELLOW_COLOR}Warm${FORMAT_RES}: Timeout, will not force push."
+    fi
+}
+
+_git_clear() {
+    if [[ $1 ]]; then
+        COUNT=$1
+    else
+        COUNT=1
+    fi
+
+    TRASHCODES=$(git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -${COUNT} | cut -b 1-40)
+
+    _show_will_clear_items
+    _clear_history
+    _if_force_push
+    echo "Clear Over."
 }
 # }}}
 
