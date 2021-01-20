@@ -82,8 +82,8 @@ simple_git() {
                 git add .
             fi
             ;;
-        'iA' )git add --patch;;
-        'iu' )git add --update;;
+        'iA' )git add --patch ;;
+        'iu' )git add --update ${@:2:$((${#@}))};;
         'id' )git diff --no-ext-diff --cached;;
         'iD' )git diff --no-ext-diff --cached --word-diff;;
         'ir' )git reset ${@:2:$((${#@}))};;
@@ -119,11 +119,11 @@ simple_git() {
 
         # Push(p)
         "p"  )git push ${@:2:$((${#@}))};;
-        "pf" )git push --force-with-lease;;
-        "pF" )git push --force;;
-        "pa" )git push --all;;
+        "pf" )git push --force-with-lease ${@:2:$((${#@}))};;
+        "pF" )git push --force ${@:2:$((${#@}))};;
+        "pa" )git push --all ${@:2:$((${#@}))};;
         "pA" )git push --all && git push --tags;;
-        "pt" )git push --tags;;
+        "pt" )git push --tags ${@:2:$((${#@}))};;
         "pc" )git push --set-upstream origin "$(git-branch-current 2> /dev/null)";;
         "pp" )git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)";;
 
@@ -143,15 +143,22 @@ simple_git() {
         # Stash(s)
         's'  )git stash ${@:2:$((${#@}))};;
         'sp' )git stash pop;;
+        'sl' )git stash list;;
+
+
+        # Tag (t)
+        't'  )git tag ${@:2:$((${#@}))};;
+        'ta' )git tag -a ${@:2:$((${#@}))};;
+        'tx' )git tag --delete ${@:2:$((${#@}))};;
 
 
         # Working tree(w)
         "ws" )git status --short;;
-        "wS" )git status;;
+        "wS" )git status ${@:2:$((${#@}))};;
         "wd" )git diff --no-ext-diff ${@:2:$((${#@}))};;
         "wD" )git diff --no-ext-diff --word-diff ${@:2:$((${#@}))};;
-        "wr" )git reset --soft;;
-        "wR" )git reset --hard;;
+        "wr" )git reset --soft ${@:2:$((${#@}))};;
+        "wR" )git reset --hard ${@:2:$((${#@}))};;
         "wc" )git clean --dry-run ${@:2:$((${#@}))};;
         "wC" )git clean -d --force ${@:2:$((${#@}))};;
         "wm" )git mv ${@:2:$((${#@}))};;
@@ -162,6 +169,8 @@ simple_git() {
 
         # Setting
         'savepd')git config credential.helper store;;
+        'user'  )git config user.name ${@:2:$((${#@}))};;
+        'email'   )git config user.email ${@:2:$((${#@}))};;
 
 
         # Help message
@@ -190,6 +199,8 @@ simple_git() {
                 echo ${REMOTE_MSG}
             elif [[ $1 =~ 's' ]];then
                 echo ${STASH_MSG}
+            elif [[ $1 =~ 't' ]];then
+                echo ${TAG_MSG}
             elif [[ $1 =~ 'w' ]];then
                 echo ${WORKING_TREE_MSG}
             else
@@ -299,7 +310,13 @@ REMOTE_MSG="${BLOD}Remote(R)${COLOREND}\n
 
 STASH_MSG="${BLOD}Stash(s)${COLOREND}\n
 \t    s  \t      ${YELLOW}--:${COLOREND} stashes the changes of the dirty working directory.\n
-\t    sp \t      ${YELLOW}--:${COLOREND} removes and applies a single stashed state from the stash list.\n"
+\t    sp \t      ${YELLOW}--:${COLOREND} removes and applies a single stashed state from the stash list.\n
+\t    sl \t      ${YELLOW}--:${COLOREND} lists stashed states.\n"
+
+TAG_MSG="${BLOD}Tag(t)${COLOREND}\n
+\t  t  \t ${YELLOW}--:${COLOREND} creates, lists, deletes or verifies a tag object signed with GPG.\n
+\t  ta \t ${YELLOW}--:${COLOREND} create a new tag.\n
+\t  tx \t ${YELLOW}--:${COLOREND} deletes tags with given names.\n"
 
 WORKING_TREE_MSG="${BLOD}Working tree(w)${COLOREND}\n
 \t    ws  \t     ${YELLOW}--:${COLOREND} displays working-tree status in the short format.\n
@@ -341,9 +358,13 @@ _help_mesg() {
             "\n"\
             ${STASH_MSG}\
             "\n"\
+            ${TAG_MSG}\
+            "\n"\
             ${WORKING_TREE_MSG}\
             "\n${BLOD}Setting${COLOREND}\n"\
-            "\tsavepd \t${YELLOW}--${COLOREND} Remember your account number and password. \n"\
+            "\tsavepd   \t${YELLOW}--${COLOREND} Remember your account number and password. \n"\
+            "\tuser     \t${YELLOW}--${COLOREND} Set your username. \n"\
+            "\temail    \t${YELLOW}--${COLOREND} Set your email. \n"\
         ;;
 
         "chinese" )
