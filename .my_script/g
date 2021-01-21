@@ -57,6 +57,7 @@ simple_git() {
         # Fetch(f)
         'f'  )git fetch ${@:2:$((${#@}))};;
         'fc' )git clone ${@:2:$((${#@}))};;
+        'fC' )git clone --depth=1 ${@:2:$((${#@}))};;
         'fm' )git pull ${@:2:$((${#@}))};;
         'fr' )git pull --rebase ${@:2:$((${#@}))};;
         'fu' )git fetch --all --prune && git merge --ff-only @\{u\};;
@@ -118,15 +119,15 @@ simple_git() {
 
 
         # Remote(R)
-        "R" )git remote ${@:2:$((${#@}))};;
-        "Rl")git remote --verbose ${@:2:$((${#@}))};;
-        "Ra")git remote add ${@:2:$((${#@}))};;
-        "Rx")git remote rm ${@:2:$((${#@}))};;
-        "Rm")git remote rename ${@:2:$((${#@}))};;
-        "Ru")git remote update ${@:2:$((${#@}))};;
-        "Rp")git remote prune ${@:2:$((${#@}))};;
-        "Rs")git remote show;;
-        "RS")git remote set-url ${@:2:$((${#@}))};;
+        "R"  )git remote ${@:2:$((${#@}))};;
+        "Rl" )git remote --verbose ${@:2:$((${#@}))};;
+        "Ra" )git remote add ${@:2:$((${#@}))};;
+        "Rx" )git remote rm ${@:2:$((${#@}))};;
+        "Rm" )git remote rename ${@:2:$((${#@}))};;
+        "Ru" )git remote update ${@:2:$((${#@}))};;
+        "Rp" )git remote prune ${@:2:$((${#@}))};;
+        "Rs" )git remote show;;
+        "RS" )git remote set-url ${@:2:$((${#@}))};;
 
 
         # Stash(s)
@@ -164,8 +165,8 @@ simple_git() {
 
 
         # Help message
-        '-h')_help_mesg "english";;
-        '-hc')_help_mesg "chinese";; # Chinese
+        '-h'  )_help_mesg "english";;
+        '-hc' )_help_mesg "chinese";; # Chinese
 
 
         *)
@@ -259,6 +260,7 @@ CONFLICT_MSG="${BLOD}Conflict(C)${FORMAT_RES}\n
 FETCH_MSG="${BLOD}Fetch(f)${FORMAT_RES}\n
 \t    f  \t     ${YELLOW_COLOR}--:${FORMAT_RES} downloads objects and references from another repository.\n
 \t    fc \t     ${YELLOW_COLOR}--:${FORMAT_RES} clones a repository into a new directory.\n
+\t    fC \t     ${YELLOW_COLOR}--:${FORMAT_RES} clones a repository into a new directory clearly(depth:1).\n
 \t    fm \t     ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and merges with another repository or local branch.\n
 \t    fr \t     ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and rebases on top of another repository or local branch.\n
 \t    fu \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes unexisting remote-tracking references, fetches all remotes and merges.\n
