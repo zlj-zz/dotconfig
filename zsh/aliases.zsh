@@ -15,7 +15,6 @@ alias t='tmux -2'
 # ranger
 alias ra='ranger'
 alias sra='sudo -E ranger'
-# the same as `ranger` and `neovim`
 
 alias sf='grep -rEI ' # sf(search file)
 
