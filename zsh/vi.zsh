@@ -8,7 +8,7 @@ bindkey -M vicmd "4" vi-end-of-line
 bindkey -M vicmd "j" down-line-or-history
 bindkey -M vicmd "k" up-line-or-history
 bindkey -M vicmd "u" undo
-bindkey -M vicmd "-" vi-rev-repeat-search
+#bindkey -M vicmd "-" vi-rev-repeat-search
 bindkey -M vicmd "=" vi-repeat-search
 bindkey -M vicmd "e" vi-forward-word-end
 bindkey "^D" autosuggest-accept

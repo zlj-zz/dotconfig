@@ -383,8 +383,8 @@ _help_mesg() {
             "    bc      ${YELLOW_COLOR}--:${FORMAT_RES} 创建一个新的分支\n"\
             "    bl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示分支和他们的提交信息\n"\
             "    bL      ${YELLOW_COLOR}--:${FORMAT_RES} 展示本地和远程分支与他们的提交信息\n"\
-            "    bs      ${YELLOW_COLOR}--:${FORMAT_RES} lists branches and their commits with ancestry graphs.\n"\
-            "    bS      ${YELLOW_COLOR}--:${FORMAT_RES} lists local and remote branches and their commits with ancestry graphs.\n"\
+            "    bs      ${YELLOW_COLOR}--:${FORMAT_RES} 用血统图列出分支及它们的提交.\n"\
+            "    bS      ${YELLOW_COLOR}--:${FORMAT_RES} 用血统图列出本地和远程的分支及它们的提交.\n"\
             "    bm      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支\n"\
             "    bM      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支无论是否已存在\n"\
             "\n${BLOD}Commit(c)${FORMAT_RES}\n"\
@@ -409,11 +409,11 @@ _help_mesg() {
             "    CT      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用他们的修改\n"\
             "\n${BLOD}Fetch(f)${FORMAT_RES}\n"\
             "    f       ${YELLOW_COLOR}--:${FORMAT_RES} downloads objects and references from another repository.\n"\
-            "    fc      ${YELLOW_COLOR}--:${FORMAT_RES} clones a repository into a new directory.\n"\
-            "    fm      ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and merges with another repository or local branch.\n"\
+            "    fc      ${YELLOW_COLOR}--:${FORMAT_RES} 克隆一个远程仓库到本地.\n"\
+            "    fm      ${YELLOW_COLOR}--:${FORMAT_RES} 拉取并合并远程分支.\n"\
             "    fr      ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and rebases on top of another repository or local branch.\n"\
             "    fu      ${YELLOW_COLOR}--:${FORMAT_RES} removes unexisting remote-tracking references, fetches all remotes and merges.\n"\
-            "    fb      ${YELLOW_COLOR}--:${FORMAT_RES} fetch other branch to local as same name.\n"\
+            "    fb      ${YELLOW_COLOR}--:${FORMAT_RES} 拉取远程其他分支到本地，已相同的名字.\n"\
             "\n${BLOD}Index(i)${FORMAT_RES}\n"\
             "    ia      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引（默认所有）\n"\
             "    iA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式的添加文件到索引\n"\
@@ -428,7 +428,7 @@ _help_mesg() {
             "    l       ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志\n"\
             "    ls      ${YELLOW_COLOR}--:${FORMAT_RES} 展示状态日志\n"\
             "    ld      ${YELLOW_COLOR}--:${FORMAT_RES} 展示区别日志\n"\
-            "    lv      ${YELLOW_COLOR}--:${FORMAT_RES} displays the log, verifying the GPG signature of commits.\n"\
+            "    lv      ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志，验证提交的 GPG 签名.\n"\
             "    lc      ${YELLOW_COLOR}--:${FORMAT_RES} 已降序的方式展示提交者和提交数\n"\
             "    lr      ${YELLOW_COLOR}--:${FORMAT_RES} 管理更新信息\n"\
             "\n${BLOD}Merge(m)${FORMAT_RES}\n"\
@@ -440,12 +440,12 @@ _help_mesg() {
             "    mv      ${YELLOW_COLOR}--:${FORMAT_RES} verifies the GPG signature of the tip commit of the side branch being merged.\n"\
             "    mt      ${YELLOW_COLOR}--:${FORMAT_RES} runs the merge conflict resolution tools to resolve conflicts.\n"\
             "\n${BLOD}Push(p)${FORMAT_RES}\n"\
-            "    p        ${YELLOW_COLOR}--:${FORMAT_RES} 更新远程引用及对象updates remote refs along with associated objects.\n"\
-            "    pf       ${YELLOW_COLOR}--:${FORMAT_RES} 安全的强制推送forces a push safely (with "lease").\n"\
-            "    pF       ${YELLOW_COLOR}--:${FORMAT_RES} 强制推送forces a push.\n"\
-            "    pa       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支pushes all branches.\n"\
-            "    pA       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支和标签pushes all branches and tags.\n"\
-            "    pt       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有标签pushes all tags.\n"\
+            "    p        ${YELLOW_COLOR}--:${FORMAT_RES} 更新远程引用及对象.\n"\
+            "    pf       ${YELLOW_COLOR}--:${FORMAT_RES} 安全的强制推送 (with "lease").\n"\
+            "    pF       ${YELLOW_COLOR}--:${FORMAT_RES} 强制推送.\n"\
+            "    pa       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支.\n"\
+            "    pA       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支和标签.\n"\
+            "    pt       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有标签.\n"\
             "    pc       ${YELLOW_COLOR}--:${FORMAT_RES} pushes the current branch and adds origin as an upstream reference for it.\n"\
             "    pp       ${YELLOW_COLOR}--:${FORMAT_RES} pulls and pushes the current branch from origin to origin.\n"\
             "\n${BLOD}Remote(R)${FORMAT_RES}\n"\
@@ -454,9 +454,9 @@ _help_mesg() {
             "    Ra       ${YELLOW_COLOR}--:${FORMAT_RES} 添加一个新的远程连接\n"\
             "    Rx       ${YELLOW_COLOR}--:${FORMAT_RES} 移除一个远程连接\n"\
             "    Rm       ${YELLOW_COLOR}--:${FORMAT_RES} 重命名一个远程连接\n"\
-            "    Ru       ${YELLOW_COLOR}--:${FORMAT_RES} fetches remotes updates.\n"\
-            "    Rp       ${YELLOW_COLOR}--:${FORMAT_RES} prunes all stale remote tracking branches.\n"\
-            "    Rs       ${YELLOW_COLOR}--:${FORMAT_RES} shows information about a given remote.\n"\
+            "    Ru       ${YELLOW_COLOR}--:${FORMAT_RES} 获取远程连接的更新.\n"\
+            "    Rp       ${YELLOW_COLOR}--:${FORMAT_RES} 修建所有过时的远程连接分支.\n"\
+            "    Rs       ${YELLOW_COLOR}--:${FORMAT_RES} 显示远程连接的分支信息.\n"\
             "    RS       ${YELLOW_COLOR}--:${FORMAT_RES} 修改一个远程连接的 URLs\n"\
             "\n${BLOD}Stash(s)${FORMAT_RES}\n"\
             "    s        ${YELLOW_COLOR}--:${FORMAT_RES} 隐藏修改\n"\
@@ -468,8 +468,8 @@ _help_mesg() {
             "    wD       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同（单词不同）\n"\
             "    wr       ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n"\
             "    wR       ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD, index and working tree to the specified state.\n"\
-            "    wc       ${YELLOW_COLOR}--:${FORMAT_RES} cleans untracked files from the working tree (dry-run).\n"\
-            "    wC       ${YELLOW_COLOR}--:${FORMAT_RES} cleans untracked files from the working tree.\n"\
+            "    wc       ${YELLOW_COLOR}--:${FORMAT_RES} 从工作树中清除未跟踪的文件 (dry-run).\n"\
+            "    wC       ${YELLOW_COLOR}--:${FORMAT_RES} 从工作树中清除未跟踪的文件.\n"\
             "    wm       ${YELLOW_COLOR}--:${FORMAT_RES} 移动或重命名文件\n"\
             "    wM       ${YELLOW_COLOR}--:${FORMAT_RES} 强制移动或重命名文件\n"\
             "    wx       ${YELLOW_COLOR}--:${FORMAT_RES} 删除文件\n"\
