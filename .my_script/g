@@ -13,200 +13,200 @@ _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(b
 
 
 simple_git() {
-    _check_git_status
+  _check_git_status
 
-    # process command
-    case $1 in
-        # Branch
-        'b'  )git branch ${@:2:$((${#@}))};;
-        'bc' )git checkout -b ${@:2:$((${#@}))};;
-        'bl' )git branch -vv;;
-        'bL' )git branch --all -vv;;
-        'bs' )git show-branch;;
-        'bS' )git show-branch --all;;
-        'bm' )git branch --move ${@:2:$((${#@}))};;
-        'bM' )git branch --move --force ${@:2:$((${#@}))};;
-        #'bx')git-branch-delete-interactive;;
-        #'bX')git-branch-delete-interactive --force;;
-
-
-        # Commit
-        'c'  )git commit --verbose ${@:2:$((${#@}))};;
-        'ca' )git commit --verbose --all;;
-        'cA' )git commit --verbose --patch;;
-        'cm' )git commit --verbose --message ${@:2:$((${#@}))};;
-        'co' )git checkout ${@:2:$((${#@}))};;
-        'cO' )git checkout --pathc ${@:2:$((${#@}))};;
-        'cf' )git commit --amend --reuse-message HEAD;;
-        "cF" )git commit --verbose --amend;;
-        'cr' )git revert ${@:2:$((${#@}))};;
-        'cR' )git reset "HEAD^";;
-        'cs' )git show --pretty=format:"${_git_log_fuller_format}";;
+  # process command
+  case $1 in
+    # Branch
+    'b'  )git branch ${@:2:$((${#@}))};;
+    'bc' )git checkout -b ${@:2:$((${#@}))};;
+    'bl' )git branch -vv;;
+    'bL' )git branch --all -vv;;
+    'bs' )git show-branch;;
+    'bS' )git show-branch --all;;
+    'bm' )git branch --move ${@:2:$((${#@}))};;
+    'bM' )git branch --move --force ${@:2:$((${#@}))};;
+    #'bx')git-branch-delete-interactive;;
+    #'bX')git-branch-delete-interactive --force;;
 
 
-        # Conflict(C)
-        'Cl' )git --no-paper diff --diff-filter=U --name-only;;
-        'Ca' )git add $(git --no-paper diff --diff-filter=U --name-only);;
-        'Ce' )git mergetool $(git --no-paper diff --diff-filter=U --name-only);;
-        'Co' )git checkout --ours --;;
-        'CO' )git checkout --ours -- $(git --no-paper diff --diff-filter=U --name-only);;
-        'Ct' )git checkout --theirs --;;
-        'CT' )git checkout --theirs -- $(git --no-paper diff --diff-filter=U --name-only);;
+    # Commit
+    'c'  )git commit --verbose ${@:2:$((${#@}))};;
+    'ca' )git commit --verbose --all;;
+    'cA' )git commit --verbose --patch;;
+    'cm' )git commit --verbose --message ${@:2:$((${#@}))};;
+    'co' )git checkout ${@:2:$((${#@}))};;
+    'cO' )git checkout --pathc ${@:2:$((${#@}))};;
+    'cf' )git commit --amend --reuse-message HEAD;;
+    "cF" )git commit --verbose --amend;;
+    'cr' )git revert ${@:2:$((${#@}))};;
+    'cR' )git reset "HEAD^";;
+    'cs' )git show --pretty=format:"${_git_log_fuller_format}";;
 
 
-        # Fetch(f)
-        'f'  )git fetch ${@:2:$((${#@}))};;
-        'fc' )git clone ${@:2:$((${#@}))};;
-        'fC' )git clone --depth=1 ${@:2:$((${#@}))};;
-        'fm' )git pull ${@:2:$((${#@}))};;
-        'fr' )git pull --rebase ${@:2:$((${#@}))};;
-        'fu' )git fetch --all --prune && git merge --ff-only @\{u\};;
-        'fb'  )git fetch origin $2:$2;;
+    # Conflict(C)
+    'Cl' )git --no-pager diff --diff-filter=U --name-only;;
+    'Ca' )git add $(git --no-paper diff --diff-filter=U --name-only);;
+    'Ce' )git mergetool $(git --no-pager diff --diff-filter=U --name-only);;
+    'Co' )git checkout --ours -- ${@:2:$((${#@}))};;
+    'CO' )git checkout --ours -- $(git --no-paper diff --diff-filter=U --name-only);;
+    'Ct' )git checkout --theirs -- ${@:2:$((${#@}))};;
+    'CT' )git checkout --theirs -- $(git --no-pager diff --diff-filter=U --name-only);;
 
 
-        # Index(i)
-        'ia' )
-            if [[ $2 ]]; then
-                git add ${@:2:$((${#@}))}
-            else
-                git add .
-            fi
-            ;;
-        'iA' )git add --patch ;;
-        'iu' )git add --update ${@:2:$((${#@}))};;
-        'id' )git diff --no-ext-diff --cached;;
-        'iD' )git diff --no-ext-diff --cached --word-diff;;
-        'ir' )git reset ${@:2:$((${#@}))};;
-        'iR' )git reset --patch;;
-        'ix' )git rm --cached -r ${@:2:$((${#@}))};;
-        'iX' )git rm --cached -rf ${@:2:$((${#@}))};;
+    # Fetch(f)
+    'f'  )git fetch ${@:2:$((${#@}))};;
+    'fc' )git clone ${@:2:$((${#@}))};;
+    'fC' )git clone --depth=1 ${@:2:$((${#@}))};;
+    'fm' )git pull ${@:2:$((${#@}))};;
+    'fr' )git pull --rebase ${@:2:$((${#@}))};;
+    'fu' )git fetch --all --prune && git merge --ff-only @\{u\};;
+    'fb'  )git fetch origin $2:$2;;
 
 
-        # Log(l)
-        'l'  )
-            if [[ $2 == '1' ]]; then
-                git log --graph --all --decorate --oneline ${@:3:$((${#@}))}
-            else
-                git log --graph --all --decorate ${@:2:$((${#@}))}
-            fi
-            ;;
-        'ls' )git log --topo-order --stat --pretty=format:"${_git_log_fuller_format}";;
-        'ld' )git log --topo-order --stat --patch --pretty=format:"${_git_log_fuller_format}";;
-        'lv' )git log --topo-order --show-signature --pretty=format:"${_git_log_fuller_format}";;
-        'lc' )git shortlog --summary --numbered;;
-        'lr' )git reflog;;
+    # Index(i)
+    'ia' )
+      if [[ $2 ]]; then
+        git add ${@:2:$((${#@}))}
+      else
+        git add .
+      fi
+      ;;
+    'iA' )git add --patch ${@:2:$((${#@}))};;
+    'iu' )git add --update ${@:2:$((${#@}))};;
+    'id' )git diff --no-ext-diff --cached;;
+    'iD' )git diff --no-ext-diff --cached --word-diff;;
+    'ir' )git reset ${@:2:$((${#@}))};;
+    'iR' )git reset --patch;;
+    'ix' )git rm --cached -r ${@:2:$((${#@}))};;
+    'iX' )git rm --cached -rf ${@:2:$((${#@}))};;
 
 
-        # Merge(m)
-        "m"  )git merge ${@:2:$((${#@}))};;
-        "ma" )git merge --abort;;
-        "mC" )git merge --no-commit;;
-        "mF" )git merge --no-ff;;
-        "mS" )git merge -S;;
-        "mv" )git merge --verify-signatures;;
-        "mt" )git mergetool;;
+    # Log(l)
+    'l'  )
+      if [[ $2 == '1' ]]; then
+        git log --graph --all --decorate --oneline ${@:3:$((${#@}))}
+      else
+        git log --graph --all --decorate ${@:2:$((${#@}))}
+      fi
+      ;;
+    'ls' )git log --topo-order --stat --pretty=format:"${_git_log_fuller_format}";;
+    'ld' )git log --topo-order --stat --patch --pretty=format:"${_git_log_fuller_format}";;
+    'lv' )git log --topo-order --show-signature --pretty=format:"${_git_log_fuller_format}";;
+    'lc' )git shortlog --summary --numbered;;
+    'lr' )git reflog;;
 
 
-        # Push(p)
-        "p"  )git push ${@:2:$((${#@}))};;
-        "pf" )git push --force-with-lease ${@:2:$((${#@}))};;
-        "pF" )git push --force ${@:2:$((${#@}))};;
-        "pa" )git push --all ${@:2:$((${#@}))};;
-        "pA" )git push --all && git push --tags;;
-        "pt" )git push --tags ${@:2:$((${#@}))};;
-        "pc" )git push --set-upstream origin "$(git-branch-current 2> /dev/null)";;
-        "pp" )git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)";;
+    # Merge(m)
+    "m"  )git merge ${@:2:$((${#@}))};;
+    "ma" )git merge --abort;;
+    "mC" )git merge --no-commit;;
+    "mF" )git merge --no-ff;;
+    "mS" )git merge -S;;
+    "mv" )git merge --verify-signatures;;
+    "mt" )git mergetool;;
 
 
-        # Remote(R)
-        "R"  )git remote ${@:2:$((${#@}))};;
-        "Rl" )git remote --verbose ${@:2:$((${#@}))};;
-        "Ra" )git remote add ${@:2:$((${#@}))};;
-        "Rx" )git remote rm ${@:2:$((${#@}))};;
-        "Rm" )git remote rename ${@:2:$((${#@}))};;
-        "Ru" )git remote update ${@:2:$((${#@}))};;
-        "Rp" )git remote prune ${@:2:$((${#@}))};;
-        "Rs" )git remote show;;
-        "RS" )git remote set-url ${@:2:$((${#@}))};;
+    # Push(p)
+    "p"  )git push ${@:2:$((${#@}))};;
+    "pf" )git push --force-with-lease ${@:2:$((${#@}))};;
+    "pF" )git push --force ${@:2:$((${#@}))};;
+    "pa" )git push --all ${@:2:$((${#@}))};;
+    "pA" )git push --all && git push --tags;;
+    "pt" )git push --tags ${@:2:$((${#@}))};;
+    "pc" )git push --set-upstream origin "$(git-branch-current 2> /dev/null)";;
+    "pp" )git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)";;
 
 
-        # Stash(s)
-        's'  )git stash ${@:2:$((${#@}))};;
-        'sp' )git stash pop;;
-        'sl' )git stash list;;
+    # Remote(R)
+    "R"  )git remote ${@:2:$((${#@}))};;
+    "Rl" )git remote --verbose ${@:2:$((${#@}))};;
+    "Ra" )git remote add ${@:2:$((${#@}))};;
+    "Rx" )git remote rm ${@:2:$((${#@}))};;
+    "Rm" )git remote rename ${@:2:$((${#@}))};;
+    "Ru" )git remote update ${@:2:$((${#@}))};;
+    "Rp" )git remote prune ${@:2:$((${#@}))};;
+    "Rs" )git remote show;;
+    "RS" )git remote set-url ${@:2:$((${#@}))};;
 
 
-        # Tag (t)
-        't'  )git tag ${@:2:$((${#@}))};;
-        'ta' )git tag -a ${@:2:$((${#@}))};;
-        'tx' )git tag --delete ${@:2:$((${#@}))};;
+    # Stash(s)
+    's'  )git stash ${@:2:$((${#@}))};;
+    'sp' )git stash pop ${@:2:$((${#@}))};;
+    'sl' )git stash list ${@:2:$((${#@}))};;
 
 
-        # Working tree(w)
-        "ws" )git status --short;;
-        "wS" )git status ${@:2:$((${#@}))};;
-        "wd" )git diff --no-ext-diff ${@:2:$((${#@}))};;
-        "wD" )git diff --no-ext-diff --word-diff ${@:2:$((${#@}))};;
-        "wr" )git reset --soft ${@:2:$((${#@}))};;
-        "wR" )git reset --hard ${@:2:$((${#@}))};;
-        "wc" )git clean --dry-run ${@:2:$((${#@}))};;
-        "wC" )git clean -d --force ${@:2:$((${#@}))};;
-        "wm" )git mv ${@:2:$((${#@}))};;
-        "wM" )git mv -f ${@:2:$((${#@}))};;
-        "wx" )git rm -r ${@:2:$((${#@}))};;
-        "wX" )git rm -rf ${@:2:$((${#@}))};;
+    # Tag (t)
+    't'  )git tag ${@:2:$((${#@}))};;
+    'ta' )git tag -a ${@:2:$((${#@}))};;
+    'tx' )git tag --delete ${@:2:$((${#@}))};;
 
 
-        # Setting
-        'savepd'  )git config credential.helper store;;
-        'user'    )git config user.name ${@:2:$((${#@}))};;
-        'email'   )git config user.email ${@:2:$((${#@}))};;
-        'clear'   )_git_clear ${@:2:$((${#@}))};;
+    # Working tree(w)
+    "ws" )git status --short;;
+    "wS" )git status ${@:2:$((${#@}))};;
+    "wd" )git diff --no-ext-diff ${@:2:$((${#@}))};;
+    "wD" )git diff --no-ext-diff --word-diff ${@:2:$((${#@}))};;
+    "wr" )git reset --soft ${@:2:$((${#@}))};;
+    "wR" )git reset --hard ${@:2:$((${#@}))};;
+    "wc" )git clean --dry-run ${@:2:$((${#@}))};;
+    "wC" )git clean -d --force ${@:2:$((${#@}))};;
+    "wm" )git mv ${@:2:$((${#@}))};;
+    "wM" )git mv -f ${@:2:$((${#@}))};;
+    "wx" )git rm -r ${@:2:$((${#@}))};;
+    "wX" )git rm -rf ${@:2:$((${#@}))};;
 
 
-        # Help message
-        '-h'  )_help_mesg "english";;
-        '-hc' )_help_mesg "chinese";; # Chinese
+    # Setting
+    'savepd'  )git config credential.helper store;;
+    'user'    )git config user.name ${@:2:$((${#@}))};;
+    'email'   )git config user.email ${@:2:$((${#@}))};;
+    'clear'   )_git_clear ${@:2:$((${#@}))};;
 
 
-        *)
-            if [[ $1 =~ 'b' ]];then
-                echo ${BRANCH_MSG}
-            elif [[ $1 =~ 'c' ]];then
-                echo ${COMMIT_MSG}
-            elif [[ $1 =~ 'C' ]];then
-                echo ${CONFLICT_MSG}
-            elif [[ $1 =~ 'f' ]];then
-                echo ${FETCH_MSG}
-            elif [[ $1 =~ 'i' ]];then
-                echo ${INDEX_MSG}
-            elif [[ $1 =~ 'l' ]];then
-                echo ${LOG_MSG}
-            elif [[ $1 =~ 'm' ]];then
-                echo ${MERGE_NSG}
-            elif [[ $1 =~ 'p' ]];then
-                echo ${PUSH_MSG}
-            elif [[ $1 =~ 'R' ]];then
-                echo ${REMOTE_MSG}
-            elif [[ $1 =~ 's' ]];then
-                echo ${STASH_MSG}
-            elif [[ $1 =~ 't' ]];then
-                echo ${TAG_MSG}
-            elif [[ $1 =~ 'w' ]];then
-                echo ${WORKING_TREE_MSG}
-            else
-                git $@
-            fi
-        ;;
-    esac
+    # Help message
+    '-h'  )_help_mesg "english";;
+    '-hc' )_help_mesg "chinese";; # Chinese
+
+
+    *)
+      if [[ $1 =~ 'b' ]];then
+        echo ${BRANCH_MSG}
+      elif [[ $1 =~ 'c' ]];then
+        echo ${COMMIT_MSG}
+      elif [[ $1 =~ 'C' ]];then
+        echo ${CONFLICT_MSG}
+      elif [[ $1 =~ 'f' ]];then
+        echo ${FETCH_MSG}
+      elif [[ $1 =~ 'i' ]];then
+        echo ${INDEX_MSG}
+      elif [[ $1 =~ 'l' ]];then
+        echo ${LOG_MSG}
+      elif [[ $1 =~ 'm' ]];then
+        echo ${MERGE_NSG}
+      elif [[ $1 =~ 'p' ]];then
+        echo ${PUSH_MSG}
+      elif [[ $1 =~ 'R' ]];then
+        echo ${REMOTE_MSG}
+      elif [[ $1 =~ 's' ]];then
+        echo ${STASH_MSG}
+      elif [[ $1 =~ 't' ]];then
+        echo ${TAG_MSG}
+      elif [[ $1 =~ 'w' ]];then
+        echo ${WORKING_TREE_MSG}
+      else
+        git $@
+      fi
+    ;;
+  esac
 }
 
 _check_git_status() {
-    # adjust wether has git
-    if ! command -v git >/dev/null 2>&1; then
-        echo "${RED_COLOR}Not found git, please install git first.${FORMAT_RES}"
-        exit 0
-    fi
+  # adjust wether has git
+  if ! command -v git >/dev/null 2>&1; then
+    echo "${RED_COLOR}Not found git, please install git first.${FORMAT_RES}"
+    exit 0
+  fi
 }
 
 
@@ -340,203 +340,207 @@ WORKING_TREE_MSG="${BLOD}Working tree(w)${FORMAT_RES}\n
 \t    wX  \t     ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the working tree and from the index (recursively and forced).\n"
 
 _help_mesg() {
-    LANG=$1
-    case $LANG in
-        "english" )
-            echo "usage: g <command> [<args>]\n\n"\
-            "These are short commands that can replace git operations:\n\n"\
-            $BRANCH_MSG\
-            "\n"\
-            ${COMMIT_MSG}\
-            "\n"\
-            ${CONFLICT_MSG}\
-            "\n"\
-            ${FETCH_MSG}\
-            "\n"\
-            ${INDEX_MSG}\
-            "\n"\
-            ${LOG_MSG}\
-            "\n"\
-            ${MERGE_NSG}\
-            "\n"\
-            ${PUSH_MSG}\
-            "\n"\
-            ${REMOTE_MSG}\
-            "\n"\
-            ${STASH_MSG}\
-            "\n"\
-            ${TAG_MSG}\
-            "\n"\
-            ${WORKING_TREE_MSG}\
-            "\n${BLOD}Setting${FORMAT_RES}\n"\
-            "\tsavepd   \t${YELLOW_COLOR}--${FORMAT_RES} Remember your account number and password. \n"\
-            "\tuser     \t${YELLOW_COLOR}--${FORMAT_RES} Set your username. \n"\
-            "\temail    \t${YELLOW_COLOR}--${FORMAT_RES} Set your email. \n"\
-            "\tclear    \t${YELLOW_COLOR}--${FORMAT_RES} Clear the \`.git\` history. \n"\
-        ;;
+  LANG=$1
+  case $LANG in
+    "english" )
+      echo "usage: g <command> [<args>]\n\n"\
+      "These are short commands that can replace git operations:\n\n"\
+      $BRANCH_MSG\
+      "\n"\
+      ${COMMIT_MSG}\
+      "\n"\
+      ${CONFLICT_MSG}\
+      "\n"\
+      ${FETCH_MSG}\
+      "\n"\
+      ${INDEX_MSG}\
+      "\n"\
+      ${LOG_MSG}\
+      "\n"\
+      ${MERGE_NSG}\
+      "\n"\
+      ${PUSH_MSG}\
+      "\n"\
+      ${REMOTE_MSG}\
+      "\n"\
+      ${STASH_MSG}\
+      "\n"\
+      ${TAG_MSG}\
+      "\n"\
+      ${WORKING_TREE_MSG}\
+      "\n${BLOD}Setting${FORMAT_RES}\n"\
+      "\tsavepd   \t${YELLOW_COLOR}--${FORMAT_RES} Remember your account number and password. \n"\
+      "\tuser     \t${YELLOW_COLOR}--${FORMAT_RES} Set your username. \n"\
+      "\temail    \t${YELLOW_COLOR}--${FORMAT_RES} Set your email. \n"\
+      "\tclear    \t${YELLOW_COLOR}--${FORMAT_RES} Clear the \`.git\` history. \n"\
+    ;;
 
-        "chinese" )
-            echo "用法: g <command> [<args>]\n\n"\
-            "这里是可以替代 Git 操作的简单命令:\n\n"\
-            "${BLOD}Branch(b)\033[0m\n"\
-            "    b       ${YELLOW_COLOR}--:${FORMAT_RES} 展示、创建、重命名和删除分支\n"\
-            "    bc      ${YELLOW_COLOR}--:${FORMAT_RES} 创建一个新的分支\n"\
-            "    bl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示分支和他们的提交信息\n"\
-            "    bL      ${YELLOW_COLOR}--:${FORMAT_RES} 展示本地和远程分支与他们的提交信息\n"\
-            "    bs      ${YELLOW_COLOR}--:${FORMAT_RES} 用血统图列出分支及它们的提交.\n"\
-            "    bS      ${YELLOW_COLOR}--:${FORMAT_RES} 用血统图列出本地和远程的分支及它们的提交.\n"\
-            "    bm      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支\n"\
-            "    bM      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支无论是否已存在\n"\
-            "\n${BLOD}Commit(c)${FORMAT_RES}\n"\
-            "    c       ${YELLOW_COLOR}--:${FORMAT_RES} 提交\n"\
-            "    ca      ${YELLOW_COLOR}--:${FORMAT_RES} 提交所有修改和删除\n"\
-            "    cA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式提交所有修改和删除\n"\
-            "    cm      ${YELLOW_COLOR}--:${FORMAT_RES} 使用你给出的消息提交\n"\
-            "    co      ${YELLOW_COLOR}--:${FORMAT_RES} checks out a branch or paths to the working tree.\n"\
-            "    cO      ${YELLOW_COLOR}--:${FORMAT_RES} checks out hunks from the index or the tree interactively.\n"\
-            "    cf      ${YELLOW_COLOR}--:${FORMAT_RES} amends the tip of the current branch reusing the same log message as HEAD.\n"\
-            "    cF      ${YELLOW_COLOR}--:${FORMAT_RES} amends the tip of the current branch.\n"\
-            "    cr      ${YELLOW_COLOR}--:${FORMAT_RES} reverts existing commits by reverting patches and recording new commits.\n"\
-            "    cR      ${YELLOW_COLOR}--:${FORMAT_RES} removes the HEAD commit.\n"\
-            "    cs      ${YELLOW_COLOR}--:${FORMAT_RES} shows one or more objects (blobs, trees, tags and commits).\n"\
-            "\n${BLOD}Conflict(C)${FORMAT_RES}\n"\
-            "    Cl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示未合并的文件\n"\
-            "    Ca      ${YELLOW_COLOR}--:${FORMAT_RES} 添加未合并的文件到索引\n"\
-            "    Ce      ${YELLOW_COLOR}--:${FORMAT_RES} 使用 merge-tool 在所有未合并的文件上\n"\
-            "    Co      ${YELLOW_COLOR}--:${FORMAT_RES} 在未合并的文件上使用我们的修改\n"\
-            "    CO      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用我们的修改\n"\
-            "    Ct      ${YELLOW_COLOR}--:${FORMAT_RES} 在未合并的文件上使用他们的修改\n"\
-            "    CT      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用他们的修改\n"\
-            "\n${BLOD}Fetch(f)${FORMAT_RES}\n"\
-            "    f       ${YELLOW_COLOR}--:${FORMAT_RES} downloads objects and references from another repository.\n"\
-            "    fc      ${YELLOW_COLOR}--:${FORMAT_RES} 克隆一个远程仓库到本地.\n"\
-            "    fm      ${YELLOW_COLOR}--:${FORMAT_RES} 拉取并合并远程分支.\n"\
-            "    fr      ${YELLOW_COLOR}--:${FORMAT_RES} fetches from and rebases on top of another repository or local branch.\n"\
-            "    fu      ${YELLOW_COLOR}--:${FORMAT_RES} removes unexisting remote-tracking references, fetches all remotes and merges.\n"\
-            "    fb      ${YELLOW_COLOR}--:${FORMAT_RES} 拉取远程其他分支到本地，已相同的名字.\n"\
-            "\n${BLOD}Index(i)${FORMAT_RES}\n"\
-            "    ia      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引（默认所有）\n"\
-            "    iA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式的添加文件到索引\n"\
-            "    iu      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引 (updates only known files).\n"\
-            "    id      ${YELLOW_COLOR}--:${FORMAT_RES} 显示索引和命名空间的更改(diff)\n"\
-            "    iD      ${YELLOW_COLOR}--:${FORMAT_RES} 显示索引和命名空间的更改(word diff)\n"\
-            "    ir      ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state.\n"\
-            "    iR      ${YELLOW_COLOR}--:${FORMAT_RES} resets the current index interactively.\n"\
-            "    ix      ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the index (recursively).\n"\
-            "    iX      ${YELLOW_COLOR}--:${FORMAT_RES} removes files from the index (recursively and forced).\n"\
-            "\n${BLOD}Log(l)${FORMAT_RES}\n"\
-            "    l       ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志\n"\
-            "    ls      ${YELLOW_COLOR}--:${FORMAT_RES} 展示状态日志\n"\
-            "    ld      ${YELLOW_COLOR}--:${FORMAT_RES} 展示区别日志\n"\
-            "    lv      ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志，验证提交的 GPG 签名.\n"\
-            "    lc      ${YELLOW_COLOR}--:${FORMAT_RES} 已降序的方式展示提交者和提交数\n"\
-            "    lr      ${YELLOW_COLOR}--:${FORMAT_RES} 管理更新信息\n"\
-            "\n${BLOD}Merge(m)${FORMAT_RES}\n"\
-            "    m       ${YELLOW_COLOR}--:${FORMAT_RES} 合并两个或更多的记录\n"\
-            "    ma      ${YELLOW_COLOR}--:${FORMAT_RES} aborts the conflict resolution, and reconstructs the pre-merge state.\n"\
-            "    mC      ${YELLOW_COLOR}--:${FORMAT_RES} performs the merge but does not commit.\n"\
-            "    mF      ${YELLOW_COLOR}--:${FORMAT_RES} creates a merge commit even if the merge could be resolved as a fast-forward.\n"\
-            "    mS      ${YELLOW_COLOR}--:${FORMAT_RES} performs the merge and GPG-signs the resulting commit.\n"\
-            "    mv      ${YELLOW_COLOR}--:${FORMAT_RES} verifies the GPG signature of the tip commit of the side branch being merged.\n"\
-            "    mt      ${YELLOW_COLOR}--:${FORMAT_RES} runs the merge conflict resolution tools to resolve conflicts.\n"\
-            "\n${BLOD}Push(p)${FORMAT_RES}\n"\
-            "    p        ${YELLOW_COLOR}--:${FORMAT_RES} 更新远程引用及对象.\n"\
-            "    pf       ${YELLOW_COLOR}--:${FORMAT_RES} 安全的强制推送 (with "lease").\n"\
-            "    pF       ${YELLOW_COLOR}--:${FORMAT_RES} 强制推送.\n"\
-            "    pa       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支.\n"\
-            "    pA       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支和标签.\n"\
-            "    pt       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有标签.\n"\
-            "    pc       ${YELLOW_COLOR}--:${FORMAT_RES} pushes the current branch and adds origin as an upstream reference for it.\n"\
-            "    pp       ${YELLOW_COLOR}--:${FORMAT_RES} pulls and pushes the current branch from origin to origin.\n"\
-            "\n${BLOD}Remote(R)${FORMAT_RES}\n"\
-            "    R        ${YELLOW_COLOR}--:${FORMAT_RES} 管理跟踪的仓库\n"\
-            "    Rl       ${YELLOW_COLOR}--:${FORMAT_RES} 展示所有远程连接的名字和 URLs\n"\
-            "    Ra       ${YELLOW_COLOR}--:${FORMAT_RES} 添加一个新的远程连接\n"\
-            "    Rx       ${YELLOW_COLOR}--:${FORMAT_RES} 移除一个远程连接\n"\
-            "    Rm       ${YELLOW_COLOR}--:${FORMAT_RES} 重命名一个远程连接\n"\
-            "    Ru       ${YELLOW_COLOR}--:${FORMAT_RES} 获取远程连接的更新.\n"\
-            "    Rp       ${YELLOW_COLOR}--:${FORMAT_RES} 修建所有过时的远程连接分支.\n"\
-            "    Rs       ${YELLOW_COLOR}--:${FORMAT_RES} 显示远程连接的分支信息.\n"\
-            "    RS       ${YELLOW_COLOR}--:${FORMAT_RES} 修改一个远程连接的 URLs\n"\
-            "\n${BLOD}Stash(s)${FORMAT_RES}\n"\
-            "    s        ${YELLOW_COLOR}--:${FORMAT_RES} 隐藏修改\n"\
-            "    sp       ${YELLOW_COLOR}--:${FORMAT_RES} 回复隐藏\n"\
-            "\n${BLOD}Working tree(w)${FORMAT_RES}\n"\
-            "    ws       ${YELLOW_COLOR}--:${FORMAT_RES} 精简展示工作树状态\n"\
-            "    wS       ${YELLOW_COLOR}--:${FORMAT_RES} 展示工作树状态\n"\
-            "    wd       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同\n"\
-            "    wD       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同（单词不同）\n"\
-            "    wr       ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD to the specified state, does not touch the index nor the working tree.\n"\
-            "    wR       ${YELLOW_COLOR}--:${FORMAT_RES} resets the current HEAD, index and working tree to the specified state.\n"\
-            "    wc       ${YELLOW_COLOR}--:${FORMAT_RES} 从工作树中清除未跟踪的文件 (dry-run).\n"\
-            "    wC       ${YELLOW_COLOR}--:${FORMAT_RES} 从工作树中清除未跟踪的文件.\n"\
-            "    wm       ${YELLOW_COLOR}--:${FORMAT_RES} 移动或重命名文件\n"\
-            "    wM       ${YELLOW_COLOR}--:${FORMAT_RES} 强制移动或重命名文件\n"\
-            "    wx       ${YELLOW_COLOR}--:${FORMAT_RES} 删除文件\n"\
-            "    wX       ${YELLOW_COLOR}--:${FORMAT_RES} 强制删除文件\n"\
-            "\n${BLOD}Setting${FORMAT_RES}\n"\
-            "    savepd  ${YELLOW_COLOR}--${FORMAT_RES} Git 将开始保存你的用户名和密码\n"
-        ;;
-    esac
+    "chinese" )
+      echo "用法: g <command> [<args>]\n\n"\
+      "这里是可以替代 Git 操作的简单命令:\n\n"\
+      "${BLOD}Branch(b)\033[0m\n"\
+      "    b       ${YELLOW_COLOR}--:${FORMAT_RES} 展示、创建、重命名和删除分支\n"\
+      "    bc      ${YELLOW_COLOR}--:${FORMAT_RES} 创建一个新的分支\n"\
+      "    bl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示分支和他们的提交信息\n"\
+      "    bL      ${YELLOW_COLOR}--:${FORMAT_RES} 展示本地和远程分支与他们的提交信息\n"\
+      "    bs      ${YELLOW_COLOR}--:${FORMAT_RES} 用血统图列出分支及它们的提交\n"\
+      "    bS      ${YELLOW_COLOR}--:${FORMAT_RES} 用血统图列出本地和远程的分支及它们的提交\n"\
+      "    bm      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支\n"\
+      "    bM      ${YELLOW_COLOR}--:${FORMAT_RES} 重命名分支无论是否已存在\n"\
+      "\n${BLOD}Commit(c)${FORMAT_RES}\n"\
+      "    c       ${YELLOW_COLOR}--:${FORMAT_RES} 提交\n"\
+      "    ca      ${YELLOW_COLOR}--:${FORMAT_RES} 提交所有修改和删除\n"\
+      "    cA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式提交所有修改和删除\n"\
+      "    cm      ${YELLOW_COLOR}--:${FORMAT_RES} 使用你给出的消息提交\n"\
+      "    co      ${YELLOW_COLOR}--:${FORMAT_RES} 检出工作树的分支或路径\n"\
+      "    cO      ${YELLOW_COLOR}--:${FORMAT_RES} 以交互方式从索引或树中检出大块\n"\
+      "    cf      ${YELLOW_COLOR}--:${FORMAT_RES} 修改当前分支的提示，重用与HEAD相同的日志消息\n"\
+      "    cF      ${YELLOW_COLOR}--:${FORMAT_RES} 修改当前分支的尖端\n"\
+      "    cr      ${YELLOW_COLOR}--:${FORMAT_RES} 通过还原修补程序和记录新提交来还原现有提交\n"\
+      "    cR      ${YELLOW_COLOR}--:${FORMAT_RES} 移除头部提交\n"\
+      "    cs      ${YELLOW_COLOR}--:${FORMAT_RES} 显示一个或多个对象（blob、树、标记和提交）\n"\
+      "\n${BLOD}Conflict(C)${FORMAT_RES}\n"\
+      "    Cl      ${YELLOW_COLOR}--:${FORMAT_RES} 展示未合并的文件\n"\
+      "    Ca      ${YELLOW_COLOR}--:${FORMAT_RES} 添加未合并的文件到索引\n"\
+      "    Ce      ${YELLOW_COLOR}--:${FORMAT_RES} 使用 merge-tool 在所有未合并的文件上\n"\
+      "    Co      ${YELLOW_COLOR}--:${FORMAT_RES} 在未合并的文件上使用我们的修改\n"\
+      "    CO      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用我们的修改\n"\
+      "    Ct      ${YELLOW_COLOR}--:${FORMAT_RES} 在未合并的文件上使用他们的修改\n"\
+      "    CT      ${YELLOW_COLOR}--:${FORMAT_RES} 在所有未合并的文件上使用他们的修改\n"\
+      "\n${BLOD}Fetch(f)${FORMAT_RES}\n"\
+      "    f       ${YELLOW_COLOR}--:${FORMAT_RES} 从另一个存储库下载对象和引用\n"\
+      "    fc      ${YELLOW_COLOR}--:${FORMAT_RES} 克隆一个远程仓库到本地\n"\
+      "    fm      ${YELLOW_COLOR}--:${FORMAT_RES} 拉取并合并远程分支\n"\
+      "    fr      ${YELLOW_COLOR}--:${FORMAT_RES} 从另一个存储库或本地分支获取数据并在其上重新设置\n"\
+      "    fu      ${YELLOW_COLOR}--:${FORMAT_RES} 删除不存在的远程跟踪引用，获取所有远程和合并\n"\
+      "    fb      ${YELLOW_COLOR}--:${FORMAT_RES} 拉取远程其他分支到本地，已相同的名字.\n"\
+      "\n${BLOD}Index(i)${FORMAT_RES}\n"\
+      "    ia      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引（默认所有）\n"\
+      "    iA      ${YELLOW_COLOR}--:${FORMAT_RES} 交互方式的添加文件到索引\n"\
+      "    iu      ${YELLOW_COLOR}--:${FORMAT_RES} 将文件添加到索引 (updates only known files).\n"\
+      "    id      ${YELLOW_COLOR}--:${FORMAT_RES} 显示索引和命名空间的更改(diff)\n"\
+      "    iD      ${YELLOW_COLOR}--:${FORMAT_RES} 显示索引和命名空间的更改(word diff)\n"\
+      "    ir      ${YELLOW_COLOR}--:${FORMAT_RES} 将当前磁头重置为指定状态\n"\
+      "    iR      ${YELLOW_COLOR}--:${FORMAT_RES} 以交互方式重置当前索引\n"\
+      "    ix      ${YELLOW_COLOR}--:${FORMAT_RES} 从索引中删除文件（递归）\n"\
+      "    iX      ${YELLOW_COLOR}--:${FORMAT_RES} 从索引中删除文件（递归和强制）\n"\
+      "\n${BLOD}Log(l)${FORMAT_RES}\n"\
+      "    l       ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志\n"\
+      "    ls      ${YELLOW_COLOR}--:${FORMAT_RES} 展示状态日志\n"\
+      "    ld      ${YELLOW_COLOR}--:${FORMAT_RES} 展示区别日志\n"\
+      "    lv      ${YELLOW_COLOR}--:${FORMAT_RES} 展示日志，验证提交的 GPG 签名\n"\
+      "    lc      ${YELLOW_COLOR}--:${FORMAT_RES} 已降序的方式展示提交者和提交数\n"\
+      "    lr      ${YELLOW_COLOR}--:${FORMAT_RES} 管理更新信息\n"\
+      "\n${BLOD}Merge(m)${FORMAT_RES}\n"\
+      "    m       ${YELLOW_COLOR}--:${FORMAT_RES} 合并两个或更多的记录\n"\
+      "    ma      ${YELLOW_COLOR}--:${FORMAT_RES} 中止冲突解决，并重建预合并状态\n"\
+      "    mC      ${YELLOW_COLOR}--:${FORMAT_RES} 执行合并但不提交\n"\
+      "    mF      ${YELLOW_COLOR}--:${FORMAT_RES} 创建合并提交，即使合并可以解析为快进\n"\
+      "    mS      ${YELLOW_COLOR}--:${FORMAT_RES} 执行合并，GPG对结果提交进行签名\n"\
+      "    mv      ${YELLOW_COLOR}--:${FORMAT_RES} 验证正在合并的分支的tip提交的GPG签名\n"\
+      "    mt      ${YELLOW_COLOR}--:${FORMAT_RES} 运行合并冲突解决工具来解决冲突\n"\
+      "\n${BLOD}Push(p)${FORMAT_RES}\n"\
+      "    p        ${YELLOW_COLOR}--:${FORMAT_RES} 更新远程引用及对象\n"\
+      "    pf       ${YELLOW_COLOR}--:${FORMAT_RES} 安全的强制推送 (with "lease")\n"\
+      "    pF       ${YELLOW_COLOR}--:${FORMAT_RES} 强制推送\n"\
+      "    pa       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支.\n"\
+      "    pA       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有分支和标签\n"\
+      "    pt       ${YELLOW_COLOR}--:${FORMAT_RES} 推送所有标签\n"\
+      "    pc       ${YELLOW_COLOR}--:${FORMAT_RES} 推送当前分支并添加原点作为其上游引用\n"\
+      "    pp       ${YELLOW_COLOR}--:${FORMAT_RES} 将当前分支从一个原点拉到另一个原点\n"\
+      "\n${BLOD}Remote(R)${FORMAT_RES}\n"\
+      "    R        ${YELLOW_COLOR}--:${FORMAT_RES} 管理跟踪的仓库\n"\
+      "    Rl       ${YELLOW_COLOR}--:${FORMAT_RES} 展示所有远程连接的名字和 URLs\n"\
+      "    Ra       ${YELLOW_COLOR}--:${FORMAT_RES} 添加一个新的远程连接\n"\
+      "    Rx       ${YELLOW_COLOR}--:${FORMAT_RES} 移除一个远程连接\n"\
+      "    Rm       ${YELLOW_COLOR}--:${FORMAT_RES} 重命名一个远程连接\n"\
+      "    Ru       ${YELLOW_COLOR}--:${FORMAT_RES} 获取远程连接的更新\n"\
+      "    Rp       ${YELLOW_COLOR}--:${FORMAT_RES} 修建所有过时的远程连接分支\n"\
+      "    Rs       ${YELLOW_COLOR}--:${FORMAT_RES} 显示远程连接的分支信息\n"\
+      "    RS       ${YELLOW_COLOR}--:${FORMAT_RES} 修改一个远程连接的 URLs\n"\
+      "\n${BLOD}Stash(s)${FORMAT_RES}\n"\
+      "    s        ${YELLOW_COLOR}--:${FORMAT_RES} 隐藏修改\n"\
+      "    sp       ${YELLOW_COLOR}--:${FORMAT_RES} 回复隐藏\n"\
+      "\n${BLOD}Working tree(w)${FORMAT_RES}\n"\
+      "    ws       ${YELLOW_COLOR}--:${FORMAT_RES} 精简展示工作树状态\n"\
+      "    wS       ${YELLOW_COLOR}--:${FORMAT_RES} 展示工作树状态\n"\
+      "    wd       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同\n"\
+      "    wD       ${YELLOW_COLOR}--:${FORMAT_RES} 展示修改后与当前的不同（单词不同）\n"\
+      "    wr       ${YELLOW_COLOR}--:${FORMAT_RES} 将当前头重置为指定状态，不接触索引或工作树\n"\
+      "    wR       ${YELLOW_COLOR}--:${FORMAT_RES} 将当前头、索引和工作树重置为指定状态\n"\
+      "    wc       ${YELLOW_COLOR}--:${FORMAT_RES} 从工作树中清除未跟踪的文件 (dry-run)\n"\
+      "    wC       ${YELLOW_COLOR}--:${FORMAT_RES} 从工作树中清除未跟踪的文件\n"\
+      "    wm       ${YELLOW_COLOR}--:${FORMAT_RES} 移动或重命名文件\n"\
+      "    wM       ${YELLOW_COLOR}--:${FORMAT_RES} 强制移动或重命名文件\n"\
+      "    wx       ${YELLOW_COLOR}--:${FORMAT_RES} 删除文件\n"\
+      "    wX       ${YELLOW_COLOR}--:${FORMAT_RES} 强制删除文件\n"\
+      "\n${BLOD}Setting${FORMAT_RES}\n"\
+      "    savepd  ${YELLOW_COLOR}--${FORMAT_RES} Git 将开始保存你的用户名和密码\n"\
+      "    user    ${YELLOW_COLOR}--${FORMAT_RES} 设置用户名 \n"\
+      "    email   ${YELLOW_COLOR}--${FORMAT_RES} 设置邮箱 \n"\
+      "    clear   ${YELLOW_COLOR}--${FORMAT_RES} 清除 \`.git\` 历史（默认深度：1） \n"\
+    ;;
+  esac
 }
 # }}}
 
 
 # clear the `.git` history {{{
 _show_will_clear_items(){
-    echo "These are the largest $COUNT files"
-    for ITEM in $TRASHCODES;do
-        echo "${YELLOW_COLOR}::${FORMAT_RES} $ITEM"
-    done
+  echo "These are the largest $COUNT files"
+  for ITEM in $TRASHCODES;do
+    echo "${YELLOW_COLOR}::${FORMAT_RES} $ITEM"
+  done
 }
 
 _clear_history(){
-    for TRASHCODE in $TRASHCODES;do
-        TRASHNAME=`git rev-list --objects --all | grep $TRASHCODE | cut -b 42-`
-        echo "\n\n${GREEN_COLOR}==> ${RED_COLOR}${TRASHNAME}${FORMAT_RES}"
-        git log --pretty=oneline --branches -- $TRASHNAME
+  for TRASHCODE in $TRASHCODES;do
+    TRASHNAME=`git rev-list --objects --all | grep $TRASHCODE | cut -b 42-`
+    echo "\n\n${GREEN_COLOR}==> ${RED_COLOR}${TRASHNAME}${FORMAT_RES}"
+    git log --pretty=oneline --branches -- $TRASHNAME
 
-        git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $TRASHNAME" --prune-empty -- --all
+    git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $TRASHNAME" --prune-empty -- --all
 
-        rm -Rf .git/refs/original
-        rm -Rf .git/logs/
-        git reflog expire --expire=now --all
-        git fsck --full --unreachable
-        git repack -A -d
-        git gc --aggressive --prune=now
-    done
+    rm -Rf .git/refs/original
+    rm -Rf .git/logs/
+    git reflog expire --expire=now --all
+    git fsck --full --unreachable
+    git repack -A -d
+    git gc --aggressive --prune=now
+  done
 }
 
 _if_force_push(){
-    echo "\n\n== Do you need to force push (yes/no):"
-    if read -t 7 FORCEPUSH; then
-        if [[ $FORCEPUSH == "y" || $FORCEPUSH == "Y" || $FORCEPUSH == "yes" || $FORCEPUSH == "YES" ]];then
-            echo "Start force push ... "
-            remote_branch=$(git branch | cut -b 3-)
-            git push --force origin $remote_branch
-        else
-            echo ""
-        fi
+  echo "\n\n== Do you need to force push (yes/no):"
+  if read -t 7 FORCEPUSH; then
+    if [[ $FORCEPUSH == "y" || $FORCEPUSH == "Y" || $FORCEPUSH == "yes" || $FORCEPUSH == "YES" ]];then
+      echo "Start force push ... "
+      remote_branch=$(git branch | cut -b 3-)
+      git push --force origin $remote_branch
     else
-        echo "${YELLOW_COLOR}Warm${FORMAT_RES}: Timeout, will not force push."
+      echo ""
     fi
+  else
+    echo "${YELLOW_COLOR}Warm${FORMAT_RES}: Timeout, will not force push."
+  fi
 }
 
 _git_clear() {
-    if [[ $1 ]]; then
-        COUNT=$1
-    else
-        COUNT=1
-    fi
+  if [[ $1 ]]; then
+    COUNT=$1
+  else
+    COUNT=1
+  fi
 
-    TRASHCODES=$(git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -${COUNT} | cut -b 1-40)
+  TRASHCODES=$(git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -${COUNT} | cut -b 1-40)
 
-    _show_will_clear_items
-    _clear_history
-    _if_force_push
-    echo "Clear Over."
+  _show_will_clear_items
+  _clear_history
+  _if_force_push
+  echo "Clear Over."
 }
 # }}}
+
 
 # Start
 simple_git $@

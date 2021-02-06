@@ -81,8 +81,11 @@
 colors:
   # Default colors
   primary:
-    background: '#000000'
-    foreground: '#ffffff'
+
+    background: "0x2a2f38"
+    foreground: "0xe1e3e4"
+    #background: '#000000'
+    #foreground: '#ffffff'
     #background: '#272822'
     #foreground: '#F8F8F2'
 
