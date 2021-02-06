@@ -10,6 +10,31 @@
 # See https://git-scm.com/docs/pretty-formats
 _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 
+_check_git_status() {
+  # adjust wether has git
+  if ! command -v git >/dev/null 2>&1; then
+    echo "${RED_COLOR}Not found git, please install git first.${FORMAT_RES}"
+    exit 0
+  fi
+}
+
+_lists_unmerge_file() {
+  command git --no-pager diff --diff-filter=U --name-only
+}
+
+_git_current_branch() {
+  command git symbolic-ref -q --short HEAD
+}
+
+# Add files to `.gitignore`
+_git_ignore_files() {
+  local git_root_path
+  git_root_path=$(git rev-parse --show-toplevel) ||  exit
+
+  for file in ${@}; do
+    echo ${file} >> "${git_root_path}/.gitignore"
+  done
+}
 
 
 simple_git() {
@@ -45,13 +70,13 @@ simple_git() {
 
 
     # Conflict(C)
-    'Cl' )git --no-pager diff --diff-filter=U --name-only;;
-    'Ca' )git add $(git --no-paper diff --diff-filter=U --name-only);;
-    'Ce' )git mergetool $(git --no-pager diff --diff-filter=U --name-only);;
+    'Cl' )$(_lists_unmerge_file);;
+    'Ca' )git add $(_lists_unmerge_file);;
+    'Ce' )git mergetool $(_lists_unmerge_file);;
     'Co' )git checkout --ours -- ${@:2:$((${#@}))};;
-    'CO' )git checkout --ours -- $(git --no-paper diff --diff-filter=U --name-only);;
+    'CO' )git checkout --ours -- $(_lists_unmerge_file);;
     'Ct' )git checkout --theirs -- ${@:2:$((${#@}))};;
-    'CT' )git checkout --theirs -- $(git --no-pager diff --diff-filter=U --name-only);;
+    'CT' )git checkout --theirs -- $(_lists_unmerge_file);;
 
 
     # Fetch(f)
@@ -114,8 +139,8 @@ simple_git() {
     "pa" )git push --all ${@:2:$((${#@}))};;
     "pA" )git push --all && git push --tags;;
     "pt" )git push --tags ${@:2:$((${#@}))};;
-    "pc" )git push --set-upstream origin "$(git-branch-current 2> /dev/null)";;
-    "pp" )git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)";;
+    "pc" )git push --set-upstream origin "$(_git_current_branch 2> /dev/null)";;
+    "pp" )git pull origin "$(_git_current_branch 2> /dev/null)" && git push origin "$(_git_current_branch 2> /dev/null)";;
 
 
     # Remote(R)
@@ -162,6 +187,7 @@ simple_git() {
     'user'    )git config user.name ${@:2:$((${#@}))};;
     'email'   )git config user.email ${@:2:$((${#@}))};;
     'clear'   )_git_clear ${@:2:$((${#@}))};;
+    'ignore'  )_git_ignore_files ${@:2:$((${#@}))};;
 
 
     # Help message
@@ -199,14 +225,6 @@ simple_git() {
       fi
     ;;
   esac
-}
-
-_check_git_status() {
-  # adjust wether has git
-  if ! command -v git >/dev/null 2>&1; then
-    echo "${RED_COLOR}Not found git, please install git first.${FORMAT_RES}"
-    exit 0
-  fi
 }
 
 
