@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# vim:set et sw=2 ts=2 fdm=marker fdl=1:
 #=====================================
 # Description: This is a simple scritp
 #    to help you more easy using Git.
@@ -10,8 +11,8 @@
 # See https://git-scm.com/docs/pretty-formats
 _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
 
+# adjust wether has git
 _check_git_status() {
-  # adjust wether has git
   if ! command -v git >/dev/null 2>&1; then
     echo "${RED_COLOR}Not found git, please install git first.${FORMAT_RES}"
     exit 0
@@ -33,6 +34,29 @@ _git_ignore_files() {
 
   for file in ${@}; do
     echo ${file} >> "${git_root_path}/.gitignore"
+  done
+}
+
+_git_clear_stash_interactive() {
+  local -i stashed
+  stashed=$(git stash list | wc -l) || return 1
+
+  local is_clear
+  if (( stashed )) && \
+      read -p "Clear ${stashed} stashed state(s) [y/N]? " is_clear; then
+    if [[ ${is_clear} == 'Y' || ${is_clear} == 'y' ]]; then
+      command git stash clear
+    fi
+  fi
+}
+
+_git_stash_recover() {
+  command git rev-parse --is-inside-work-tree >/dev/null || exit
+
+  local commit
+  for commit in "${@}"; do
+    git update-ref -m "$(command git log -1 --pretty='format:%s' ${commit})" \
+      refs/stash ${commit}
   done
 }
 
@@ -159,6 +183,10 @@ simple_git() {
     's'  )git stash ${@:2:$((${#@}))};;
     'sp' )git stash pop ${@:2:$((${#@}))};;
     'sl' )git stash list ${@:2:$((${#@}))};;
+    'sd' )git stash show ${@:2:$((${#@}))};;
+    'sD' )git stash show --patch --stat ${@:2:$((${#@}))};;
+    'sr' )_git_stash_recover ${@:2:$((${#@}))};;
+    'sc' )_git_clear_stash_interactive;;
 
 
     # Tag (t)
