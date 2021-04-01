@@ -23,8 +23,8 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 
 export LOCALPROG=$HOME/prog
-export EDITOR=${LOCALPROG}/nvim-osx64/bin/nvim
-export VISUAL=${LOCALPROG}/nvim-osx64/bin/nvim
+export EDITOR=nvim
+export VISUAL=nvim
 # Flutter
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
@@ -50,5 +50,5 @@ export PATH="/opt/homebrew/sbin:$PATH"
 alias ibrew='arch -x86_64 /usr/local/bin/brew' # X86 Homebrew
 
 
-export PATH="${LOCALPROG}/nvim-osx64/bin:$PATH"
+#export PATH="${LOCALPROG}/nvim-osx64/bin:$PATH"
 
