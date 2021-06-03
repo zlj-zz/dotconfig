@@ -2,6 +2,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export LOCALBIN=$XDG_CONFIG_HOME/bin
 export PATH=$PATH:$LOCALBIN
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/.local/bin
 export PATH=$PATH:/home/zacharyzhang/.zacharyzhang/bin
 export PATH=$PATH:/home/zacharyzhang/.zacharyzhang/sbin
 export PATH=$PATH:$HOME/.zacharyzhang/bin

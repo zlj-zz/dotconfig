@@ -7,6 +7,10 @@ function zle_eval {
 function openlazygit {
     zle_eval lazygit
 }
+function openfungit {
+    zle_eval fungit
+}
 
-zle -N openlazygit; bindkey "^G" openlazygit
+#zle -N openlazygit; bindkey "^G" openlazygit
+zle -N openfungit; bindkey "^G" openfungit
 
