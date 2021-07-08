@@ -1,5 +1,8 @@
 source ~/.config/zsh/env.zsh
-source ~/.config/zsh/aliases.zsh
+for al_f in `ls ~/.config/zsh/aliases`; do
+    source ~/.config/zsh/aliases/${al_f}
+done
+#source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/vi.zsh
 source ~/.config/zsh/fzf.zsh
