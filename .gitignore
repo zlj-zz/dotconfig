@@ -29,6 +29,7 @@
 !/rofi/
 !/mpd
 !/htop
+!/nvim
 
 !.my_script
 !install-my-script.sh
@@ -47,3 +48,5 @@ mpd/mpd.pid
 fish/.DS_Store
 tmux/.DS_Store
 test.sh
+
+zsh/testing.zsh
