@@ -24,6 +24,8 @@
 !/pip/
 !/polybar/
 !/ranger/
+!/ranger/plugins/ranger_devicons
+!ranger_devicons
 /ranger/plugins/__pycache__/
 !/tmux/
 !/rofi/
