@@ -29,7 +29,6 @@
 !/rofi/
 !/mpd
 !/htop
-!/nvim
 
 !.my_script
 !install-my-script.sh
