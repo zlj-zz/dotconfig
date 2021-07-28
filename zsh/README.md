@@ -16,3 +16,5 @@ cd ~/.config/zsh
 
 zimfw install
 ```
+
+---
