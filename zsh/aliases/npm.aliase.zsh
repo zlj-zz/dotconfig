@@ -1,5 +1,6 @@
 # npm
 alias ni='npm install'
+alias nig='npm install -g'
 alias nis='npm install --save'
 alias nid='npm install --save-dev'
 alias nit='npm install-test'

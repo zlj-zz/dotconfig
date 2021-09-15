@@ -28,6 +28,9 @@ zmodule zsh-users/zsh-autosuggestions
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 
+# Formats the path to the current working directory to be used by prompts.
+zmodule prompt-pwd
+
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after zsh-users/zsh-completions
 zmodule zdharma/fast-syntax-highlighting
@@ -39,4 +42,5 @@ zmodule agkozak/zsh-z
 zmodule Aloxaf/fzf-tab
 
 # scheme
-zmodule magicmace
+#zmodule magicmace
+zmodule gitster
