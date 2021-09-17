@@ -3,16 +3,16 @@
 * [My .config](#my-config)
 * [Existing configuration:](#existing-configuration)
 * [Brief description](#brief-description)
-    * [alacritty](#alacritty)
-    * [tmux](#tmux)
-    * [Ranger](#ranger)
-    * [neofetch](#neofetch)
-    * [polybar](#polybar)
-    * [Pipy](#pipy)
-    * [Font](#font)
-        * [About Noto](#about-noto)
-        * [Emoji](#emoji)
-        * [Chinese](#chinese)
+	* [alacritty](#alacritty)
+	* [tmux](#tmux)
+	* [Ranger](#ranger)
+	* [neofetch](#neofetch)
+	* [polybar](#polybar)
+	* [Pipy](#pipy)
+	* [Font](#font)
+		* [About Noto](#about-noto)
+		* [Emoji](#emoji)
+		* [Chinese](#chinese)
 
 <!-- vim-markdown-toc -->
 
@@ -93,7 +93,7 @@ I use the `Source Code Pro` font and `nerd-fonts-source-code-pro`.
 
 ### About Noto
 
-Just install `noto-fonts` (not `-all`). It's already bloated. Check `/usr/share/fonts/noto`
+Just install [`noto-fonts`](https://github.com/ryanoasis/nerd-fonts) (not `-all`). It's already bloated. Check `/usr/share/fonts/noto`
 
 ### Emoji
 
