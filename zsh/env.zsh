@@ -52,7 +52,9 @@ export PATH=$PATH:${ANDROID_HOME}/platform-tools
 #fi
 
 #HomeBrew
-#export PATH="/opt/homebrew/bin:$PATH"
-#export PATH="/opt/homebrew/sbin:$PATH"
-#alias ibrew='arch -x86_64 /usr/local/bin/brew' # X86 Homebrew
+if [[ -d /opt/homebrew ]] then
+  export PATH="/opt/homebrew/bin:$PATH"
+  export PATH="/opt/homebrew/sbin:$PATH"
+  alias ibrew='arch -x86_64 /usr/local/bin/brew' # X86 Homebrew
+fi
 
