@@ -1,18 +1,19 @@
 <!-- vim-markdown-toc GFM -->
 
 * [My .config](#my-config)
+* [Installation](#installation)
 * [Existing configuration:](#existing-configuration)
 * [Brief description](#brief-description)
-	* [alacritty](#alacritty)
-	* [tmux](#tmux)
-	* [Ranger](#ranger)
-	* [neofetch](#neofetch)
-	* [polybar](#polybar)
-	* [Pipy](#pipy)
-	* [Font](#font)
-		* [About Noto](#about-noto)
-		* [Emoji](#emoji)
-		* [Chinese](#chinese)
+    * [alacritty](#alacritty)
+    * [tmux](#tmux)
+    * [Ranger](#ranger)
+    * [neofetch](#neofetch)
+    * [polybar](#polybar)
+    * [Pipy](#pipy)
+    * [Font](#font)
+        * [About Noto](#about-noto)
+        * [Emoji](#emoji)
+        * [Chinese](#chinese)
 
 <!-- vim-markdown-toc -->
 
@@ -20,7 +21,11 @@
 
 There is my **linux** configuration, if you want to use my configuration, most of them have **README**, _you can click to view detail_.
 
-<u>**If there is not special instructions, the folder should be placed in `~/.config`.**</u>
+# Installation
+
+```sh
+bash -c "$(curl -fsSl https://raw.githubusercontent.com/zlj-zz/dotconfig/master/install/install.sh)"
+```
 
 # Existing configuration:
 
