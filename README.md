@@ -114,14 +114,14 @@ yay -S wqy-bitmapfont wqy-microhei wqy-microhei-lite wqy-zenhei adobe-source-han
 
 [1]: https://github.com/zlj-zz/nvim
 [2]: https://github.com/zlj-zz/vimrc
-[3]: ./i3
-[4]: ./tmux
-[5]: ./ranger
-[6]: ./alacritty
-[7]: ./picom
-[8]: ./neofetch
-[9]: ./pip
-[10]: ./master/fish
-[11]: ./master/zsh
-[12]: ./master/rofi
-[13]: ./polybar
+[3]: ./config/i3
+[4]: ./config/tmux
+[5]: ./config/ranger
+[6]: ./config/alacritty
+[7]: ./config/picom
+[8]: ./config/neofetch
+[9]: ./config/pip
+[10]: ./config/fish
+[11]: ./zsh
+[12]: ./config/rofi
+[13]: ./config/polybar
