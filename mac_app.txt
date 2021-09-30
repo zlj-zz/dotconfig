@@ -1,0 +1,67 @@
++------------------------------------------------------------------------------------------------------------------------------------+
+|            **Mouse**                                                                                                               |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Scroll Reverser           | Allow to set the scroll of the mouse separately.    | https://pilotmoon.com/scrollreverser/.           |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| MOS                       |- Smooth your mouse scrolling effect, support setting|                                                  |
+|                           |  scroll speed and duration.                         |                                                  |
+|                           |- Smooth your mouse scrolling effect, support setting|                                                  |
+|                           |  scroll speed and duration.                         |                                                  |
+|                           |- Support separate touchpad and mouse experience, you|                                                  |
+|                           |  can set the mouse's separate scrolling direction.  |                                                  |
+|                           |- You can directly view the scrolling monitoring     |                                                  |
+|                           |  chart.                                             |                                                  |
+|                           |- Support setting different scrolling and smoothing  |                                                  |
+|                           |  conditions for applications.                       |                                                  |
++------------------------------------------------------------------------------------------------------------------------------------+
+|            **Terminal**                                                                                                            |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| iterm2                    | iTerm2 is an alternative to the terminal, on Mac.   | https://iterm2.com/                              | 
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| alacritty                 | A cross-platform OpenGL terminal emulator.          | https://github.com/alacritty/alacritty           |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| eDEX-UI                   | A cross-platform, customizable science fiction      | https://github.com/GitSquared/edex-ui            |
+|                           | terminal emulator with advanced monitoring &        |                                                  |
+|                           | touchscreen support.                                |                                                  |
++------------------------------------------------------------------------------------------------------------------------------------+
+|            **Plugin**                                                                                                              |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Manico                    | Efficient App launcher and switcher.                | App Store                                        |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| iRightMouse               | Powerful right-click menu tool.                     | App Store                                        |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Amphetamine               | Conveniently keep the screen awake.                 | App Store                                        |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| iShot                     | Useful screenshot and screen recording software.    | App Store                                        |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| CheatSheet                | Global software shortcut key prompt.                | https://cheatsheet-mac.en.softonic.com/mac       |
++------------------------------------------------------------------------------------------------------------------------------------+
+|            **Tool**                                                                                                                |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Keka                      | Convenient decompression tool.                      | https://www.keka.io/en/                          |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| NTFSTool                  | NTFS hard disk management tool.                     | https://github.com/ntfstool/ntfstool             |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Rectangle                 | Window manager and resizing application.            | https://github.com/rxhanson/Rectangle            |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| pap.er                    | Wallpaper app designed specifically for Mac.        | http://paper.meiyuan.in/                         |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Tencent Lemon Cleaner     | Ingeniously polished and cleaned up experience,     | https://lemon.qq.com/                            |
+|                           | release disk space with one click.                  |                                                  |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| IINA                      | Modern media player for macOS.                      | https://iina.io/                                 |
+|                           |                                                     | https://github.com/iina/iina                     |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Bob                       | Bob is a Mac translation software, which supports   | https://github.com/ripperhe/Bob                  |
+|                           | word delimitation translation, screenshot           |                                                  |
+|                           | translation and manual input translation.           |                                                  |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| uTools                    | Your productivity Toolset.                          | https://www.u.tools/                             |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| draw.io                   | Security-first diagramming for teams.               | https://www.diagrams.net/                        |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Motrix                    | A full-featured download manager.                   | https://github.com/agalwood/Motrix               |
+|                           |                                                     | https://motrix.app/                              |
++---------------------------+-----------------------------------------------------+--------------------------------------------------+
+
+
