@@ -24,7 +24,9 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 
+# custom install path
 export LOCALPROG=$HOME/prog
+
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -53,8 +55,8 @@ export PATH=$PATH:${ANDROID_HOME}/platform-tools
 
 #HomeBrew
 if [[ -d /opt/homebrew ]] then
-  export PATH="/opt/homebrew/bin:$PATH"
-  export PATH="/opt/homebrew/sbin:$PATH"
+  export PATH="$PATH:/opt/homebrew/bin"
+  export PATH="$PATH:/opt/homebrew/sbin"
   alias ibrew='arch -x86_64 /usr/local/bin/brew' # X86 Homebrew
 fi
 

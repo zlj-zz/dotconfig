@@ -4,4 +4,6 @@ fish/.DS_Store
 tmux/.DS_Store
 test.sh
 
+*.pyc
+
 zsh/testing.zsh
