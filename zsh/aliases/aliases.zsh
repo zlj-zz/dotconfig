@@ -17,7 +17,8 @@ if type thefuck >/dev/null 2>&1; then
 fi
 
 if type pigit >/dev/null 2>&1; then
-    alias g=pigit
+  eval $(pigit --alias g)
+    #alias g=pigit
 fi
 
 
