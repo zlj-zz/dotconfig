@@ -136,6 +136,18 @@ promise() {
     }
 
     install_neovim_config() {
+        echo -n "check "; msg_aoi "${path_to_config_dir}/nvim"
+        if [ -e $path_to_config_dir ]; then
+            msg_green " √\n"
+            return 0
+        else
+            msg_red " ✘\n"
+            msg_aoi "clone ${repo_url}\n"
+            if ! git clone --recursive "https://github.com/zlj-zz/nvim.git" "${path_to_config_dir}/nvim"; then
+                return 1
+            fi
+        fi
+
         msg_aoi "install neovim config\n"
         local path_to_nvim="${HOME}/.config"
         echo -n "check "; msg_aoi "${path_to_nvim}"
