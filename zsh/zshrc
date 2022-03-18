@@ -1,11 +1,11 @@
 source ~/.configrc/zsh/env.zsh
-for al_f in `ls ~/.configrc/zsh/aliases`; do
-    source ~/.configrc/zsh/aliases/${al_f}
-done
-#source ~/.config/zsh/aliases.zsh
 source ~/.configrc/zsh/plugins.zsh
 source ~/.configrc/zsh/vi.zsh
 source ~/.configrc/zsh/fzf.zsh
 source ~/.configrc/zsh/mappings.zsh
+#source ~/.config/zsh/aliases.zsh
+for al_f in `ls ~/.configrc/zsh/aliases`; do
+    source ~/.configrc/zsh/aliases/${al_f}
+done
 source ~/.configrc/zsh/completion.zsh
 source ~/.configrc/zsh/tmux.zsh

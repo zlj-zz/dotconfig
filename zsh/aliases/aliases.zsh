@@ -17,8 +17,16 @@ if type thefuck >/dev/null 2>&1; then
 fi
 
 if type pigit >/dev/null 2>&1; then
-  eval $(pigit --alias g)
-    #alias g=pigit
+    alias gt="pigit"
+    alias g="pigit cmd"
+
+    function openpigit {
+    #    echo -en "\e[2K\r"
+        pigit 
+        zle redisplay
+    }
+    zle -N openpigit; bindkey "^G" openpigit
+
 fi
 
 

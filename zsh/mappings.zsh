@@ -12,5 +12,4 @@ function openfungit {
 }
 
 #zle -N openlazygit; bindkey "^G" openlazygit
-zle -N openfungit; bindkey "^G" openfungit
-
+#zle -N openfungit; bindkey "^G" openfungit
