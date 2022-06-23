@@ -15,13 +15,13 @@
   "editor.suggestSelection": "recentlyUsedByPrefix",
   "editor.acceptSuggestionOnEnter": "smart",
   "editor.cursorStyle": "line",
-  "editor.insertSpaces": false,
+  "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.renderControlCharacters": true,
   "editor.renderWhitespace": "all",
   "editor.lineNumbers": "on",
-  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "explorer.confirmDragAndDrop": false,
   "files.insertFinalNewline": true,
@@ -29,7 +29,7 @@
   "python.languageServer": "Pylance",
   "python.formatting.provider": "black",
   "python.condaPath": "/Users/zacharyzhang/prog/miniforge3/condabin/conda",
-  "python.defaultInterpreterPath": "/usr/homebrew/bin/python3",
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
   "python.autoComplete.extraPaths": [],
   "python.analysis.extraPaths": [],
   "[python]": {
@@ -51,6 +51,10 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": false
   },
+  "Lua.telemetry.enable": true,
+  "[lua]": {
+    "editor.defaultFormatter": "yinfei.luahelper"
+  },
   "arduino.commandPath": "Contents/MacOS/Arduino",
   "arduino.additionalUrls": [
     "https://dl.espressif.com/dl/package_esp32_index.json",
@@ -62,9 +66,13 @@
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "Lua.telemetry.enable": true,
   "settingsSync.ignoredExtensions": ["streetsidesoftware.code-spell-checker"],
+  /* Vim setting*/
   "vim.history": 200,
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
   "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
   "vim.handleKeys": {
     "<C-a>": false,
@@ -73,6 +81,7 @@
     "<C-c>": false,
     "<C-h>": false
   },
+  "vim.foldfix": true,
   "vim.hlsearch": true,
   "vim.easymotion": true,
   "vim.useSystemClipboard": false,
@@ -188,7 +197,8 @@
   "vim.commandLineModeKeyBindings": [],
   "vim.neovimPath": "/opt/homebrew/bin/nvim",
   "leetcode.endpoint": "leetcode-cn",
-  "leetcode.workspaceFolder": "/Users/lijunnzhang/Projects/.leetcode",
+  "leetcode.workspaceFolder": "/Users/lijunzhang/Projects/.leetcode",
+  "leetcode.defaultLanguage": "python3",
   "leetcode.hint.commentDescription": false,
   "cSpell.userWords": ["Zhang"]
 }
