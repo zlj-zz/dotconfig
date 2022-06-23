@@ -20,10 +20,18 @@
 
 - Vuter
 - Vue Language Features(Volar)
+- open in browser
+
+### Lua
+
+- lua-language-server
+- LuaHelper Guide
 
 ## Tools
 
 - GitLens
 - Todo Tree
-- open in browser
 - Sourcery
+- Draw.io Integration
+- LeetCode
+- XML Tools
