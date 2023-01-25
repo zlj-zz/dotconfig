@@ -17,8 +17,9 @@ if type thefuck >/dev/null 2>&1; then
 fi
 
 if type pigit >/dev/null 2>&1; then
-    alias gt="pigit"
+    alias pg="pigit"
     alias g="pigit cmd"
+    alias gr="pigit repo"
 
     function openpigit {
     #    echo -en "\e[2K\r"
