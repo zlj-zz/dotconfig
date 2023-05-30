@@ -1,4 +1,4 @@
-## My tmux config
+# My tmux config
 
 you should place the file in `~`, or `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
 
@@ -8,11 +8,17 @@ You may should install `rainbarf`.
 
 `c-d` exit TMUX.
 
+## Keymap
+
+> Need use the `prefix` to trigger the quick key.
+
 **session:**
 
-| bind  | function    |
-| ----- | ----------- |
-| `c-c` | new session |
+| bind  | function                |
+| ----- | ----------------------- |
+| `c-c` | new session             |
+| `c-d` | kill session            |
+| `c-f` | find and switch session |
 
 **pane:**
 
@@ -45,9 +51,9 @@ You may should install `rainbarf`.
 
 | bind | function                   |
 | ---- | -------------------------- |
+| `s`  | toggle status bar          |
 | `!`  | split widow and open htop  |
 | `@`  | split widow and open range |
-| `s`  | toggle status bar          |
 
 **change statue bar:**
 
