@@ -12,8 +12,8 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/snap/bin
 export RANGER_LOAD_DEFAULT_RC="false"
 export TERM_ITALICS=true
-export TERM=xterm-256color
-#export TERM=screen-256color
+#export TERM=xterm-256color
+export TERM=screen-256color
 export TERMINFO=/usr/share/terminfo
 
 

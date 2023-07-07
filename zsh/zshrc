@@ -4,8 +4,8 @@ source ~/.configrc/zsh/vi.zsh
 source ~/.configrc/zsh/fzf.zsh
 source ~/.configrc/zsh/mappings.zsh
 #source ~/.config/zsh/aliases.zsh
-for al_f in `ls ~/.configrc/zsh/aliases`; do
-    source ~/.configrc/zsh/aliases/${al_f}
+for alias_file in `ls ~/.configrc/zsh/aliases`; do
+    source ~/.configrc/zsh/aliases/${alias_file}
 done
 source ~/.configrc/zsh/completion.zsh
 source ~/.configrc/zsh/tmux.zsh
