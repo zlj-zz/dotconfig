@@ -2,6 +2,7 @@
 alias cs='cowsay'
 alias h='htop'
 alias t='tmux -2'
+
 # ranger
 alias ra='ranger'
 alias sra='sudo -E ranger'
@@ -23,8 +24,8 @@ if type pigit >/dev/null 2>&1; then
 
     function openpigit {
     #    echo -en "\e[2K\r"
-        pigit 
-        zle redisplay
+        pigit ''
+        #zle redisplay
     }
     zle -N openpigit; bindkey "^G" openpigit
 

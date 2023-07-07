@@ -1,6 +1,8 @@
 # aliases
 alias sudo='sudo -E'
+
 alias c=clear -x
+
 alias ls='ls -G'
 alias ll='ls -lhG'
 alias l='ls -alhG'
