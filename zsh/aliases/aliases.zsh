@@ -18,6 +18,8 @@ if type thefuck >/dev/null 2>&1; then
 fi
 
 if type pigit >/dev/null 2>&1; then
+    eval "$(pigit --complete zsh)"
+
     alias pg="pigit"
     alias g="pigit cmd"
     alias gr="pigit repo"
