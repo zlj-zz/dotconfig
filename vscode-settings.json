@@ -1,204 +1,367 @@
 {
-  "http.proxySupport": "off",
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
-  },
-  "workbench.list.smoothScrolling": true,
-  "workbench.colorTheme": "Nord",
-  "workbench.iconTheme": "material-icon-theme",
-  "terminal.integrated.inheritEnv": false,
-  "terminal.integrated.scrollback": 50000,
-  "editor.fontSize": 12.5,
-  "editor.fontFamily": "'JetBrains Mono', Consolas, 'Hack Nerd Font', 'Hack Nerd Font',monospace",
-  "editor.minimap.maxColumn": 80,
-  "editor.fontLigatures": true,
-  "editor.suggestSelection": "recentlyUsedByPrefix",
-  "editor.acceptSuggestionOnEnter": "smart",
-  "editor.cursorStyle": "line",
-  "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
-  "editor.renderControlCharacters": true,
-  "editor.renderWhitespace": "all",
-  "editor.lineNumbers": "on",
-  "editor.wordWrap": "on",
-  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.unicodeHighlight.ambiguousCharacters": false,
-  "explorer.confirmDragAndDrop": false,
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
-  "python.languageServer": "Pylance",
-  "python.formatting.provider": "black",
-  "python.condaPath": "/Users/zacharyzhang/prog/miniforge3/condabin/conda",
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-  "python.autoComplete.extraPaths": [],
-  "python.analysis.extraPaths": [],
-  "[python]": {
-    "gitlens.codeLens.symbolScopes": ["!Module"],
-    "editor.tabSize": 4,
-    "editor.wordBasedSuggestions": false
-  },
-  "[javascript]": {
-    "editor.tabSize": 2
-  },
-  "[dart]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.rulers": [80],
-    "editor.selectionHighlight": false,
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": false
-  },
-  "Lua.telemetry.enable": true,
-  "[lua]": {
-    "editor.defaultFormatter": "yinfei.luahelper"
-  },
-  "arduino.commandPath": "Contents/MacOS/Arduino",
-  "arduino.additionalUrls": [
-    "https://dl.espressif.com/dl/package_esp32_index.json",
-    "https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json"
-  ],
-  "jupyter.askForKernelRestart": false,
-  "notebook.lineNumbers": "on",
-  "notebook.cellToolbarLocation": {
-    "default": "right",
-    "jupyter-notebook": "left"
-  },
-  "settingsSync.ignoredExtensions": ["streetsidesoftware.code-spell-checker"],
-  /* Vim setting*/
-  "vim.history": 200,
-  "vim.autoSwitchInputMethod.enable": true,
-  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
-  "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
-  "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
-  "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": true,
-    "<C-x>": false,
-    "<C-c>": false,
-    "<C-h>": false
-  },
-  "vim.foldfix": true,
-  "vim.hlsearch": true,
-  "vim.easymotion": true,
-  "vim.useSystemClipboard": false,
-  "vim.leader": "<space>",
-  "vim.normalModeKeyBindings": [
-    {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+    "http.proxySupport": "off",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
     },
-    {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+    "workbench.list.smoothScrolling": true,
+    "workbench.colorTheme": "Nord",
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.inheritEnv": false,
+    "terminal.integrated.scrollback": 50000,
+    "editor.fontSize": 12.7,
+    "editor.fontFamily": "'JetBrains Mono', Consolas, 'Hack Nerd Font', 'Hack Nerd Font',monospace",
+    "editor.minimap.maxColumn": 80,
+    "editor.fontLigatures": true,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.cursorStyle": "line",
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "editor.lineNumbers": "on",
+    "editor.wordWrap": "off",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "explorer.confirmDragAndDrop": false,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "python.languageServer": "Pylance",
+    "python.condaPath": "/Users/zacharyzhang/prog/miniforge3/condabin/conda",
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+    "python.autoComplete.extraPaths": [],
+    "python.analysis.extraPaths": [],
+    "[python]": {
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.tabSize": 4,
+        "editor.wordBasedSuggestions": "off"
     },
-    {
-      "before": ["J"],
-      "after": ["5", "j"]
+    "[javascript]": {
+        "editor.tabSize": 2
     },
-    {
-      "before": ["K"],
-      "after": ["5", "k"]
+    "[dart]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
     },
-    {
-      "before": ["H"],
-      "after": ["5", "h"]
+    "[lua]": {
+        "editor.defaultFormatter": "yinfei.luahelper"
     },
-    {
-      "before": ["L"],
-      "after": ["5", "l"]
+    "arduino.commandPath": "Contents/MacOS/Arduino",
+    "arduino.additionalUrls": [
+        "https://dl.espressif.com/dl/package_esp32_index.json",
+        "https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json"
+    ],
+    "jupyter.askForKernelRestart": false,
+    "notebook.lineNumbers": "on",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
     },
-    {
-      "before": ["Y"],
-      "after": ["y", "$"]
+    "settingsSync.ignoredExtensions": [
+        "streetsidesoftware.code-spell-checker"
+    ],
+    /* Vim setting*/
+    "vim.history": 200,
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
+    "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
+    "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": true,
+        "<C-x>": false,
+        "<C-c>": false,
+        "<C-h>": false
     },
-    {
-      "before": ["<leader>", "<CR>"],
-      "commands": [":nohl"]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [";"],
-      "after": [":"]
+    "vim.foldfix": true,
+    "vim.hlsearch": true,
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": false,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "5",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "5",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "5",
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "5",
+                "l"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y",
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<CR>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "j"
+            ],
+            "commands": [
+                ":split"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "commands": [
+                ":vsplit"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": [
+                "Q"
+            ],
+            "commands": [
+                ":q"
+            ]
+        },
+        {
+            "before": [
+                "<C-t>"
+            ],
+            "commands": [
+                ":tabe"
+            ]
+        },
+        {
+            "before": [
+                "t",
+                "n"
+            ],
+            "commands": [
+                ":tabnext"
+            ]
+        },
+        {
+            "before": [
+                "t",
+                "b"
+            ],
+            "commands": [
+                ":tabprevious"
+            ]
+        },
+        {
+            "before": [
+                "\\",
+                "F"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ],
+            "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "5",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "5",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "5",
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "5",
+                "l"
+            ]
+        }
+    ],
+    "vim.commandLineModeKeyBindings": [],
+    "vim.neovimPath": "/opt/homebrew/bin/nvim",
+    "leetcode.endpoint": "leetcode-cn",
+    "leetcode.workspaceFolder": "/Users/lijunzhang/Projects/.leetcode",
+    "leetcode.defaultLanguage": "python3",
+    "leetcode.hint.commentDescription": false,
+    "cSpell.userWords": [
+        "Zhang"
+    ],
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
-    {
-      "before": ["<leader>", "j"],
-      "commands": [":split"]
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
     },
-    {
-      "before": ["<leader>", "l"],
-      "commands": [":vsplit"]
+    "files.associations": {
+        "*.json": "jsonc"
     },
-    {
-      "before": ["S"],
-      "commands": ["workbench.action.files.save"]
+    "[jsonc]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
     },
-    {
-      "before": ["Q"],
-      "commands": [":q"]
+    "javascript.inlayHints.parameterNames.enabled": "all",
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "[dart][python]": {
+        "editor.wordBasedSuggestions": "off"
     },
-    {
-      "before": ["<C-t>"],
-      "commands": [":tabe"]
+    "eslint.validate": [
+        "vue"
+    ],
+    "eslint.format.enable": true,
+    "[vue]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
-    {
-      "before": ["t", "n"],
-      "commands": [":tabnext"]
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
-    {
-      "before": ["t", "b"],
-      "commands": [":tabprevious"]
+    "gitlens.views.commitDetails.files.layout": "tree",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
-    {
-      "before": ["\\", "F"],
-      "commands": ["editor.action.formatDocument"],
-      "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-    }
-  ],
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<esc>"]
-    }
-  ],
-  "vim.insertModeKeyBindingsNonRecursive": [],
-  "vim.visualModeKeyBindings": [
-    {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+    "qwerty-learner.phonetic": "close",
+    "[sql]": {
+        "editor.defaultFormatter": "mtxr.sqltools"
     },
-    {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": ["J"],
-      "after": ["5", "j"]
-    },
-    {
-      "before": ["K"],
-      "after": ["5", "k"]
-    },
-    {
-      "before": ["H"],
-      "after": ["5", "h"]
-    },
-    {
-      "before": ["L"],
-      "after": ["5", "l"]
-    }
-  ],
-  "vim.commandLineModeKeyBindings": [],
-  "vim.neovimPath": "/opt/homebrew/bin/nvim",
-  "leetcode.endpoint": "leetcode-cn",
-  "leetcode.workspaceFolder": "/Users/lijunzhang/Projects/.leetcode",
-  "leetcode.defaultLanguage": "python3",
-  "leetcode.hint.commentDescription": false,
-  "cSpell.userWords": ["Zhang"]
 }
