@@ -57,6 +57,46 @@
     "[lua]": {
         "editor.defaultFormatter": "yinfei.luahelper"
     },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "files.associations": {
+        "*.json": "jsonc"
+    },
+    "[jsonc]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "javascript.inlayHints.parameterNames.enabled": "all",
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[dart][python]": {
+        "editor.wordBasedSuggestions": "off"
+    },
+    "eslint.validate": [
+        "vue"
+    ],
+    "eslint.format.enable": true,
+    "[vue]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
     "arduino.commandPath": "Contents/MacOS/Arduino",
     "arduino.additionalUrls": [
         "https://dl.espressif.com/dl/package_esp32_index.json",
@@ -312,56 +352,21 @@
     ],
     "vim.commandLineModeKeyBindings": [],
     "vim.neovimPath": "/opt/homebrew/bin/nvim",
+    /* Leet code */
     "leetcode.endpoint": "leetcode-cn",
     "leetcode.workspaceFolder": "/Users/lijunzhang/Projects/.leetcode",
     "leetcode.defaultLanguage": "python3",
     "leetcode.hint.commentDescription": false,
+    /* enhance plugs */
     "cSpell.userWords": [
         "Zhang"
     ],
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "[json]": {
-        "editor.quickSuggestions": {
-            "strings": true
-        },
-        "editor.suggest.insertMode": "replace"
-    },
-    "files.associations": {
-        "*.json": "jsonc"
-    },
-    "[jsonc]": {
-        "editor.quickSuggestions": {
-            "strings": true
-        },
-        "editor.suggest.insertMode": "replace"
-    },
-    "javascript.inlayHints.parameterNames.enabled": "all",
-    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-    "javascript.inlayHints.parameterTypes.enabled": true,
-    "javascript.inlayHints.variableTypes.enabled": true,
-    "[dart][python]": {
-        "editor.wordBasedSuggestions": "off"
-    },
-    "eslint.validate": [
-        "vue"
-    ],
-    "eslint.format.enable": true,
-    "[vue]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    "[typescript]": {
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
     "gitlens.views.commitDetails.files.layout": "tree",
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
     "qwerty-learner.phonetic": "close",
     "[sql]": {
         "editor.defaultFormatter": "mtxr.sqltools"
     },
+    "remote.SSH.remotePlatform": {
+        "DevCloud": "linux"
+    }
 }
