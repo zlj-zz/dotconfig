@@ -43,7 +43,10 @@ export PATH=$PATH:${ANDROID_HOME}/tools
 export PATH=$PATH:${ANDROID_HOME}/platform-tools
 
 # go
-export PATH=$PATH:$HOME/go/bin
+if type goenv >/dev/null 2>&1; then
+  eval "$(goenv init -)"
+fi
+# export PATH=$PATH:$HOME/go/bin
 #export PATH=$PATH:$HOME/.gem/ruby/2.7.0
 
 # pyenv
