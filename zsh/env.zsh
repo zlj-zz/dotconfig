@@ -46,6 +46,8 @@ export PATH=$PATH:${ANDROID_HOME}/platform-tools
 if type goenv >/dev/null 2>&1; then
   eval "$(goenv init -)"
 fi
+# set GOPROXY（国内推荐七牛云/阿里云镜像）
+export GOPROXY=https://goproxy.cn,direct
 # export PATH=$PATH:$HOME/go/bin
 #export PATH=$PATH:$HOME/.gem/ruby/2.7.0
 

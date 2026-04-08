@@ -24,15 +24,15 @@ if type pigit >/dev/null 2>&1; then
 
     alias pg="pigit"
     alias g="pigit cmd"
-    alias gr="pigit repo"
+    alias r="pigit repo"
 
     function openpigit {
     #    echo -en "\e[2K\r"
-        pigit ''
+        pigit 
         #zle redisplay
     }
     zle -N openpigit; bindkey "^G" openpigit
 
 fi
 
-
+alias cc='claude'
