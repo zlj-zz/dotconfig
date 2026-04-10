@@ -7,6 +7,7 @@ alias t='tmux -2'
 alias ra='ranger'
 alias sra='sudo -E ranger'
 
+alias y='yazi'
 
 alias s="neofetch --cpu_temp C --memory_display barinfo --shell_path on "
 #alias s="neofetch --ascii_distro bilibili "
