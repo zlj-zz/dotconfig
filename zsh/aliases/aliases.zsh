@@ -14,6 +14,7 @@ alias s="neofetch --cpu_temp C --memory_display barinfo --shell_path on "
 #alias s='neofetch --cpu_temp C --memory_display barinfo --shell_path on --ascii "$(fortune | cowsay -W 35 | lolcat)"'
 
 alias all_proxy='export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897'
+alias echo_proxy='echo $https_proxy && echo $http_proxy && echo $all_proxy'
 
 # If thefuck installed.
 if type thefuck >/dev/null 2>&1; then
@@ -27,13 +28,7 @@ if type pigit >/dev/null 2>&1; then
     alias g="pigit cmd"
     alias r="pigit repo"
 
-    function openpigit {
-    #    echo -en "\e[2K\r"
-        pigit 
-        #zle redisplay
-    }
-    zle -N openpigit; bindkey "^G" openpigit
-
 fi
 
 alias cc='claude'
+alias cc-resume='claude --resume'
