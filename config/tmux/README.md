@@ -61,5 +61,6 @@ Or manually: `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
 | bind | function              |
 | ---- | --------------------- |
 | `Y`  | open yazi in new pane |
+| `g`  | extrakto (pick text)  |
 | `r`  | reload config         |
 | `e`  | edit config           |
