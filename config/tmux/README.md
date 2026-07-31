@@ -48,7 +48,7 @@ Or manually: `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
 
 | bind    | function             |
 | ------- | -------------------- |
-| `c`     | new window           |
+| `c`     | new window (prompt for name) |
 | `0`-`9` | select window        |
 | `w`     | show window list     |
 | `n` `p` | next / previous      |
