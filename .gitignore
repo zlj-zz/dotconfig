@@ -1,7 +1,11 @@
 # ignore everything
 
+.DS_Store
 fish/.DS_Store
 tmux/.DS_Store
+zsh/.DS_Store
+config/.DS_Store
+
 test.sh
 
 *.pyc
@@ -9,6 +13,5 @@ nvim/
 
 zsh/testing.zsh
 
-zsh/.DS_Store
-config/.DS_Store
-.DS_Store
+# vendored at install time (see config/tmux/install.sh)
+config/tmux/plugins/
