@@ -1,16 +1,22 @@
 # My tmux config
 
-you should place the file in `~`, or `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
+Install (links `~/.tmux.conf` and clones Catppuccin):
 
-let `prefix` be `c-x`, and resered `c-b`
+```bash
+./install.sh
+```
 
-You may should install `rainbarf`.
+Or manually: `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
 
-`c-d` exit TMUX.
+- Primary prefix: `C-b` (native)
+- Secondary prefix: `C-x`
+- Status theme: [Catppuccin](https://github.com/catppuccin/tmux) Frappé (`plugins/` is installed by `install.sh`, not committed)
+
+`exit` / `C-d` closes a pane; `Prefix d` detaches the session.
 
 ## Keymap
 
-> Need use the `prefix` to trigger the quick key.
+> Need the `prefix` first, then the key below.
 
 **session:**
 
@@ -19,44 +25,41 @@ You may should install `rainbarf`.
 | `c-c` | new session             |
 | `c-d` | kill session            |
 | `c-f` | find and switch session |
+| `s`   | choose session          |
+| `S`   | toggle status bar       |
+| `$`   | rename session          |
 
 **pane:**
 
-| bind            | function                               |
-| --------------- | -------------------------------------- |
-| `=`             | split current window horizontally      |
-| `-`             | split current window vertically        |
-| `x`             | close current page                     |
-| `h`             | move to left pane                      |
-| `j`             | move to down pane                      |
-| `k`             | move to up pane                        |
-| `l`             | move to right pane                     |
-| `>`             | swap current pane with the next one    |
-| `<`             | swap create pane with the previous one |
-| `H` `J` `K` `L` | resize current pane 2 units            |
+| bind            | function                            |
+| --------------- | ----------------------------------- |
+| `-`             | split top/bottom                    |
+| `\|`            | split left/right                    |
+| `=`             | choose buffer                       |
+| `x`             | close current pane                  |
+| `h` `j` `k` `l` | move between panes                  |
+| `>` `<`         | swap panes                          |
+| `H` `J` `K` `L` | resize pane                         |
+| `!`             | break pane into window              |
+| `@`             | join pane (choose-tree preview)     |
+| `z`             | zoom / unzoom pane                  |
 
 **window:**
 
-| bind    | function                |
-| ------- | ----------------------- |
-| `c`     | new window              |
-| `0`-`9` | select window           |
-| `w`     | show window list        |
-| `n`     | move to next window     |
-| `p`     | move to previous window |
-| `&`     | close current window    |
-| `,`     | rename current widow    |
+| bind    | function             |
+| ------- | -------------------- |
+| `c`     | new window           |
+| `0`-`9` | select window        |
+| `w`     | show window list     |
+| `n` `p` | next / previous      |
+| `Tab`   | last window          |
+| `&`     | close window         |
+| `,`     | rename window        |
 
 **other:**
 
-| bind | function                   |
-| ---- | -------------------------- |
-| `s`  | toggle status bar          |
-| `!`  | split widow and open htop  |
-| `@`  | split widow and open range |
-
-**change statue bar:**
-
-If you want to change the botton bar state, you can check the `./tmux-powerline/themes/default.sh` and modify it.
-
-![statue](https://img-blog.csdnimg.cn/20200923150050560.png)
+| bind | function              |
+| ---- | --------------------- |
+| `Y`  | open yazi in new pane |
+| `r`  | reload config         |
+| `e`  | edit config           |
