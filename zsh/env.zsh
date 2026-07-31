@@ -13,8 +13,8 @@ export PATH=$PATH:/snap/bin
 export RANGER_LOAD_DEFAULT_RC="false"
 export TERM_ITALICS=true
 #export TERM=xterm-256color
-export TERM=screen-256color
-export TERMINFO=/usr/share/terminfo
+# export TERM=screen-256color
+# export TERMINFO=/usr/share/terminfo
 
 
 # set default editor and visual
@@ -42,14 +42,16 @@ export ANDROID_HOME=${LOCALPROG}/Android/sdk
 export PATH=$PATH:${ANDROID_HOME}/tools
 export PATH=$PATH:${ANDROID_HOME}/platform-tools
 
-# go
-if type goenv >/dev/null 2>&1; then
-  eval "$(goenv init -)"
+#HomeBrew
+if [[ -d /opt/homebrew ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+  export PATH="/opt/homebrew/sbin:$PATH"
 fi
-# set GOPROXY（国内推荐七牛云/阿里云镜像）
-export GOPROXY=https://goproxy.cn,direct
-# export PATH=$PATH:$HOME/go/bin
-#export PATH=$PATH:$HOME/.gem/ruby/2.7.0
+
+# X86 Homebrew
+if type /usr/local/bin/brew >/dev/null 2>&1; then
+  alias ibrew='arch -x86_64 /usr/local/bin/brew'
+fi
 
 # pyenv
 #export PYENV_ROOT="$LOCALPROG/pyenv"
@@ -58,15 +60,25 @@ export GOPROXY=https://goproxy.cn,direct
 #    eval "$(pyenv init -)"
 #fi
 
-#HomeBrew
-if [[ -d /opt/homebrew ]] then
-  export PATH="$PATH:/opt/homebrew/bin"
-  export PATH="$PATH:/opt/homebrew/sbin"
-
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+export GOENV_PATH_ORDER=front
+if type goenv >/dev/null 2>&1; then
+  eval "$(goenv init -)"
 fi
 
-# X86 Homebrew
-if type /usr/local/bin/brew >/dev/null 2>&1; then
-  alias ibrew='arch -x86_64 /usr/local/bin/brew' 
+export PATH="$PATH:$(go env GOPATH | cut -d: -f1)/bin"
+
+# set GOPROXY（国内推荐七牛云/阿里云镜像）
+export GOPROXY=https://goproxy.cn,direct
+# export PATH=$PATH:$HOME/go/bin
+#export PATH=$PATH:$HOME/.gem/ruby/2.7.0
+
+# Force goenv shims to front and unset hardcoded GOROOT
+# (VS Code Go extension may set GOROOT, breaking goenv version switching)
+if [[ -d "$HOME/.goenv/shims" ]]; then
+    export PATH="$HOME/.goenv/shims:${PATH//"$HOME"\/.goenv\/shims:/}"
 fi
+unset GOROOT
 

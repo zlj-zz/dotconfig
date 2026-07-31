@@ -8,3 +8,7 @@ test.sh
 nvim/
 
 zsh/testing.zsh
+
+zsh/.DS_Store
+config/.DS_Store
+.DS_Store
