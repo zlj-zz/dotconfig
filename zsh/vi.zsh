@@ -13,6 +13,14 @@ bindkey -M vicmd "=" vi-repeat-search
 bindkey -M vicmd "e" vi-forward-word-end
 bindkey "^D" autosuggest-accept
 
+# Default viins Backspace is vi-backward-delete-char, which only removes
+# text typed after entering insert mode — so after Esc then i, delete
+# appears broken. Use full-line delete widgets instead.
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+bindkey -M viins '^W' backward-kill-word
+bindkey -M viins '^U' backward-kill-line
+
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
     RPS2=$RPS1
